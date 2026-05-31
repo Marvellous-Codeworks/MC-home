@@ -95,7 +95,7 @@ function Index() {
                 href={GITHUB_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="h-11 px-6 border border-border font-mono font-bold text-xs uppercase tracking-widest inline-flex items-center justify-center hover:bg-white/5 transition-colors rounded-sm"
+                className="h-11 px-6 border border-border font-mono font-bold text-xs uppercase tracking-widest inline-flex items-center justify-center hover:bg-black/5 transition-colors rounded-sm"
               >
                 GitHub Org
               </a>
@@ -106,7 +106,7 @@ function Index() {
         {/* Background grid */}
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff0d_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0d_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+          className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#0000000d_1px,transparent_1px),linear-gradient(to_bottom,#0000000d_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#fff_70%,transparent_100%)]"
         />
       </header>
 
@@ -199,7 +199,7 @@ function Index() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-black py-20 px-6">
+      <footer className="border-t border-border bg-card py-20 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
           <div className="space-y-6">
             <div className="flex items-center gap-2">
@@ -237,12 +237,9 @@ function Index() {
             />
           </div>
         </div>
-        <div className="max-w-7xl mx-auto mt-20 flex justify-between items-center border-t border-white/5 pt-8">
+        <div className="max-w-7xl mx-auto mt-20 flex justify-between items-center border-t border-border pt-8">
           <span className="font-mono text-[10px] text-muted-foreground uppercase">
             © {new Date().getFullYear()} Marvellous Codeworks
-          </span>
-          <span className="font-mono text-[10px] text-muted-foreground uppercase">
-            System Status: Optimal
           </span>
         </div>
       </footer>
