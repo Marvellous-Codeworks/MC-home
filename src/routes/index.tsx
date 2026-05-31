@@ -217,7 +217,7 @@ function Index() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <div className="size-4 bg-foreground" aria-hidden />
+              <img src={logo} alt="Marvellous Codeworks" className="h-4 w-auto" />
               <span className="font-mono text-xs font-bold tracking-tighter uppercase">
                 Marvellous Codeworks
               </span>
