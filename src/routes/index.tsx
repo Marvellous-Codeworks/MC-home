@@ -117,7 +117,6 @@ function Index() {
         <div className="grid lg:grid-cols-2 gap-px bg-border border border-border">
           <ProductCard
             index="01"
-            code="TGD_02.X"
             name="The Great-er Tab Discarder"
             description="Leverages the native Chromium discarding engine to freeze inactive tabs, releasing nearly 100% of their RAM while keeping them visible in your tab bar."
             features={[
@@ -134,14 +133,19 @@ function Index() {
                 body: "Whitelist audio-playing tabs, forms, or pinned tabs automatically.",
               },
             ]}
-            preview={<TgdPreview />}
-            storeUrl="https://chromewebstore.google.com/"
+            preview={
+              <img
+                src={tgdMascotte}
+                alt="The Great-er Tab Discarder mascot"
+                className="w-full h-full object-cover"
+              />
+            }
+            storeUrl="https://chromewebstore.google.com/detail/the-great-er-tab-discarder/plpkmjcnhhnpkblimgenmdhghfgghdpp"
             sourceUrl="https://github.com/Marvellous-Codeworks"
             delay={200}
           />
           <ProductCard
             index="02"
-            code="TMS_01.X"
             name="The Marvellous Suspender"
             description="The spiritual successor to modern tab suspension. Replaces inactive tabs with a lightweight hibernation page, giving you granular control over when they wake."
             features={[
@@ -158,11 +162,18 @@ function Index() {
                 body: "Automatically suspends tabs when battery drops below a threshold.",
               },
             ]}
-            preview={<TmsPreview />}
-            storeUrl="https://chromewebstore.google.com/"
+            preview={
+              <img
+                src={tmsMascotte}
+                alt="The Marvellous Suspender mascot"
+                className="w-full h-full object-cover"
+              />
+            }
+            storeUrl="https://chromewebstore.google.com/detail/the-marvellous-suspender/noogafoofpebimajpfpamcfhoaifemoa"
             sourceUrl="https://github.com/Marvellous-Codeworks"
             delay={300}
           />
+
         </div>
       </section>
 
