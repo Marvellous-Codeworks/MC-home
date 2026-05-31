@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ProductCard } from "@/components/ProductCard";
 import tgdMascotte from "@/assets/tgd-mascotte.jpg";
 import tmsMascotte from "@/assets/tms-mascotte.jpg";
+import logo from "@/assets/marvellous-logo.png";
 
 
 export const Route = createFileRoute("/")({
