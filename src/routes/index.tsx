@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ProductCard } from "@/components/ProductCard";
-import { TgdPreview, TmsPreview } from "@/components/ProductPreviews";
+import tgdMascotte from "@/assets/tgd-mascotte.jpg";
+import tmsMascotte from "@/assets/tms-mascotte.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
