@@ -7,7 +7,6 @@ export interface ProductFeature {
 
 export interface ProductCardProps {
   index: string;
-  code: string;
   name: string;
   description: string;
   features: ProductFeature[];
@@ -19,7 +18,6 @@ export interface ProductCardProps {
 
 export function ProductCard({
   index,
-  code,
   name,
   description,
   features,
@@ -37,12 +35,6 @@ export function ProductCard({
         <div className="size-12 border border-border flex items-center justify-center font-mono text-xl group-hover:border-primary group-hover:text-primary transition-colors">
           {index}
         </div>
-        <div className="text-right">
-          <span className="block font-mono text-[10px] text-muted-foreground uppercase tracking-widest">
-            Extension Code
-          </span>
-          <span className="block font-mono text-sm">{code}</span>
-        </div>
       </header>
 
       <h2 className="text-3xl font-mono font-bold mb-4 tracking-tight">{name}</h2>
@@ -58,6 +50,7 @@ export function ProductCard({
           </li>
         ))}
       </ul>
+
 
       <div className="w-full aspect-video bg-white/[0.03] mb-12 border border-border group-hover:border-primary/20 transition-colors overflow-hidden">
         {preview}
