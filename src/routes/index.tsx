@@ -36,7 +36,7 @@ function Index() {
       <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
           <a href="#" className="flex items-center gap-2">
-            <div className="size-5 bg-primary rounded-sm" aria-hidden />
+            <img src={logo} alt="Marvellous Codeworks" className="h-5 w-auto" />
             <span className="font-mono text-xs font-bold tracking-tighter uppercase">
               Marvellous Codeworks
             </span>
