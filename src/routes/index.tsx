@@ -38,6 +38,18 @@ const DOCS_URL = "https://www.marvellouscode.works/docs/intro";
 const GITHUB_URL = "https://github.com/Marvellous-Codeworks";
 
 function Index() {
+  const fetchStats = useServerFn(getExtensionStats);
+  const tgdStats = useQuery({
+    queryKey: ["ext-stats", TGD_STORE_URL],
+    queryFn: () => fetchStats({ data: { url: TGD_STORE_URL } }),
+    staleTime: 1000 * 60 * 60,
+  });
+  const tmsStats = useQuery({
+    queryKey: ["ext-stats", TMS_STORE_URL],
+    queryFn: () => fetchStats({ data: { url: TMS_STORE_URL } }),
+    staleTime: 1000 * 60 * 60,
+  });
+
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary">
       {/* Nav */}
