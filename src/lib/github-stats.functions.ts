@@ -53,7 +53,7 @@ export const getGithubStats = createServerFn({ method: "GET" })
 
       if (!repoRes.ok) {
         console.error(`GitHub repo fetch ${repoRes.status} for ${repoUrl}`);
-        return empty;
+        return { ...empty, error: `GitHub API error ${repoRes.status}` };
       }
       const repo = (await repoRes.json()) as {
         stargazers_count?: number;
