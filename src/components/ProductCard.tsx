@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { ExtensionStats } from "@/lib/extension-stats.functions";
+import type { GithubStats } from "@/lib/github-stats.functions";
 
 export interface ProductFeature {
   title: string;
@@ -15,7 +16,30 @@ export interface ProductCardProps {
   sourceUrl: string;
   stats?: ExtensionStats;
   statsLoading?: boolean;
+  github?: GithubStats;
+  githubLoading?: boolean;
   delay?: number;
+}
+
+function formatCount(n: number | null | undefined): string {
+  if (n == null) return "—";
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(n >= 10_000 ? 0 : 1)}k`;
+  return `${n}`;
+}
+
+function timeAgo(iso: string | null | undefined): string | undefined {
+  if (!iso) return undefined;
+  const then = new Date(iso).getTime();
+  if (Number.isNaN(then)) return undefined;
+  const days = Math.max(0, Math.floor((Date.now() - then) / 86_400_000));
+  if (days === 0) return "today";
+  if (days === 1) return "1 day ago";
+  if (days < 30) return `${days} days ago`;
+  const months = Math.floor(days / 30);
+  if (months < 12) return `${months} mo ago`;
+  const years = (days / 365).toFixed(1);
+  return `${years} yr ago`;
 }
 
 function formatUsers(label: string | null, n: number | null): string {
@@ -61,6 +85,8 @@ export function ProductCard({
   sourceUrl,
   stats,
   statsLoading,
+  github,
+  githubLoading,
   delay = 0,
 }: ProductCardProps) {
   const ratingValue = stats?.rating != null ? stats.rating.toFixed(1) : "—";
@@ -69,6 +95,7 @@ export function ProductCard({
       ? `${stats.ratingCount.toLocaleString("en-US")} ratings`
       : undefined;
   const usersValue = formatUsers(stats?.usersLabel ?? null, stats?.users ?? null);
+  const repoHref = github?.repoUrl ?? sourceUrl;
 
   return (
     <article
@@ -89,11 +116,17 @@ export function ProductCard({
         ))}
       </ul>
 
-      <div className="grid grid-cols-3 gap-6 py-6 mb-10 border-y border-border">
+      {/* Chrome Web Store metrics */}
+      <div className="mb-4">
+        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+          // Chrome Web Store
+        </span>
+      </div>
+      <div className="grid grid-cols-2 gap-6 py-6 mb-6 border-y border-border">
         <StatBlock
           label="Users"
           value={usersValue}
-          sub="Chrome Web Store"
+          sub="Active installs"
           loading={statsLoading && !stats}
         />
         <StatBlock
@@ -102,10 +135,38 @@ export function ProductCard({
           sub={ratingSub}
           loading={statsLoading && !stats}
         />
+      </div>
+
+      {/* GitHub metrics */}
+      <div className="mb-4">
+        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+          // GitHub
+        </span>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 py-6 mb-10 border-y border-border">
         <StatBlock
-          label="License"
-          value="OSS"
-          sub="Open source"
+          label="Stars"
+          value={formatCount(github?.stars)}
+          sub={github?.forks != null ? `${formatCount(github.forks)} forks` : undefined}
+          loading={githubLoading && !github}
+        />
+        <StatBlock
+          label="Open issues"
+          value={formatCount(github?.openIssues)}
+          sub="Tracked"
+          loading={githubLoading && !github}
+        />
+        <StatBlock
+          label="Release"
+          value={github?.latestRelease ?? "—"}
+          sub={timeAgo(github?.latestReleaseAt)}
+          loading={githubLoading && !github}
+        />
+        <StatBlock
+          label="Last push"
+          value={timeAgo(github?.pushedAt) ?? "—"}
+          sub="Activity"
+          loading={githubLoading && !github}
         />
       </div>
 
@@ -123,7 +184,7 @@ export function ProductCard({
           Chrome Web Store
         </a>
         <a
-          href={sourceUrl}
+          href={repoHref}
           target="_blank"
           rel="noreferrer"
           className="flex-1 h-12 border border-border font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-black/5 transition-colors rounded-sm"
