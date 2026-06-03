@@ -1,8 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
 import { ProductCard } from "@/components/ProductCard";
+import { getExtensionStats } from "@/lib/extension-stats.functions";
 import tgdMascotte from "@/assets/tgd-mascotte.jpg";
 import tmsMascotte from "@/assets/tms-mascotte.jpg";
 import logo from "@/assets/marvellous-logo.png";
+
+const TMS_STORE_URL =
+  "https://chromewebstore.google.com/detail/the-marvellous-suspender/noogafoofpebimajpfpamcfhoaifemoa";
+const TGD_STORE_URL =
+  "https://chromewebstore.google.com/detail/the-great-er-tab-discarder/plpkmjcnhhnpkblimgenmdhghfgghdpp";
 
 
 export const Route = createFileRoute("/")({
@@ -30,6 +38,18 @@ const DOCS_URL = "https://www.marvellouscode.works/docs/intro";
 const GITHUB_URL = "https://github.com/Marvellous-Codeworks";
 
 function Index() {
+  const fetchStats = useServerFn(getExtensionStats);
+  const tgdStats = useQuery({
+    queryKey: ["ext-stats", TGD_STORE_URL],
+    queryFn: () => fetchStats({ data: { url: TGD_STORE_URL } }),
+    staleTime: 1000 * 60 * 60,
+  });
+  const tmsStats = useQuery({
+    queryKey: ["ext-stats", TMS_STORE_URL],
+    queryFn: () => fetchStats({ data: { url: TMS_STORE_URL } }),
+    staleTime: 1000 * 60 * 60,
+  });
+
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary">
       {/* Nav */}
@@ -117,7 +137,6 @@ function Index() {
       <section id="extensions" className="max-w-7xl mx-auto px-6 pb-24">
         <div className="grid lg:grid-cols-2 gap-px bg-border border border-border">
           <ProductCard
-            index="01"
             name="The Great-er Tab Discarder"
             description="Leverages the native Chromium discarding engine to freeze inactive tabs, releasing nearly 100% of their RAM while keeping them visible in your tab bar."
             features={[
@@ -141,12 +160,13 @@ function Index() {
                 className="w-full h-full object-cover"
               />
             }
-            storeUrl="https://chromewebstore.google.com/detail/the-great-er-tab-discarder/plpkmjcnhhnpkblimgenmdhghfgghdpp"
+            storeUrl={TGD_STORE_URL}
             sourceUrl="https://github.com/Marvellous-Codeworks"
+            stats={tgdStats.data}
+            statsLoading={tgdStats.isLoading}
             delay={200}
           />
           <ProductCard
-            index="02"
             name="The Marvellous Suspender"
             description="The spiritual successor to modern tab suspension. Replaces inactive tabs with a lightweight hibernation page, giving you granular control over when they wake."
             features={[
@@ -170,8 +190,10 @@ function Index() {
                 className="w-full h-full object-cover"
               />
             }
-            storeUrl="https://chromewebstore.google.com/detail/the-marvellous-suspender/noogafoofpebimajpfpamcfhoaifemoa"
+            storeUrl={TMS_STORE_URL}
             sourceUrl="https://github.com/Marvellous-Codeworks"
+            stats={tmsStats.data}
+            statsLoading={tmsStats.isLoading}
             delay={300}
           />
 
