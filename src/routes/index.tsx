@@ -176,9 +176,11 @@ function Index() {
               />
             }
             storeUrl={TGD_STORE_URL}
-            sourceUrl="https://github.com/Marvellous-Codeworks"
+            sourceUrl={`https://github.com/${TGD_REPO.owner}/${TGD_REPO.repo}`}
             stats={tgdStats.data}
             statsLoading={tgdStats.isLoading}
+            github={tgdGithub.data}
+            githubLoading={tgdGithub.isLoading}
             delay={200}
           />
           <ProductCard
@@ -206,9 +208,11 @@ function Index() {
               />
             }
             storeUrl={TMS_STORE_URL}
-            sourceUrl="https://github.com/Marvellous-Codeworks"
+            sourceUrl={`https://github.com/${TMS_REPO.owner}/${TMS_REPO.repo}`}
             stats={tmsStats.data}
             statsLoading={tmsStats.isLoading}
+            github={tmsGithub.data}
+            githubLoading={tmsGithub.isLoading}
             delay={300}
           />
 
