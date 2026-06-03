@@ -167,7 +167,6 @@ function Index() {
             delay={200}
           />
           <ProductCard
-            index="02"
             name="The Marvellous Suspender"
             description="The spiritual successor to modern tab suspension. Replaces inactive tabs with a lightweight hibernation page, giving you granular control over when they wake."
             features={[
@@ -191,8 +190,10 @@ function Index() {
                 className="w-full h-full object-cover"
               />
             }
-            storeUrl="https://chromewebstore.google.com/detail/the-marvellous-suspender/noogafoofpebimajpfpamcfhoaifemoa"
+            storeUrl={TMS_STORE_URL}
             sourceUrl="https://github.com/Marvellous-Codeworks"
+            stats={tmsStats.data}
+            statsLoading={tmsStats.isLoading}
             delay={300}
           />
 
