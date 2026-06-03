@@ -55,17 +55,26 @@ function StatBlock({
   value,
   sub,
   loading,
+  tooltip,
 }: {
   label: string;
   value: string;
   sub?: string;
   loading?: boolean;
+  tooltip?: string;
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-        {label}
-      </span>
+      <div className="relative group/tooltip">
+        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground cursor-help">
+          {label}
+        </span>
+        {tooltip ? (
+          <div className="absolute bottom-full left-0 mb-1 hidden group-hover/tooltip:block bg-popover text-popover-foreground text-[10px] font-mono px-2 py-1.5 rounded border border-border shadow-sm whitespace-nowrap z-10">
+            {tooltip}
+          </div>
+        ) : null}
+      </div>
       <span className="font-mono text-2xl font-bold tracking-tight tabular-nums">
         {loading ? <span className="inline-block h-6 w-16 bg-muted animate-pulse rounded-sm" /> : value}
       </span>
