@@ -8,6 +8,7 @@ export interface GithubStats {
   latestReleaseAt: string | null;
   pushedAt: string | null;
   repoUrl: string;
+  error?: string;
 }
 
 const HEADERS: Record<string, string> = {
