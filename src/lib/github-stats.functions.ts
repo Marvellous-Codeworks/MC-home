@@ -85,6 +85,6 @@ export const getGithubStats = createServerFn({ method: "GET" })
       };
     } catch (err) {
       console.error("GitHub fetch failed:", err);
-      return empty;
+      return { ...empty, error: "Could not reach GitHub" };
     }
   });
