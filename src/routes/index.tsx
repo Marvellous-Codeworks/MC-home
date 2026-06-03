@@ -137,7 +137,6 @@ function Index() {
       <section id="extensions" className="max-w-7xl mx-auto px-6 pb-24">
         <div className="grid lg:grid-cols-2 gap-px bg-border border border-border">
           <ProductCard
-            index="01"
             name="The Great-er Tab Discarder"
             description="Leverages the native Chromium discarding engine to freeze inactive tabs, releasing nearly 100% of their RAM while keeping them visible in your tab bar."
             features={[
@@ -161,8 +160,10 @@ function Index() {
                 className="w-full h-full object-cover"
               />
             }
-            storeUrl="https://chromewebstore.google.com/detail/the-great-er-tab-discarder/plpkmjcnhhnpkblimgenmdhghfgghdpp"
+            storeUrl={TGD_STORE_URL}
             sourceUrl="https://github.com/Marvellous-Codeworks"
+            stats={tgdStats.data}
+            statsLoading={tgdStats.isLoading}
             delay={200}
           />
           <ProductCard
