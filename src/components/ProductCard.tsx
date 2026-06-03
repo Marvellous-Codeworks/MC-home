@@ -106,6 +106,16 @@ export function ProductCard({
   const usersValue = formatUsers(stats?.usersLabel ?? null, stats?.users ?? null);
   const repoHref = github?.repoUrl ?? sourceUrl;
 
+  const githubUnavailable =
+    !!github?.error ||
+    (!githubLoading &&
+      github &&
+      github.stars == null &&
+      github.forks == null &&
+      github.openIssues == null &&
+      github.latestRelease == null &&
+      github.pushedAt == null);
+
   return (
     <article
       className="bg-background p-8 lg:p-12 animate-reveal group"
