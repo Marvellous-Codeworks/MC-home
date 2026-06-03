@@ -8,6 +8,7 @@ export interface GithubStats {
   latestReleaseAt: string | null;
   pushedAt: string | null;
   repoUrl: string;
+  error?: string;
 }
 
 const HEADERS: Record<string, string> = {
@@ -52,7 +53,7 @@ export const getGithubStats = createServerFn({ method: "GET" })
 
       if (!repoRes.ok) {
         console.error(`GitHub repo fetch ${repoRes.status} for ${repoUrl}`);
-        return empty;
+        return { ...empty, error: `GitHub API error ${repoRes.status}` };
       }
       const repo = (await repoRes.json()) as {
         stargazers_count?: number;
@@ -84,6 +85,6 @@ export const getGithubStats = createServerFn({ method: "GET" })
       };
     } catch (err) {
       console.error("GitHub fetch failed:", err);
-      return empty;
+      return { ...empty, error: "Could not reach GitHub" };
     }
   });

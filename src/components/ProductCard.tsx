@@ -55,17 +55,26 @@ function StatBlock({
   value,
   sub,
   loading,
+  tooltip,
 }: {
   label: string;
   value: string;
   sub?: string;
   loading?: boolean;
+  tooltip?: string;
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-        {label}
-      </span>
+      <div className="relative group/tooltip">
+        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground cursor-help">
+          {label}
+        </span>
+        {tooltip ? (
+          <div className="absolute bottom-full left-0 mb-1 hidden group-hover/tooltip:block bg-popover text-popover-foreground text-[10px] font-mono px-2 py-1.5 rounded border border-border shadow-sm whitespace-nowrap z-10">
+            {tooltip}
+          </div>
+        ) : null}
+      </div>
       <span className="font-mono text-2xl font-bold tracking-tight tabular-nums">
         {loading ? <span className="inline-block h-6 w-16 bg-muted animate-pulse rounded-sm" /> : value}
       </span>
@@ -96,6 +105,16 @@ export function ProductCard({
       : undefined;
   const usersValue = formatUsers(stats?.usersLabel ?? null, stats?.users ?? null);
   const repoHref = github?.repoUrl ?? sourceUrl;
+
+  const githubUnavailable =
+    !!github?.error ||
+    (!githubLoading &&
+      github &&
+      github.stars == null &&
+      github.forks == null &&
+      github.openIssues == null &&
+      github.latestRelease == null &&
+      github.pushedAt == null);
 
   return (
     <article
@@ -143,32 +162,50 @@ export function ProductCard({
           // GitHub
         </span>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 py-6 mb-10 border-y border-border">
-        <StatBlock
-          label="Stars"
-          value={formatCount(github?.stars)}
-          sub={github?.forks != null ? `${formatCount(github.forks)} forks` : undefined}
-          loading={githubLoading && !github}
-        />
-        <StatBlock
-          label="Open issues"
-          value={formatCount(github?.openIssues)}
-          sub="Tracked"
-          loading={githubLoading && !github}
-        />
-        <StatBlock
-          label="Release"
-          value={github?.latestRelease ?? "—"}
-          sub={timeAgo(github?.latestReleaseAt)}
-          loading={githubLoading && !github}
-        />
-        <StatBlock
-          label="Last push"
-          value={timeAgo(github?.pushedAt) ?? "—"}
-          sub="Activity"
-          loading={githubLoading && !github}
-        />
-      </div>
+      {githubUnavailable ? (
+        <div className="py-6 mb-10 border-y border-border flex items-center gap-3">
+          <span className="inline-block h-2 w-2 rounded-full bg-muted-foreground/30" />
+          <span className="font-mono text-xs text-muted-foreground">Stats unavailable</span>
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 py-6 mb-10 border-y border-border">
+          <StatBlock
+            label="Stars"
+            value={formatCount(github?.stars)}
+            sub="Community appreciation"
+            loading={githubLoading && !github}
+            tooltip="How many users starred this repository"
+          />
+          <StatBlock
+            label="Forks"
+            value={formatCount(github?.forks)}
+            sub="Copies created"
+            loading={githubLoading && !github}
+            tooltip="How many developers forked the repository"
+          />
+          <StatBlock
+            label="Open issues"
+            value={formatCount(github?.openIssues)}
+            sub="Pending bugs / features"
+            loading={githubLoading && !github}
+            tooltip="Active bug reports and feature requests"
+          />
+          <StatBlock
+            label="Release"
+            value={github?.latestRelease ?? "—"}
+            sub={timeAgo(github?.latestReleaseAt) ?? "Latest version"}
+            loading={githubLoading && !github}
+            tooltip="Latest published release tag"
+          />
+          <StatBlock
+            label="Last push"
+            value={timeAgo(github?.pushedAt) ?? "—"}
+            sub="Code activity"
+            loading={githubLoading && !github}
+            tooltip="When the last commit was pushed"
+          />
+        </div>
+      )}
 
       <div className="w-full aspect-video bg-muted/40 mb-10 border border-border group-hover:border-primary/20 transition-colors overflow-hidden">
         {preview}
