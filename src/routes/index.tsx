@@ -1,8 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
 import { ProductCard } from "@/components/ProductCard";
+import { getExtensionStats } from "@/lib/extension-stats.functions";
 import tgdMascotte from "@/assets/tgd-mascotte.jpg";
 import tmsMascotte from "@/assets/tms-mascotte.jpg";
 import logo from "@/assets/marvellous-logo.png";
+
+const TMS_STORE_URL =
+  "https://chromewebstore.google.com/detail/the-marvellous-suspender/noogafoofpebimajpfpamcfhoaifemoa";
+const TGD_STORE_URL =
+  "https://chromewebstore.google.com/detail/the-great-er-tab-discarder/plpkmjcnhhnpkblimgenmdhghfgghdpp";
 
 
 export const Route = createFileRoute("/")({
