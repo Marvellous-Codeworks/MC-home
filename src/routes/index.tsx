@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { ProductCard } from "@/components/ProductCard";
 import { getExtensionStats } from "@/lib/extension-stats.functions";
+import { getGithubStats } from "@/lib/github-stats.functions";
 import tgdMascotte from "@/assets/tgd-mascotte.jpg";
 import tmsMascotte from "@/assets/tms-mascotte.jpg";
 import logo from "@/assets/marvellous-logo.png";
@@ -11,6 +12,9 @@ const TMS_STORE_URL =
   "https://chromewebstore.google.com/detail/the-marvellous-suspender/noogafoofpebimajpfpamcfhoaifemoa";
 const TGD_STORE_URL =
   "https://chromewebstore.google.com/detail/the-great-er-tab-discarder/plpkmjcnhhnpkblimgenmdhghfgghdpp";
+
+const TMS_REPO = { owner: "gioxx", repo: "MarvellousSuspender" } as const;
+const TGD_REPO = { owner: "rkodey", repo: "the-great-er-discarder-er" } as const;
 
 
 export const Route = createFileRoute("/")({
@@ -39,6 +43,7 @@ const GITHUB_URL = "https://github.com/Marvellous-Codeworks";
 
 function Index() {
   const fetchStats = useServerFn(getExtensionStats);
+  const fetchGithub = useServerFn(getGithubStats);
   const tgdStats = useQuery({
     queryKey: ["ext-stats", TGD_STORE_URL],
     queryFn: () => fetchStats({ data: { url: TGD_STORE_URL } }),
@@ -47,6 +52,16 @@ function Index() {
   const tmsStats = useQuery({
     queryKey: ["ext-stats", TMS_STORE_URL],
     queryFn: () => fetchStats({ data: { url: TMS_STORE_URL } }),
+    staleTime: 1000 * 60 * 60,
+  });
+  const tgdGithub = useQuery({
+    queryKey: ["gh-stats", TGD_REPO.owner, TGD_REPO.repo],
+    queryFn: () => fetchGithub({ data: TGD_REPO }),
+    staleTime: 1000 * 60 * 60,
+  });
+  const tmsGithub = useQuery({
+    queryKey: ["gh-stats", TMS_REPO.owner, TMS_REPO.repo],
+    queryFn: () => fetchGithub({ data: TMS_REPO }),
     staleTime: 1000 * 60 * 60,
   });
 
