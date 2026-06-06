@@ -120,51 +120,59 @@ function Index() {
 
       {/* Hero */}
       <header className="relative pt-24 pb-16 px-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-[3fr_2fr] gap-8 items-center">
-            <div className="animate-reveal [animation-delay:100ms]">
-              <div className="inline-flex items-center gap-2 px-2 py-1 rounded border border-primary/20 bg-primary/5 mb-6">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-                </span>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
-                  {t("hero.badge")}
-                </span>
-              </div>
-              <h1 className="text-5xl md:text-7xl font-mono font-extrabold tracking-tight text-balance leading-[0.9] max-w-4xl">
-                {t("hero.title.a")}
-                <span className="text-primary">{t("hero.title.b")}</span>
-                {t("hero.title.c")}
-              </h1>
-              <p className="mt-8 text-xl text-muted-foreground max-w-[50ch] text-pretty">
-                {t("hero.subtitle")}
-              </p>
-              <div className="mt-10 flex flex-wrap items-center gap-3">
-                <a
-                  href="#extensions"
-                  className="h-11 px-6 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest inline-flex items-center justify-center hover:bg-foreground transition-colors rounded-sm"
-                >
-                  {t("hero.cta.view")}
-                </a>
-                <a
-                  href={GITHUB_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="h-11 px-6 border border-border font-mono font-bold text-xs uppercase tracking-widest inline-flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
-                >
-                  {t("hero.cta.github")}
-                </a>
-              </div>
-            </div>
+        <div className="max-w-7xl mx-auto relative">
 
-            {/* Mascot illustration */}
-            <div aria-hidden className="hidden lg:flex relative items-end justify-center self-stretch min-h-[480px] overflow-hidden">
-              <div className="absolute inset-y-0 left-0 w-4/5 bg-gradient-to-r from-background via-background/70 to-transparent z-10 pointer-events-none" />
-              <div className="absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
-              <div className="absolute inset-x-0 bottom-0 h-1/5 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
-              <img src={tgdMascotte} alt="" className="h-[360px] w-auto object-contain opacity-70 translate-y-8 -translate-x-8" />
-              <img src={tmsMascotte} alt="" className="h-[460px] w-auto object-contain opacity-70" />
+          {/* Mascot overlay — absolutely positioned, bleeds left into the text area */}
+          <div aria-hidden className="hidden lg:block absolute -top-24 -bottom-16 right-0 w-[70%] pointer-events-none z-0">
+            <div className="absolute inset-y-0 left-0 w-4/5 bg-gradient-to-r from-background via-background/80 to-transparent z-10" />
+            <div className="absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b from-background to-transparent z-10" />
+            <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-background to-transparent z-10" />
+            <img
+              src={tgdMascotte}
+              alt=""
+              className="absolute bottom-0 right-[22%] h-[82%] w-auto object-contain opacity-60 translate-y-6"
+            />
+            <img
+              src={tmsMascotte}
+              alt=""
+              className="absolute bottom-0 right-0 h-[100%] w-auto object-contain opacity-70"
+            />
+          </div>
+
+          {/* Text — z-10 to sit above the mascot layer */}
+          <div className="relative z-10 animate-reveal [animation-delay:100ms]">
+            <div className="inline-flex items-center gap-2 px-2 py-1 rounded border border-primary/20 bg-primary/5 mb-6">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+              </span>
+              <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
+                {t("hero.badge")}
+              </span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-mono font-extrabold tracking-tight text-balance leading-[0.9] max-w-4xl">
+              {t("hero.title.a")}
+              <span className="text-primary">{t("hero.title.b")}</span>
+              {t("hero.title.c")}
+            </h1>
+            <p className="mt-8 text-xl text-muted-foreground max-w-[50ch] text-pretty">
+              {t("hero.subtitle")}
+            </p>
+            <div className="mt-10 flex flex-wrap items-center gap-3">
+              <a
+                href="#extensions"
+                className="h-11 px-6 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest inline-flex items-center justify-center hover:bg-foreground transition-colors rounded-sm"
+              >
+                {t("hero.cta.view")}
+              </a>
+              <a
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="h-11 px-6 border border-border font-mono font-bold text-xs uppercase tracking-widest inline-flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
+              >
+                {t("hero.cta.github")}
+              </a>
             </div>
           </div>
         </div>

@@ -130,12 +130,12 @@ export function ProductCard({
       style={{ animationDelay: `${delay}ms` }}
     >
       {/* Row 1: image */}
-      <div className="w-full aspect-video bg-muted/40 mb-8 lg:mb-0 border border-border group-hover:border-primary/20 transition-colors overflow-hidden">
+      <div className="w-full aspect-video bg-muted/40 mb-8 lg:mb-0 lg:pb-0 border border-border group-hover:border-primary/20 transition-colors overflow-hidden">
         {preview}
       </div>
 
       {/* Row 2: name + description */}
-      <div className="mb-0">
+      <div className="lg:pt-8 lg:pb-6">
         <h2 className="text-3xl font-mono font-bold mb-4 tracking-tight">{name}</h2>
         <p className="text-muted-foreground leading-relaxed">{description}</p>
       </div>
@@ -249,9 +249,9 @@ export function ProductCard({
             href={edgeUrl}
             target="_blank"
             rel="noreferrer"
-            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors text-center"
+            className="h-12 bg-[#0b7acc]/10 border border-[#0b7acc]/30 text-[#0b7acc] dark:bg-[#0b7acc]/15 dark:border-[#0b7acc]/40 dark:text-[#4ab4f5] font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-[#0b7acc]/20 transition-colors rounded-sm"
           >
-            {t("card.cta.edge")} →
+            {t("card.cta.edge")}
           </a>
         )}
       </div>
