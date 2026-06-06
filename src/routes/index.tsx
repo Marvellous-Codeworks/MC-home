@@ -2,8 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { ProductCard } from "@/components/ProductCard";
+import { LanguageToggle, ThemeToggle } from "@/components/Toggles";
 import { getExtensionStats } from "@/lib/extension-stats.functions";
 import { getGithubStats } from "@/lib/github-stats.functions";
+import { useI18n } from "@/lib/i18n";
 import tgdMascotte from "@/assets/tgd-mascotte.jpg";
 import tmsMascotte from "@/assets/tms-mascotte.jpg";
 import logo from "@/assets/marvellous-logo.png";
@@ -15,7 +17,6 @@ const TGD_STORE_URL =
 
 const TMS_REPO = { owner: "gioxx", repo: "MarvellousSuspender" } as const;
 const TGD_REPO = { owner: "rkodey", repo: "the-great-er-discarder-er" } as const;
-
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -42,6 +43,7 @@ const DOCS_URL = "https://www.marvellouscode.works/docs/intro";
 const GITHUB_URL = "https://github.com/Marvellous-Codeworks";
 
 function Index() {
+  const { t } = useI18n();
   const fetchStats = useServerFn(getExtensionStats);
   const fetchGithub = useServerFn(getGithubStats);
   const tgdStats = useQuery({
@@ -65,38 +67,51 @@ function Index() {
     staleTime: 1000 * 60 * 60,
   });
 
+  const tgdFeatures = [
+    { title: t("tgd.f1.t"), body: t("tgd.f1.b") },
+    { title: t("tgd.f2.t"), body: t("tgd.f2.b") },
+    { title: t("tgd.f3.t"), body: t("tgd.f3.b") },
+  ];
+  const tmsFeatures = [
+    { title: t("tms.f1.t"), body: t("tms.f1.b") },
+    { title: t("tms.f2.t"), body: t("tms.f2.b") },
+    { title: t("tms.f3.t"), body: t("tms.f3.b") },
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary">
       {/* Nav */}
       <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2">
+        <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
+          <a href="#" className="flex items-center gap-2 min-w-0">
             <img src={logo} alt="Marvellous Codeworks" className="h-5 w-auto" />
-            <span className="font-mono text-xs font-bold tracking-tighter uppercase">
+            <span className="font-mono text-xs font-bold tracking-tighter uppercase truncate">
               Marvellous Codeworks
             </span>
           </a>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 sm:gap-6">
             <a
               href="#extensions"
-              className="text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
+              className="hidden sm:inline text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
             >
-              Extensions
+              {t("nav.extensions")}
             </a>
             <a
               href={DOCS_URL}
-              className="text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
+              className="hidden sm:inline text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
             >
-              Docs
+              {t("nav.docs")}
             </a>
             <a
               href={GITHUB_URL}
               target="_blank"
               rel="noreferrer"
-              className="text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
+              className="hidden sm:inline text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
             >
-              GitHub
+              {t("nav.github")}
             </a>
+            <LanguageToggle />
+            <ThemeToggle />
           </div>
         </div>
       </nav>
@@ -111,31 +126,31 @@ function Index() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
               </span>
               <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
-                High Efficiency Engine — Manifest V3 Ready
+                {t("hero.badge")}
               </span>
             </div>
             <h1 className="text-5xl md:text-7xl font-mono font-extrabold tracking-tight text-balance leading-[0.9] max-w-4xl">
-              RECLAIM YOUR <span className="text-primary">BROWSER</span> MEMORY.
+              {t("hero.title.a")}
+              <span className="text-primary">{t("hero.title.b")}</span>
+              {t("hero.title.c")}
             </h1>
             <p className="mt-8 text-xl text-muted-foreground max-w-[50ch] text-pretty">
-              Precision tools for the professional web. Marvellous Codeworks builds open-source
-              Chromium extensions that turn memory-hungry browsers into lean execution
-              environments.
+              {t("hero.subtitle")}
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <a
                 href="#extensions"
                 className="h-11 px-6 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest inline-flex items-center justify-center hover:bg-foreground transition-colors rounded-sm"
               >
-                View Extensions
+                {t("hero.cta.view")}
               </a>
               <a
                 href={GITHUB_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="h-11 px-6 border border-border font-mono font-bold text-xs uppercase tracking-widest inline-flex items-center justify-center hover:bg-black/5 transition-colors rounded-sm"
+                className="h-11 px-6 border border-border font-mono font-bold text-xs uppercase tracking-widest inline-flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
               >
-                GitHub Org
+                {t("hero.cta.github")}
               </a>
             </div>
           </div>
@@ -144,7 +159,7 @@ function Index() {
         {/* Background grid */}
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#0000000d_1px,transparent_1px),linear-gradient(to_bottom,#0000000d_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#fff_70%,transparent_100%)]"
+          className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#fff_70%,transparent_100%)]"
         />
       </header>
 
@@ -152,22 +167,9 @@ function Index() {
       <section id="extensions" className="max-w-7xl mx-auto px-6 pb-24">
         <div className="grid lg:grid-cols-2 gap-px bg-border border border-border">
           <ProductCard
-            name="The Great-er Tab Discarder"
-            description="Leverages the native Chromium discarding engine to freeze inactive tabs, releasing nearly 100% of their RAM while keeping them visible in your tab bar."
-            features={[
-              {
-                title: "Native Engine.",
-                body: "Zero performance overhead by using the browser's internal hibernation APIs.",
-              },
-              {
-                title: "Force Purge.",
-                body: "Instantly discard all background tabs with a single hotkey.",
-              },
-              {
-                title: "Smart Context.",
-                body: "Whitelist audio-playing tabs, forms, or pinned tabs automatically.",
-              },
-            ]}
+            name={t("tgd.name")}
+            description={t("tgd.description")}
+            features={tgdFeatures}
             preview={
               <img
                 src={tgdMascotte}
@@ -184,22 +186,9 @@ function Index() {
             delay={200}
           />
           <ProductCard
-            name="The Marvellous Suspender"
-            description="The spiritual successor to modern tab suspension. Replaces inactive tabs with a lightweight hibernation page, giving you granular control over when they wake."
-            features={[
-              {
-                title: "Granular Hibernation.",
-                body: "Choose how tabs look when suspended: screenshot, blurred, or text-only.",
-              },
-              {
-                title: "Session Recovery.",
-                body: "Recover all suspended tabs even after a browser crash or restart.",
-              },
-              {
-                title: "Power Mode.",
-                body: "Automatically suspends tabs when battery drops below a threshold.",
-              },
-            ]}
+            name={t("tms.name")}
+            description={t("tms.description")}
+            features={tmsFeatures}
             preview={
               <img
                 src={tmsMascotte}
@@ -215,7 +204,6 @@ function Index() {
             githubLoading={tmsGithub.isLoading}
             delay={300}
           />
-
         </div>
       </section>
 
@@ -223,21 +211,9 @@ function Index() {
       <section className="max-w-7xl mx-auto px-6 py-24 border-t border-border">
         <div className="grid md:grid-cols-3 gap-12">
           {[
-            {
-              n: "01",
-              t: "Performance",
-              b: "Built for systems with 4GB to 128GB of RAM. We focus on reducing CPU wakeups and memory pressure to extend battery life and keep your machine cool.",
-            },
-            {
-              n: "02",
-              t: "Privacy",
-              b: "Zero tracking. Zero analytics. Your browsing data never leaves your machine. Both extensions are fully open source for community auditing.",
-            },
-            {
-              n: "03",
-              t: "Open Source",
-              b: "Maintained by Marvellous Codeworks and a global community of developers. Fork it, improve it, or contribute under a permissive open-source license.",
-            },
+            { n: "01", t: t("trust.01.t"), b: t("trust.01.b") },
+            { n: "02", t: t("trust.02.t"), b: t("trust.02.b") },
+            { n: "03", t: t("trust.03.t"), b: t("trust.03.b") },
           ].map((p, i) => (
             <div
               key={p.n}
@@ -264,30 +240,30 @@ function Index() {
               </span>
             </div>
             <p className="text-xs text-muted-foreground font-mono max-w-xs leading-relaxed">
-              A precision software studio shipping reliable tools for the modern web environment.
+              {t("footer.tagline")}
             </p>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-12">
             <FooterCol
-              title="Extensions"
+              title={t("footer.col.extensions")}
               links={[
-                { label: "TGD Tab Discarder", href: "#extensions" },
-                { label: "TMS Suspender", href: "#extensions" },
+                { label: t("footer.link.tgd"), href: "#extensions" },
+                { label: t("footer.link.tms"), href: "#extensions" },
               ]}
             />
             <FooterCol
-              title="Resources"
+              title={t("footer.col.resources")}
               links={[
-                { label: "Documentation", href: DOCS_URL },
-                { label: "Changelog", href: "https://www.marvellouscode.works/blog" },
+                { label: t("footer.link.docs"), href: DOCS_URL },
+                { label: t("footer.link.changelog"), href: "https://www.marvellouscode.works/blog" },
               ]}
             />
             <FooterCol
-              title="Community"
+              title={t("footer.col.community")}
               links={[
-                { label: "GitHub", href: GITHUB_URL },
-                { label: "Issue Tracker", href: `${GITHUB_URL}` },
+                { label: t("footer.link.github"), href: GITHUB_URL },
+                { label: t("footer.link.issues"), href: `${GITHUB_URL}` },
               ]}
             />
           </div>
