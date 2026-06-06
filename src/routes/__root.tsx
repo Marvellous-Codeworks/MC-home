@@ -100,7 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "icon",
         type: "image/png",
-        href: "/src/assets/marvellous-logo.png",
+        href: "/favicon.png",
       },
       {
         rel: "preconnect",
