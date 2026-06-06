@@ -231,7 +231,7 @@ export function ProductCard({
             href={storeUrl}
             target="_blank"
             rel="noreferrer"
-            className="flex-1 h-12 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-foreground transition-colors rounded-sm"
+            className="sm:flex-1 h-12 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-foreground transition-colors rounded-sm"
           >
             {t("card.cta.store")}
           </a>
@@ -239,7 +239,7 @@ export function ProductCard({
             href={repoHref}
             target="_blank"
             rel="noreferrer"
-            className="flex-1 h-12 border border-border font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
+            className="sm:flex-1 h-12 border border-border font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
           >
             {t("card.cta.source")}
           </a>
