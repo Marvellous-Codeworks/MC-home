@@ -42,7 +42,10 @@ export const Route = createFileRoute("/")({
 });
 
 const DOCS_URL = "https://kb.marvellouscode.works/docs/intro/";
+const BLOG_URL = "https://kb.marvellouscode.works/blog";
 const GITHUB_URL = "https://github.com/Marvellous-Codeworks";
+const TGD_ISSUES_URL = `https://github.com/${TGD_REPO.owner}/${TGD_REPO.repo}/issues`;
+const TMS_ISSUES_URL = `https://github.com/${TMS_REPO.owner}/${TMS_REPO.repo}/issues`;
 
 function Index() {
   const { t } = useI18n();
@@ -122,21 +125,57 @@ function Index() {
       <header className="relative pt-24 pb-16 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto relative">
 
-          {/* Mascot overlay — absolutely positioned, bleeds left into the text area */}
-          <div aria-hidden className="hidden lg:block absolute -top-24 -bottom-16 right-0 w-[70%] pointer-events-none z-0">
-            <div className="absolute inset-y-0 left-0 w-4/5 bg-gradient-to-r from-background via-background/80 to-transparent z-10" />
-            <div className="absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b from-background to-transparent z-10" />
-            <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-background to-transparent z-10" />
-            <img
-              src={tgdMascotte}
-              alt=""
-              className="absolute bottom-0 right-[22%] h-[82%] w-auto object-contain opacity-60 translate-y-6"
-            />
-            <img
-              src={tmsMascotte}
-              alt=""
-              className="absolute bottom-0 right-0 h-[100%] w-auto object-contain opacity-70"
-            />
+          {/* Tab manager decorative visual — inline UI mockup */}
+          <div aria-hidden className="hidden lg:block absolute -top-24 -bottom-16 right-[-1rem] w-[52%] pointer-events-none z-0">
+            <div className="absolute inset-y-0 left-0 w-3/5 bg-gradient-to-r from-background to-transparent z-10" />
+            <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-background to-transparent z-10" />
+            <div className="absolute inset-x-0 bottom-0 h-1/5 bg-gradient-to-t from-background to-transparent z-10" />
+            <div className="absolute inset-0 flex items-center justify-end pr-4">
+              <div className="w-72 space-y-1 -rotate-1 opacity-90 select-none">
+                {/* Browser chrome */}
+                <div className="flex items-center gap-1.5 px-3 py-2 bg-muted/50 border border-border rounded-t-sm">
+                  <div className="flex gap-1">
+                    <div className="size-2 rounded-full bg-muted-foreground/20" />
+                    <div className="size-2 rounded-full bg-muted-foreground/20" />
+                    <div className="size-2 rounded-full bg-muted-foreground/20" />
+                  </div>
+                  <span className="ml-2 font-mono text-[9px] text-muted-foreground/50 truncate">17 tabs · 2 active</span>
+                  <span className="ml-auto font-mono text-[9px] text-primary whitespace-nowrap">↓ 2.1 GB freed</span>
+                </div>
+                {/* Active tab */}
+                <div className="flex items-center gap-2.5 px-3 py-2.5 bg-background border border-primary/25 rounded-sm">
+                  <div className="size-2 rounded-full bg-primary shrink-0" />
+                  <span className="font-mono text-[11px] text-foreground truncate flex-1">stackoverflow.com</span>
+                  <span className="font-mono text-[9px] text-muted-foreground shrink-0">318 MB</span>
+                </div>
+                {/* Pinned tab */}
+                <div className="flex items-center gap-2.5 px-3 py-2.5 bg-background/70 border border-border rounded-sm">
+                  <div className="size-2 rounded-full bg-muted-foreground/30 shrink-0" />
+                  <span className="font-mono text-[11px] text-muted-foreground/80 truncate flex-1">gmail.com</span>
+                  <span className="font-mono text-[9px] text-yellow-500/60 shrink-0">pinned</span>
+                </div>
+                {/* Suspended tabs */}
+                {([
+                  { domain: "figma.com/file/KxhRw4...", mem: "98 MB" },
+                  { domain: "notion.so/workspace/proj...", mem: "71 MB" },
+                  { domain: "x.com/home", mem: "203 MB" },
+                  { domain: "reddit.com/r/programming", mem: "144 MB" },
+                  { domain: "linear.app/team/issues", mem: "56 MB" },
+                  { domain: "docs.google.com/spreadshee...", mem: "88 MB" },
+                ] as { domain: string; mem: string }[]).map((tab) => (
+                  <div key={tab.domain} className="flex items-center gap-2.5 px-3 py-2 bg-muted/10 border border-border/30 rounded-sm">
+                    <div className="size-2 rounded-full bg-muted-foreground/15 shrink-0" />
+                    <span className="font-mono text-[11px] text-muted-foreground/40 truncate flex-1">{tab.domain}</span>
+                    <span className="font-mono text-[9px] text-muted-foreground/30 shrink-0">suspended</span>
+                  </div>
+                ))}
+                {/* Summary footer */}
+                <div className="flex items-center justify-between px-3 py-2 bg-muted/20 border border-border/30 rounded-b-sm">
+                  <span className="font-mono text-[9px] text-muted-foreground/50">15 tabs suspended</span>
+                  <span className="font-mono text-[9px] text-primary/70">2.1 GB freed</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Text — z-10 to sit above the mascot layer */}
@@ -185,7 +224,7 @@ function Index() {
       </header>
 
       {/* Dual showcase */}
-      <section id="extensions" className="max-w-7xl mx-auto px-6 pb-24">
+      <section id="extensions" className="scroll-mt-24 max-w-7xl mx-auto px-6 pb-24">
         <div className="grid lg:grid-cols-2 lg:[grid-template-rows:repeat(6,auto)] gap-x-px bg-border border border-border">
           <ProductCard
             name={t("tgd.name")}
@@ -278,14 +317,15 @@ function Index() {
               title={t("footer.col.resources")}
               links={[
                 { label: t("footer.link.docs"), href: DOCS_URL },
-                { label: t("footer.link.changelog"), href: "https://www.marvellouscode.works/blog" },
+                { label: t("footer.link.blog"), href: BLOG_URL },
               ]}
             />
             <FooterCol
               title={t("footer.col.community")}
               links={[
                 { label: t("footer.link.github"), href: GITHUB_URL },
-                { label: t("footer.link.issues"), href: `${GITHUB_URL}` },
+                { label: t("footer.link.issues.tgd"), href: TGD_ISSUES_URL },
+                { label: t("footer.link.issues.tms"), href: TMS_ISSUES_URL },
               ]}
             />
           </div>
