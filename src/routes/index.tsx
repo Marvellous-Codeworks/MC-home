@@ -9,6 +9,7 @@ import { useI18n } from "@/lib/i18n";
 import tgdMascotte from "@/assets/tgd-mascotte.jpg";
 import tmsMascotte from "@/assets/tms-mascotte.jpg";
 import logo from "@/assets/marvellous-logo.png";
+import heroChrome from "@/assets/hero-chrome.png";
 
 const TMS_STORE_URL =
   "https://chromewebstore.google.com/detail/the-marvellous-suspender/noogafoofpebimajpfpamcfhoaifemoa";
@@ -125,91 +126,16 @@ function Index() {
       <header className="relative pt-24 pb-16 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto relative">
 
-          {/* Hero visual — layered card composition */}
-          <div aria-hidden className="hidden lg:block absolute -top-24 -bottom-16 right-0 w-[58%] pointer-events-none z-0 select-none">
-            {/* Edge fades */}
-            <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-background to-transparent z-20" />
-            <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-background to-transparent z-20" />
-            <div className="absolute inset-x-0 bottom-0 h-1/5 bg-gradient-to-t from-background to-transparent z-20" />
-
-            <div className="absolute inset-0 flex items-center justify-end pr-8">
-              <div className="relative w-80 h-[420px]">
-
-                {/* Layer 0 — background suspended chips, barely visible */}
-                <div className="absolute bottom-0 left-4 right-0 space-y-1.5 opacity-40">
-                  {([
-                    "reddit.com/r/programming",
-                    "linear.app/team/issues",
-                    "docs.google.com/spreadsheet",
-                    "twitter.com/home",
-                  ] as string[]).map((domain) => (
-                    <div key={domain} className="flex items-center gap-2 px-2.5 py-1.5 bg-muted/20 border border-border/20 rounded-sm">
-                      <div className="size-1.5 rounded-full bg-muted-foreground/15 shrink-0" />
-                      <span className="font-mono text-[10px] text-muted-foreground/30 truncate">{domain}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Layer 1 — tab list card, slightly behind and tilted left */}
-                <div className="absolute top-[88px] left-0 right-10 p-4 bg-card border border-border rounded-sm shadow-lg -rotate-[1.5deg] z-10">
-                  <div className="font-mono text-[8px] uppercase tracking-widest text-muted-foreground mb-3">
-                    Open tabs
-                  </div>
-                  <div className="space-y-1.5">
-                    <div className="flex items-center gap-2 px-2.5 py-2 bg-primary/5 border border-primary/20 rounded-sm">
-                      <div className="size-1.5 rounded-full bg-primary shrink-0" />
-                      <span className="font-mono text-[10px] text-foreground truncate flex-1">stackoverflow.com</span>
-                      <span className="font-mono text-[9px] text-muted-foreground shrink-0">318 MB</span>
-                    </div>
-                    {([
-                      { domain: "figma.com", mem: "98 MB" },
-                      { domain: "notion.so", mem: "71 MB" },
-                      { domain: "x.com", mem: "203 MB" },
-                      { domain: "github.com", mem: "144 MB" },
-                    ] as { domain: string; mem: string }[]).map((tab) => (
-                      <div key={tab.domain} className="flex items-center gap-2 px-2.5 py-2 bg-muted/10 border border-border/30 rounded-sm">
-                        <div className="size-1.5 rounded-full bg-muted-foreground/15 shrink-0" />
-                        <span className="font-mono text-[10px] text-muted-foreground/45 truncate flex-1">{tab.domain}</span>
-                        <span className="font-mono text-[9px] text-muted-foreground/30 shrink-0">{tab.mem} ↓</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Layer 2 — dominant stat card, on top, tilted right */}
-                <div className="absolute top-0 right-0 w-52 p-5 bg-card border border-primary/30 rounded-sm shadow-xl rotate-[1.5deg] z-20">
-                  <div className="font-mono text-[8px] uppercase tracking-widest text-primary mb-4">
-                    // RAM freed
-                  </div>
-                  <div className="flex items-end gap-1 mb-1">
-                    <span className="font-mono text-5xl font-extrabold tracking-tight text-foreground leading-none">2.4</span>
-                    <span className="font-mono text-xl font-bold text-muted-foreground mb-0.5">GB</span>
-                  </div>
-                  <div className="font-mono text-[9px] text-muted-foreground mb-5">14 of 17 tabs suspended</div>
-                  <div className="space-y-2">
-                    <div>
-                      <div className="flex justify-between mb-1">
-                        <span className="font-mono text-[8px] text-muted-foreground/50">before</span>
-                        <span className="font-mono text-[8px] text-muted-foreground/50">82%</span>
-                      </div>
-                      <div className="h-1 bg-border rounded-full overflow-hidden">
-                        <div className="h-full w-[82%] bg-muted-foreground/30 rounded-full" />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="flex justify-between mb-1">
-                        <span className="font-mono text-[8px] text-primary/70">after</span>
-                        <span className="font-mono text-[8px] text-primary/70">26%</span>
-                      </div>
-                      <div className="h-1 bg-border rounded-full overflow-hidden">
-                        <div className="h-full w-[26%] bg-primary rounded-full" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
+          {/* Hero visual — browser screenshot, faded into the page */}
+          <div aria-hidden className="hidden lg:block absolute -top-24 -bottom-16 right-0 w-[62%] pointer-events-none z-0">
+            <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-background via-background/60 to-transparent z-10" />
+            <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background to-transparent z-10" />
+            <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-background to-transparent z-10" />
+            <img
+              src={heroChrome}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover object-left-top opacity-60"
+            />
           </div>
 
           {/* Text — z-10 to sit above the mascot layer */}
