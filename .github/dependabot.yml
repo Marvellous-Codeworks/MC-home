@@ -1,0 +1,38 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "08:00"
+      timezone: Europe/Rome
+    open-pull-requests-limit: 10
+    groups:
+      tanstack:
+        patterns:
+          - "@tanstack/*"
+      radix:
+        patterns:
+          - "@radix-ui/*"
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+          - "tw-animate-css"
+      tooling:
+        patterns:
+          - "vite"
+          - "@vitejs/*"
+          - "wrangler"
+          - "nitro"
+          - "typescript"
+          - "eslint"
+          - "eslint-*"
+          - "typescript-eslint"
+          - "prettier"
+          - "globals"
+    ignore:
+      - dependency-name: "nitro"
+        update-types:
+          - "version-update:semver-major"
