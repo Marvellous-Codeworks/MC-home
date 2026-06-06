@@ -14,6 +14,7 @@ export interface ProductCardProps {
   features: ProductFeature[];
   preview: ReactNode;
   storeUrl: string;
+  edgeUrl?: string;
   sourceUrl: string;
   stats?: ExtensionStats;
   statsLoading?: boolean;
@@ -95,6 +96,7 @@ export function ProductCard({
   features,
   preview,
   storeUrl,
+  edgeUrl,
   sourceUrl,
   stats,
   statsLoading,
@@ -124,7 +126,7 @@ export function ProductCard({
 
   return (
     <article
-      className="bg-background p-8 lg:p-12 animate-reveal group"
+      className="bg-background p-8 lg:p-12 animate-reveal group flex flex-col"
       style={{ animationDelay: `${delay}ms` }}
     >
       <div className="w-full aspect-video bg-muted/40 mb-8 border border-border group-hover:border-primary/20 transition-colors overflow-hidden">
@@ -144,6 +146,8 @@ export function ProductCard({
           </li>
         ))}
       </ul>
+
+      <div className="flex-1" />
 
       {/* Chrome Web Store metrics */}
       <div className="mb-4">
@@ -213,23 +217,35 @@ export function ProductCard({
         </div>
       )}
 
-      <div className="flex flex-col sm:flex-row gap-4">
-        <a
-          href={storeUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="flex-1 h-12 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-foreground transition-colors rounded-sm"
-        >
-          {t("card.cta.store")}
-        </a>
-        <a
-          href={repoHref}
-          target="_blank"
-          rel="noreferrer"
-          className="flex-1 h-12 border border-border font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
-        >
-          {t("card.cta.source")}
-        </a>
+      <div className="flex flex-col gap-3">
+        <div className="flex flex-col sm:flex-row gap-4">
+          <a
+            href={storeUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="flex-1 h-12 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-foreground transition-colors rounded-sm"
+          >
+            {t("card.cta.store")}
+          </a>
+          <a
+            href={repoHref}
+            target="_blank"
+            rel="noreferrer"
+            className="flex-1 h-12 border border-border font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
+          >
+            {t("card.cta.source")}
+          </a>
+        </div>
+        {edgeUrl && (
+          <a
+            href={edgeUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors text-center"
+          >
+            {t("card.cta.edge")} →
+          </a>
+        )}
       </div>
     </article>
   );

@@ -14,6 +14,8 @@ const TMS_STORE_URL =
   "https://chromewebstore.google.com/detail/the-marvellous-suspender/noogafoofpebimajpfpamcfhoaifemoa";
 const TGD_STORE_URL =
   "https://chromewebstore.google.com/detail/the-great-er-tab-discarder/plpkmjcnhhnpkblimgenmdhghfgghdpp";
+const TGD_EDGE_URL =
+  "https://microsoftedge.microsoft.com/addons/detail/the-greater-tab-discarder/lieejiddoadedggjdkgeellgeeibbnai";
 
 const TMS_REPO = { owner: "gioxx", repo: "MarvellousSuspender" } as const;
 const TGD_REPO = { owner: "rkodey", repo: "the-great-er-discarder-er" } as const;
@@ -39,7 +41,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const DOCS_URL = "https://www.marvellouscode.works/docs/intro";
+const DOCS_URL = "https://kb.marvellouscode.works/docs/intro/";
 const GITHUB_URL = "https://github.com/Marvellous-Codeworks";
 
 function Index() {
@@ -119,39 +121,50 @@ function Index() {
       {/* Hero */}
       <header className="relative pt-24 pb-16 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <div className="animate-reveal [animation-delay:100ms]">
-            <div className="inline-flex items-center gap-2 px-2 py-1 rounded border border-primary/20 bg-primary/5 mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-              </span>
-              <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
-                {t("hero.badge")}
-              </span>
+          <div className="grid lg:grid-cols-[3fr_2fr] gap-8 items-center">
+            <div className="animate-reveal [animation-delay:100ms]">
+              <div className="inline-flex items-center gap-2 px-2 py-1 rounded border border-primary/20 bg-primary/5 mb-6">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                </span>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
+                  {t("hero.badge")}
+                </span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-mono font-extrabold tracking-tight text-balance leading-[0.9] max-w-4xl">
+                {t("hero.title.a")}
+                <span className="text-primary">{t("hero.title.b")}</span>
+                {t("hero.title.c")}
+              </h1>
+              <p className="mt-8 text-xl text-muted-foreground max-w-[50ch] text-pretty">
+                {t("hero.subtitle")}
+              </p>
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <a
+                  href="#extensions"
+                  className="h-11 px-6 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest inline-flex items-center justify-center hover:bg-foreground transition-colors rounded-sm"
+                >
+                  {t("hero.cta.view")}
+                </a>
+                <a
+                  href={GITHUB_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="h-11 px-6 border border-border font-mono font-bold text-xs uppercase tracking-widest inline-flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
+                >
+                  {t("hero.cta.github")}
+                </a>
+              </div>
             </div>
-            <h1 className="text-5xl md:text-7xl font-mono font-extrabold tracking-tight text-balance leading-[0.9] max-w-4xl">
-              {t("hero.title.a")}
-              <span className="text-primary">{t("hero.title.b")}</span>
-              {t("hero.title.c")}
-            </h1>
-            <p className="mt-8 text-xl text-muted-foreground max-w-[50ch] text-pretty">
-              {t("hero.subtitle")}
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <a
-                href="#extensions"
-                className="h-11 px-6 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest inline-flex items-center justify-center hover:bg-foreground transition-colors rounded-sm"
-              >
-                {t("hero.cta.view")}
-              </a>
-              <a
-                href={GITHUB_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="h-11 px-6 border border-border font-mono font-bold text-xs uppercase tracking-widest inline-flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
-              >
-                {t("hero.cta.github")}
-              </a>
+
+            {/* Mascot illustration */}
+            <div aria-hidden className="hidden lg:flex relative items-end justify-center h-96 overflow-hidden">
+              <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
+              <img src={tgdMascotte} alt="" className="h-56 w-auto object-contain opacity-50 translate-y-6 -translate-x-4" />
+              <img src={tmsMascotte} alt="" className="h-72 w-auto object-contain opacity-50" />
             </div>
           </div>
         </div>
@@ -178,6 +191,7 @@ function Index() {
               />
             }
             storeUrl={TGD_STORE_URL}
+            edgeUrl={TGD_EDGE_URL}
             sourceUrl={`https://github.com/${TGD_REPO.owner}/${TGD_REPO.repo}`}
             stats={tgdStats.data}
             statsLoading={tgdStats.isLoading}
@@ -268,10 +282,13 @@ function Index() {
             />
           </div>
         </div>
-        <div className="max-w-7xl mx-auto mt-20 flex justify-between items-center border-t border-border pt-8">
+        <div className="max-w-7xl mx-auto mt-20 border-t border-border pt-8 space-y-4">
           <span className="font-mono text-[10px] text-muted-foreground uppercase">
             © {new Date().getFullYear()} Marvellous Codeworks
           </span>
+          <p className="font-mono text-[10px] text-muted-foreground/60 leading-relaxed max-w-4xl">
+            {t("footer.copyright")}
+          </p>
         </div>
       </footer>
     </div>

@@ -60,6 +60,7 @@ const en: Dict = {
   "card.push.sub": "Code activity",
   "card.push.tip": "When the last commit was pushed",
   "card.cta.store": "Chrome Web Store",
+  "card.cta.edge": "Also on Microsoft Edge",
   "card.cta.source": "GitHub Source",
 
   "time.today": "today",
@@ -70,7 +71,7 @@ const en: Dict = {
 
   "trust.01.t": "Performance",
   "trust.01.b":
-    "Built for systems with 4GB to 128GB of RAM. We focus on reducing CPU wakeups and memory pressure to extend battery life and keep your machine cool.",
+    "Engineered to reduce CPU wakeups and memory pressure on any system — budget laptop or high-end workstation, the goal is the same: no wasted RAM.",
   "trust.02.t": "Privacy",
   "trust.02.b":
     "Zero tracking. Zero analytics. Your browsing data never leaves your machine. Both extensions are fully open source for community auditing.",
@@ -79,7 +80,7 @@ const en: Dict = {
     "Maintained by Marvellous Codeworks and a global community of developers. Fork it, improve it, or contribute under a permissive open-source license.",
 
   "footer.tagline":
-    "A precision software studio shipping reliable tools for the modern web environment.",
+    "A small team and a global open-source community, keeping your browser fast and lean.",
   "footer.col.extensions": "Extensions",
   "footer.col.resources": "Resources",
   "footer.col.community": "Community",
@@ -89,6 +90,8 @@ const en: Dict = {
   "footer.link.changelog": "Changelog",
   "footer.link.github": "GitHub",
   "footer.link.issues": "Issue Tracker",
+  "footer.copyright":
+    "All trademarks mentioned are the property of their respective owners. Third-party trademarks, product names, trade names, corporate names and companies mentioned may be trademarks of their respective owners or registered trademarks of other companies and have been used for explanatory purposes only and for the benefit of the owner, without any intent to infringe existing copyright.",
 
   "theme.label": "Theme",
   "theme.light": "Light",
@@ -153,6 +156,7 @@ const it: Dict = {
   "card.push.sub": "Attività sul codice",
   "card.push.tip": "Quando è stato pushato l'ultimo commit",
   "card.cta.store": "Chrome Web Store",
+  "card.cta.edge": "Disponibile anche su Microsoft Edge",
   "card.cta.source": "Sorgente GitHub",
 
   "time.today": "oggi",
@@ -163,7 +167,7 @@ const it: Dict = {
 
   "trust.01.t": "Performance",
   "trust.01.b":
-    "Pensato per sistemi da 4GB a 128GB di RAM. Riduciamo i wakeup della CPU e la pressione sulla memoria per allungare la batteria e tenere la macchina fresca.",
+    "Progettato per ridurre i wakeup della CPU e la pressione sulla memoria su qualsiasi sistema — laptop economico o workstation di fascia alta, l'obiettivo è lo stesso: nessuna RAM sprecata.",
   "trust.02.t": "Privacy",
   "trust.02.b":
     "Zero tracciamento. Zero analytics. I tuoi dati di navigazione non lasciano mai la tua macchina. Entrambe le estensioni sono open source e verificabili.",
@@ -172,7 +176,7 @@ const it: Dict = {
     "Mantenuto da Marvellous Codeworks e da una community globale di sviluppatori. Forka, migliora o contribuisci sotto una licenza open source permissiva.",
 
   "footer.tagline":
-    "Uno studio software di precisione che sviluppa strumenti affidabili per il web moderno.",
+    "Un piccolo team e una community open source globale, per un browser sempre veloce e leggero.",
   "footer.col.extensions": "Estensioni",
   "footer.col.resources": "Risorse",
   "footer.col.community": "Community",
@@ -182,6 +186,8 @@ const it: Dict = {
   "footer.link.changelog": "Changelog",
   "footer.link.github": "GitHub",
   "footer.link.issues": "Issue Tracker",
+  "footer.copyright":
+    "Tutti i marchi citati appartengono ai legittimi proprietari; marchi di terzi, nomi di prodotti, nomi commerciali, nomi corporativi e società citati possono essere marchi di proprietà dei rispettivi titolari o marchi registrati d'altre società e sono stati utilizzati a puro scopo esplicativo ed a beneficio del possessore, senza alcun fine di violazione dei diritti di Copyright vigenti.",
 
   "theme.label": "Tema",
   "theme.light": "Chiaro",
