@@ -185,7 +185,7 @@ function Index() {
 
       {/* Dual showcase */}
       <section id="extensions" className="scroll-mt-24 max-w-7xl mx-auto px-6 pb-24">
-        <div className="grid lg:grid-cols-2 lg:[grid-template-rows:repeat(6,auto)] gap-x-px bg-border border border-border">
+        <div className="grid lg:grid-cols-2 lg:[grid-template-rows:repeat(6,auto)] gap-x-px bg-border border border-border overflow-hidden">
           <ProductCard
             name={t("tgd.name")}
             description={t("tgd.description")}
