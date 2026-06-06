@@ -126,17 +126,22 @@ export function ProductCard({
 
   return (
     <article
-      className="bg-background p-8 lg:p-12 animate-reveal group flex flex-col"
+      className="bg-background p-8 lg:p-12 animate-reveal group lg:grid lg:grid-rows-subgrid lg:row-span-6"
       style={{ animationDelay: `${delay}ms` }}
     >
-      <div className="w-full aspect-video bg-muted/40 mb-8 border border-border group-hover:border-primary/20 transition-colors overflow-hidden">
+      {/* Row 1: image */}
+      <div className="w-full aspect-video bg-muted/40 mb-8 lg:mb-0 border border-border group-hover:border-primary/20 transition-colors overflow-hidden">
         {preview}
       </div>
 
-      <h2 className="text-3xl font-mono font-bold mb-4 tracking-tight">{name}</h2>
-      <p className="text-muted-foreground mb-8 leading-relaxed">{description}</p>
+      {/* Row 2: name + description */}
+      <div className="mb-0">
+        <h2 className="text-3xl font-mono font-bold mb-4 tracking-tight">{name}</h2>
+        <p className="text-muted-foreground leading-relaxed">{description}</p>
+      </div>
 
-      <ul className="space-y-4 mb-10">
+      {/* Row 3: features */}
+      <ul className="space-y-4 mt-8 mb-10 lg:mt-0">
         {features.map((f) => (
           <li key={f.title} className="flex items-start gap-4">
             <div className="mt-1.5 size-1 bg-primary shrink-0" aria-hidden />
@@ -147,76 +152,79 @@ export function ProductCard({
         ))}
       </ul>
 
-      <div className="flex-1" />
-
-      {/* Chrome Web Store metrics */}
-      <div className="mb-4">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-          {t("card.cws")}
-        </span>
-      </div>
-      <div className="grid grid-cols-2 gap-6 py-6 mb-6 border-y border-border">
-        <StatBlock
-          label={t("card.users")}
-          value={usersValue}
-          sub={t("card.users.sub")}
-          loading={statsLoading && !stats}
-        />
-        <StatBlock
-          label={t("card.rating")}
-          value={ratingValue === "—" ? "—" : `${ratingValue}★`}
-          sub={ratingSub}
-          loading={statsLoading && !stats}
-        />
-      </div>
-
-      {/* GitHub metrics */}
-      <div className="mb-4">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-          {t("card.gh")}
-          {!githubLoading && github?.pushedAt
-            ? ` — ${t("card.push")}: ${timeAgo(github.pushedAt)}`
-            : null}
-        </span>
-      </div>
-      {githubUnavailable ? (
-        <div className="py-6 mb-10 border-y border-border flex items-center gap-3">
-          <span className="inline-block h-2 w-2 rounded-full bg-muted-foreground/30" />
-          <span className="font-mono text-xs text-muted-foreground">{t("card.unavailable")}</span>
+      {/* Row 4: Chrome Web Store metrics */}
+      <div>
+        <div className="mb-4">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+            {t("card.cws")}
+          </span>
         </div>
-      ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 py-6 mb-10 border-y border-border">
+        <div className="grid grid-cols-2 gap-6 py-6 mb-6 border-y border-border">
           <StatBlock
-            label={t("card.stars")}
-            value={formatCount(github?.stars)}
-            sub={t("card.stars.sub")}
-            loading={githubLoading && !github}
-            tooltip={t("card.stars.tip")}
+            label={t("card.users")}
+            value={usersValue}
+            sub={t("card.users.sub")}
+            loading={statsLoading && !stats}
           />
           <StatBlock
-            label={t("card.forks")}
-            value={formatCount(github?.forks)}
-            sub={t("card.forks.sub")}
-            loading={githubLoading && !github}
-            tooltip={t("card.forks.tip")}
-          />
-          <StatBlock
-            label={t("card.issues")}
-            value={formatCount(github?.openIssues)}
-            sub={t("card.issues.sub")}
-            loading={githubLoading && !github}
-            tooltip={t("card.issues.tip")}
-          />
-          <StatBlock
-            label={t("card.release")}
-            value={github?.latestRelease ?? "—"}
-            sub={timeAgo(github?.latestReleaseAt) ?? t("card.release.sub")}
-            loading={githubLoading && !github}
-            tooltip={t("card.release.tip")}
+            label={t("card.rating")}
+            value={ratingValue === "—" ? "—" : `${ratingValue}★`}
+            sub={ratingSub}
+            loading={statsLoading && !stats}
           />
         </div>
-      )}
+      </div>
 
+      {/* Row 5: GitHub metrics */}
+      <div>
+        <div className="mb-4">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+            {t("card.gh")}
+            {!githubLoading && github?.pushedAt
+              ? ` — ${t("card.push")}: ${timeAgo(github.pushedAt)}`
+              : null}
+          </span>
+        </div>
+        {githubUnavailable ? (
+          <div className="py-6 mb-10 border-y border-border flex items-center gap-3">
+            <span className="inline-block h-2 w-2 rounded-full bg-muted-foreground/30" />
+            <span className="font-mono text-xs text-muted-foreground">{t("card.unavailable")}</span>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 py-6 mb-10 border-y border-border">
+            <StatBlock
+              label={t("card.stars")}
+              value={formatCount(github?.stars)}
+              sub={t("card.stars.sub")}
+              loading={githubLoading && !github}
+              tooltip={t("card.stars.tip")}
+            />
+            <StatBlock
+              label={t("card.forks")}
+              value={formatCount(github?.forks)}
+              sub={t("card.forks.sub")}
+              loading={githubLoading && !github}
+              tooltip={t("card.forks.tip")}
+            />
+            <StatBlock
+              label={t("card.issues")}
+              value={formatCount(github?.openIssues)}
+              sub={t("card.issues.sub")}
+              loading={githubLoading && !github}
+              tooltip={t("card.issues.tip")}
+            />
+            <StatBlock
+              label={t("card.release")}
+              value={github?.latestRelease ?? "—"}
+              sub={timeAgo(github?.latestReleaseAt) ?? t("card.release.sub")}
+              loading={githubLoading && !github}
+              tooltip={t("card.release.tip")}
+            />
+          </div>
+        )}
+      </div>
+
+      {/* Row 6: CTAs */}
       <div className="flex flex-col gap-3">
         <div className="flex flex-col sm:flex-row gap-4">
           <a

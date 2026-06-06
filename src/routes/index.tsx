@@ -84,23 +84,23 @@ function Index() {
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary">
       {/* Nav */}
       <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
-          <a href="#" className="flex items-center gap-2 min-w-0">
-            <img src={logo} alt="Marvellous Codeworks" className="h-5 w-auto" />
-            <span className="font-mono text-xs font-bold tracking-tighter uppercase truncate">
+        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between gap-4">
+          <a href="#" className="flex items-center gap-3 min-w-0">
+            <img src={logo} alt="Marvellous Codeworks" className="h-7 w-auto" />
+            <span className="font-mono text-sm font-bold tracking-tighter uppercase truncate">
               Marvellous Codeworks
             </span>
           </a>
-          <div className="flex items-center gap-4 sm:gap-6">
+          <div className="flex items-center gap-5 sm:gap-8">
             <a
               href="#extensions"
-              className="hidden sm:inline text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
+              className="hidden sm:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
             >
               {t("nav.extensions")}
             </a>
             <a
               href={DOCS_URL}
-              className="hidden sm:inline text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
+              className="hidden sm:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
             >
               {t("nav.docs")}
             </a>
@@ -108,7 +108,7 @@ function Index() {
               href={GITHUB_URL}
               target="_blank"
               rel="noreferrer"
-              className="hidden sm:inline text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
+              className="hidden sm:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
             >
               {t("nav.github")}
             </a>
@@ -159,12 +159,12 @@ function Index() {
             </div>
 
             {/* Mascot illustration */}
-            <div aria-hidden className="hidden lg:flex relative items-end justify-center h-96 overflow-hidden">
-              <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-              <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
-              <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
-              <img src={tgdMascotte} alt="" className="h-56 w-auto object-contain opacity-50 translate-y-6 -translate-x-4" />
-              <img src={tmsMascotte} alt="" className="h-72 w-auto object-contain opacity-50" />
+            <div aria-hidden className="hidden lg:flex relative items-end justify-center self-stretch min-h-[480px] overflow-hidden">
+              <div className="absolute inset-y-0 left-0 w-4/5 bg-gradient-to-r from-background via-background/70 to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-1/5 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
+              <img src={tgdMascotte} alt="" className="h-[360px] w-auto object-contain opacity-70 translate-y-8 -translate-x-8" />
+              <img src={tmsMascotte} alt="" className="h-[460px] w-auto object-contain opacity-70" />
             </div>
           </div>
         </div>
@@ -178,7 +178,7 @@ function Index() {
 
       {/* Dual showcase */}
       <section id="extensions" className="max-w-7xl mx-auto px-6 pb-24">
-        <div className="grid lg:grid-cols-2 gap-px bg-border border border-border">
+        <div className="grid lg:grid-cols-2 lg:[grid-template-rows:repeat(6,auto)] gap-x-px bg-border border border-border">
           <ProductCard
             name={t("tgd.name")}
             description={t("tgd.description")}
