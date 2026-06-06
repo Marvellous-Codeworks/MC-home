@@ -127,6 +127,10 @@ export function ProductCard({
       className="bg-background p-8 lg:p-12 animate-reveal group"
       style={{ animationDelay: `${delay}ms` }}
     >
+      <div className="w-full aspect-video bg-muted/40 mb-8 border border-border group-hover:border-primary/20 transition-colors overflow-hidden">
+        {preview}
+      </div>
+
       <h2 className="text-3xl font-mono font-bold mb-4 tracking-tight">{name}</h2>
       <p className="text-muted-foreground mb-8 leading-relaxed">{description}</p>
 
@@ -166,6 +170,9 @@ export function ProductCard({
       <div className="mb-4">
         <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
           {t("card.gh")}
+          {!githubLoading && github?.pushedAt
+            ? ` — ${t("card.push")}: ${timeAgo(github.pushedAt)}`
+            : null}
         </span>
       </div>
       {githubUnavailable ? (
@@ -174,7 +181,7 @@ export function ProductCard({
           <span className="font-mono text-xs text-muted-foreground">{t("card.unavailable")}</span>
         </div>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 py-6 mb-10 border-y border-border">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 py-6 mb-10 border-y border-border">
           <StatBlock
             label={t("card.stars")}
             value={formatCount(github?.stars)}
@@ -203,19 +210,8 @@ export function ProductCard({
             loading={githubLoading && !github}
             tooltip={t("card.release.tip")}
           />
-          <StatBlock
-            label={t("card.push")}
-            value={timeAgo(github?.pushedAt) ?? "—"}
-            sub={t("card.push.sub")}
-            loading={githubLoading && !github}
-            tooltip={t("card.push.tip")}
-          />
         </div>
       )}
-
-      <div className="w-full aspect-video bg-muted/40 mb-10 border border-border group-hover:border-primary/20 transition-colors overflow-hidden">
-        {preview}
-      </div>
 
       <div className="flex flex-col sm:flex-row gap-4">
         <a
