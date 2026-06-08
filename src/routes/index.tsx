@@ -6,10 +6,10 @@ import { LanguageToggle, ThemeToggle } from "@/components/Toggles";
 import { getExtensionStats } from "@/lib/extension-stats.functions";
 import { getGithubStats } from "@/lib/github-stats.functions";
 import { useI18n } from "@/lib/i18n";
-import tgdMascotte from "@/assets/tgd-mascotte.jpg";
-import tmsMascotte from "@/assets/tms-mascotte.jpg";
-import logo from "@/assets/marvellous-logo.png";
-import heroChrome from "@/assets/hero-chrome.png";
+import tgdMascotte from "@/assets/tgd-mascotte-crop.jpg";
+import tmsMascotte from "@/assets/tms-mascotte-crop.jpg";
+import logo from "@/assets/marvellous-logo-opt.webp";
+import heroChrome from "@/assets/hero-chrome-opt.webp";
 
 const TMS_STORE_URL =
   "https://chromewebstore.google.com/detail/the-marvellous-suspender/noogafoofpebimajpfpamcfhoaifemoa";
