@@ -2,14 +2,28 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { ProductCard } from "@/components/ProductCard";
+import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
 import { LanguageToggle, ThemeToggle } from "@/components/Toggles";
 import { getExtensionStats } from "@/lib/extension-stats.functions";
 import { getGithubStats } from "@/lib/github-stats.functions";
 import { useI18n } from "@/lib/i18n";
-import tgdMascotte from "@/assets/tgd-mascotte-crop.jpg";
-import tmsMascotte from "@/assets/tms-mascotte-crop.jpg";
 import logo from "@/assets/marvellous-logo-opt.webp";
 import heroChrome from "@/assets/hero-chrome-opt.webp";
+
+import tgdChromeLight from "@/assets/tgd-chrome-light.png";
+import tgdChromeDark from "@/assets/tgd-chrome-dark.png";
+import tgdOptionsLight from "@/assets/tgd-options-light.png";
+import tgdOptionsDark from "@/assets/tgd-options-dark.png";
+import tgdPopupLight from "@/assets/tgd-popup-light.png";
+import tgdPopupDark from "@/assets/tgd-popup-dark.png";
+
+import tmsGoogle from "@/assets/tms-google.png";
+import tmsGoogleDark from "@/assets/tms-google-dark.png";
+import tmsSettings from "@/assets/tms-settings.png";
+import tmsSuspend from "@/assets/tms-suspend.png";
+import tmsSession from "@/assets/tms-session.png";
+import tmsAbout from "@/assets/tms-about.png";
+import tmsKeyboard from "@/assets/tms-keyboard.png";
 
 const TMS_STORE_URL =
   "https://chromewebstore.google.com/detail/the-marvellous-suspender/noogafoofpebimajpfpamcfhoaifemoa";
@@ -196,10 +210,15 @@ function Index() {
             description={t("tgd.description")}
             features={tgdFeatures}
             preview={
-              <img
-                src={tgdMascotte}
-                alt="The Great-er Tab Discarder mascot"
-                className="w-full h-full object-cover"
+              <ScreenshotCarousel
+                slides={[
+                  { src: tgdChromeLight, alt: "The Great-er Tab Discarder — Chrome (light)" },
+                  { src: tgdChromeDark,  alt: "The Great-er Tab Discarder — Chrome (dark)" },
+                  { src: tgdPopupLight,  alt: "The Great-er Tab Discarder — Popup (light)" },
+                  { src: tgdPopupDark,   alt: "The Great-er Tab Discarder — Popup (dark)" },
+                  { src: tgdOptionsLight, alt: "The Great-er Tab Discarder — Options (light)" },
+                  { src: tgdOptionsDark,  alt: "The Great-er Tab Discarder — Options (dark)" },
+                ]}
               />
             }
             storeUrl={TGD_STORE_URL}
@@ -216,10 +235,16 @@ function Index() {
             description={t("tms.description")}
             features={tmsFeatures}
             preview={
-              <img
-                src={tmsMascotte}
-                alt="The Marvellous Suspender mascot"
-                className="w-full h-full object-cover"
+              <ScreenshotCarousel
+                slides={[
+                  { src: tmsGoogle,     alt: "The Marvellous Suspender — Google (light)" },
+                  { src: tmsGoogleDark, alt: "The Marvellous Suspender — Google (dark)" },
+                  { src: tmsSuspend,    alt: "The Marvellous Suspender — Suspended tab" },
+                  { src: tmsSettings,   alt: "The Marvellous Suspender — Settings" },
+                  { src: tmsSession,    alt: "The Marvellous Suspender — Session management" },
+                  { src: tmsAbout,      alt: "The Marvellous Suspender — About" },
+                  { src: tmsKeyboard,   alt: "The Marvellous Suspender — Keyboard shortcuts" },
+                ]}
               />
             }
             storeUrl={TMS_STORE_URL}
