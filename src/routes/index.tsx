@@ -23,6 +23,9 @@ const TGD_REPO = { owner: "rkodey", repo: "the-great-er-discarder-er" } as const
 
 export const Route = createFileRoute("/")({
   head: () => ({
+    links: [
+      { rel: "alternate", type: "application/rss+xml", title: "Marvellous Codeworks Blog", href: BLOG_RSS_URL },
+    ],
     meta: [
       { title: "Marvellous Codeworks — Precision Chromium Extensions" },
       {
@@ -42,11 +45,13 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const DOCS_URL = "https://kb.marvellouscode.works/docs/intro/";
+const DOCS_URL = "https://kb.marvellouscode.works/";
 const BLOG_URL = "https://kb.marvellouscode.works/blog";
+const BLOG_RSS_URL = "https://kb.marvellouscode.works/blog/rss.xml";
 const GITHUB_URL = "https://github.com/Marvellous-Codeworks";
 const TGD_ISSUES_URL = `https://github.com/${TGD_REPO.owner}/${TGD_REPO.repo}/issues`;
 const TMS_ISSUES_URL = `https://github.com/${TMS_REPO.owner}/${TMS_REPO.repo}/issues`;
+const TMS_DISCUSSIONS_URL = "https://github.com/gioxx/MarvellousSuspender/discussions";
 
 function Index() {
   const { t } = useI18n();
@@ -278,6 +283,7 @@ function Index() {
               links={[
                 { label: t("footer.link.docs"), href: DOCS_URL },
                 { label: t("footer.link.blog"), href: BLOG_URL },
+                { label: t("footer.link.rss"), href: BLOG_RSS_URL },
               ]}
             />
             <FooterCol
@@ -286,6 +292,7 @@ function Index() {
                 { label: t("footer.link.github"), href: GITHUB_URL },
                 { label: t("footer.link.issues.tgd"), href: TGD_ISSUES_URL },
                 { label: t("footer.link.issues.tms"), href: TMS_ISSUES_URL },
+                { label: t("footer.link.discussions.tms"), href: TMS_DISCUSSIONS_URL },
               ]}
             />
           </div>
