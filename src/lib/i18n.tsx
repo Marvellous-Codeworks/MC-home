@@ -7,6 +7,7 @@ type Dict = Record<string, string>;
 const en: Dict = {
   "nav.extensions": "Extensions",
   "nav.docs": "Docs",
+  "nav.blog": "Blog",
   "nav.github": "GitHub",
   "hero.badge": "Manifest V3 ready · Open-source Chromium tools",
   "hero.title.a": "RECLAIM YOUR ",
@@ -101,11 +102,18 @@ const en: Dict = {
   "theme.dark": "Dark",
   "theme.system": "System",
   "lang.label": "Language",
+
+  "notif.label": "Notifications",
+  "notif.empty": "No announcements yet.",
+  "notif.mark_all": "Mark all as read",
+  "notif.read_more": "Read more →",
+  "notif.loading": "Loading…",
 };
 
 const it: Dict = {
   "nav.extensions": "Estensioni",
   "nav.docs": "Documentazione",
+  "nav.blog": "Blog",
   "nav.github": "GitHub",
   "hero.badge": "Compatibile con Manifest V3 · Strumenti Chromium open source",
   "hero.title.a": "LIBERA LA ",
@@ -200,6 +208,12 @@ const it: Dict = {
   "theme.dark": "Scuro",
   "theme.system": "Sistema",
   "lang.label": "Lingua",
+
+  "notif.label": "Notifiche",
+  "notif.empty": "Nessun annuncio per ora.",
+  "notif.mark_all": "Segna tutto come letto",
+  "notif.read_more": "Leggi l'articolo →",
+  "notif.loading": "Caricamento…",
 };
 
 const dicts: Record<Locale, Dict> = { en, it };

@@ -4,6 +4,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { ProductCard } from "@/components/ProductCard";
 import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
 import { LanguageToggle, ThemeToggle } from "@/components/Toggles";
+import { NotificationBell } from "@/components/NotificationBell";
 import { getExtensionStats } from "@/lib/extension-stats.functions";
 import { getGithubStats } from "@/lib/github-stats.functions";
 import { useI18n } from "@/lib/i18n";
@@ -128,6 +129,12 @@ function Index() {
               {t("nav.docs")}
             </a>
             <a
+              href={BLOG_URL}
+              className="hidden sm:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
+            >
+              {t("nav.blog")}
+            </a>
+            <a
               href={GITHUB_URL}
               target="_blank"
               rel="noreferrer"
@@ -135,6 +142,7 @@ function Index() {
             >
               {t("nav.github")}
             </a>
+            <NotificationBell />
             <LanguageToggle />
             <ThemeToggle />
           </div>
