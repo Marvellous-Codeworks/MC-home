@@ -145,7 +145,7 @@ export function NotificationBell() {
                         </p>
                       )}
                       {post.excerpt && (
-                        <p className="text-[11px] text-muted-foreground mt-1 leading-relaxed line-clamp-3">
+                        <p className="text-[11px] text-muted-foreground mt-1 leading-relaxed line-clamp-5">
                           {post.excerpt}
                         </p>
                       )}
