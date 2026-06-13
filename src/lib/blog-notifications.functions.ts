@@ -47,21 +47,35 @@ function stripHtml(html: string): string {
     .trim();
 }
 
-// Extract the first non-empty <p> from HTML as the excerpt.
-// Falls back to a plain strip of the full HTML if no paragraph is found.
+// Extract the first substantial <p> from HTML as the excerpt.
+// Skips short paragraphs (callout boxes, update notes) by requiring
+// at least MIN_P_LEN characters of visible text.
+// Falls back to the first <p> found, or a plain strip if no <p> exists.
+const MIN_P_LEN = 80;
+
 function extractExcerpt(html: string, maxLen = 200): string {
-  // Remove script/style blocks entirely before searching for paragraphs
   const cleaned = html
     .replace(/<script[\s\S]*?<\/script>/gi, "")
     .replace(/<style[\s\S]*?<\/style>/gi, "");
 
-  const pMatch = /<p[^>]*>([\s\S]*?)<\/p>/i.exec(cleaned);
-  const raw = pMatch ? pMatch[1] : cleaned;
-  const text = stripHtml(raw).replace(/\s{2,}/g, " ").trim();
+  const pRe = /<p[^>]*>([\s\S]*?)<\/p>/gi;
+  let firstFallback: string | null = null;
+  let m: RegExpExecArray | null;
 
-  if (!text) return "";
-  if (text.length <= maxLen) return text;
-  return text.slice(0, maxLen).replace(/\s+\S*$/, "") + "…";
+  while ((m = pRe.exec(cleaned)) !== null) {
+    const text = stripHtml(m[1]).replace(/\s{2,}/g, " ").trim();
+    if (!text) continue;
+    if (firstFallback === null) firstFallback = text;
+    if (text.length >= MIN_P_LEN) {
+      return text.length <= maxLen
+        ? text
+        : text.slice(0, maxLen).replace(/\s+\S*$/, "") + "…";
+    }
+  }
+
+  // No paragraph long enough — use first paragraph found or full strip
+  const raw = firstFallback ?? stripHtml(cleaned).replace(/\s{2,}/g, " ").trim();
+  return raw.length <= maxLen ? raw : raw.slice(0, maxLen).replace(/\s+\S*$/, "") + "…";
 }
 
 export const getBlogNotifications = createServerFn({ method: "GET" }).handler(
