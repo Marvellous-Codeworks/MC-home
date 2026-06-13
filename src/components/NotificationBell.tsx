@@ -127,9 +127,18 @@ export function NotificationBell() {
                       <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-primary" />
                     )}
                     <div className={isUnread ? "" : "pl-3.5"}>
-                      <p className="font-mono text-[11px] font-semibold text-foreground leading-snug line-clamp-2">
+                      <a
+                        href={post.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={() => {
+                          markRead(post.id);
+                          setOpen(false);
+                        }}
+                        className="font-mono text-[11px] font-semibold text-foreground hover:text-primary leading-snug line-clamp-2 transition-colors"
+                      >
                         {post.title}
-                      </p>
+                      </a>
                       {post.date && (
                         <p className="font-mono text-[9px] text-muted-foreground/70 mt-0.5">
                           {formatDate(post.date)}

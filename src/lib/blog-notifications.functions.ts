@@ -31,20 +31,35 @@ function extractAllTags(xml: string, tag: string): string[] {
   return results;
 }
 
-function stripHtml(html: string): string {
-  return html
-    .replace(/<[^>]+>/g, " ")
+function decodeEntities(text: string): string {
+  return text
     .replace(/&amp;/g, "&")
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
-    .replace(/&nbsp;/g, " ")
+    .replace(/&nbsp;/g, " ");
+}
+
+function stripHtml(html: string): string {
+  return decodeEntities(html.replace(/<[^>]+>/g, " "))
     .replace(/\s{2,}/g, " ")
     .trim();
 }
 
-function truncate(text: string, maxLen = 140): string {
+// Extract the first non-empty <p> from HTML as the excerpt.
+// Falls back to a plain strip of the full HTML if no paragraph is found.
+function extractExcerpt(html: string, maxLen = 200): string {
+  // Remove script/style blocks entirely before searching for paragraphs
+  const cleaned = html
+    .replace(/<script[\s\S]*?<\/script>/gi, "")
+    .replace(/<style[\s\S]*?<\/style>/gi, "");
+
+  const pMatch = /<p[^>]*>([\s\S]*?)<\/p>/i.exec(cleaned);
+  const raw = pMatch ? pMatch[1] : cleaned;
+  const text = stripHtml(raw).replace(/\s{2,}/g, " ").trim();
+
+  if (!text) return "";
   if (text.length <= maxLen) return text;
   return text.slice(0, maxLen).replace(/\s+\S*$/, "") + "…";
 }
@@ -76,7 +91,7 @@ export const getBlogNotifications = createServerFn({ method: "GET" }).handler(
         const link = extractTag(item, "link") || extractTag(item, "guid");
         const pubDate = extractTag(item, "pubDate");
         const rawDescription = extractTag(item, "description");
-        const excerpt = truncate(stripHtml(rawDescription));
+        const excerpt = extractExcerpt(rawDescription);
         const id = extractTag(item, "guid") || link;
 
         if (!title || !link) continue;
