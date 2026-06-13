@@ -13,11 +13,13 @@ export interface BlogNotification {
 }
 
 function extractTag(xml: string, tag: string): string {
+  // Escape colon for namespace-prefixed tags like content:encoded
+  const escapedTag = tag.replace(":", "\\:");
   const cdataMatch = new RegExp(
-    `<${tag}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]><\\/${tag}>`,
+    `<${escapedTag}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]><\\/${escapedTag}>`,
   ).exec(xml);
   if (cdataMatch) return cdataMatch[1].trim();
-  const plainMatch = new RegExp(`<${tag}[^>]*>([^<]*)<\\/${tag}>`).exec(xml);
+  const plainMatch = new RegExp(`<${escapedTag}[^>]*>([^<]*)<\\/${escapedTag}>`).exec(xml);
   return plainMatch ? plainMatch[1].trim() : "";
 }
 
@@ -104,8 +106,18 @@ export const getBlogNotifications = createServerFn({ method: "GET" }).handler(
         const title = extractTag(item, "title");
         const link = extractTag(item, "link") || extractTag(item, "guid");
         const pubDate = extractTag(item, "pubDate");
+        // <description> is clean text when the post has a frontmatter description
+        // or a <!-- truncate --> after the intro paragraph — use it directly.
+        // Fall back to parsing content:encoded for posts that have neither.
         const rawDescription = extractTag(item, "description");
-        const excerpt = extractExcerpt(rawDescription);
+        const descriptionText = stripHtml(rawDescription).replace(/\s{2,}/g, " ").trim();
+        const fullContent = extractTag(item, "content:encoded");
+        const excerpt =
+          descriptionText.length >= MIN_P_LEN
+            ? descriptionText.length <= 200
+              ? descriptionText
+              : descriptionText.slice(0, 200).replace(/\s+\S*$/, "") + "…"
+            : extractExcerpt(fullContent || rawDescription);
         const id = extractTag(item, "guid") || link;
 
         if (!title || !link) continue;
