@@ -185,7 +185,7 @@ function Index() {
       <section id="extensions" className="scroll-mt-24 max-w-7xl mx-auto px-6 pb-24 border-t border-border">
         <div className="mb-10 pt-24">
           <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
-            {t("nav.extensions")}
+            {"// "}{t("nav.extensions")}
           </h2>
         </div>
         <div className="grid lg:grid-cols-2 lg:[grid-template-rows:repeat(6,auto)] gap-x-px bg-border border border-border overflow-hidden">
