@@ -20,7 +20,7 @@ import tmsKeyboard from "@/assets/tms-keyboard.png";
 const TMS_STORE_URL =
   "https://chromewebstore.google.com/detail/the-marvellous-suspender/noogafoofpebimajpfpamcfhoaifemoa";
 const TMS_REPO = { owner: "gioxx", repo: "MarvellousSuspender" } as const;
-const BLOG_TAG = "tms";
+const BLOG_TAG = "the marvellous suspender";
 
 const SLIDES = [
   { src: tmsGoogle,     alt: "The Marvellous Suspender — Google (light)" },

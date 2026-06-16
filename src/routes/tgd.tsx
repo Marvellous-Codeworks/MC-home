@@ -21,7 +21,7 @@ const TGD_STORE_URL =
 const TGD_EDGE_URL =
   "https://microsoftedge.microsoft.com/addons/detail/the-greater-tab-discarder/lieejiddoadedggjdkgeellgeeibbnai";
 const TGD_REPO = { owner: "rkodey", repo: "the-great-er-discarder-er" } as const;
-const BLOG_TAG = "tgd";
+const BLOG_TAG = "the great-er tab discarder";
 
 const SLIDES = [
   { src: tgdChromeLight, alt: "The Great-er Tab Discarder — Chrome (light)" },
