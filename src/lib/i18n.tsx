@@ -108,6 +108,14 @@ const en: Dict = {
   "notif.mark_all": "Mark all as read",
   "notif.read_more": "Read more →",
   "notif.loading": "Loading…",
+
+  "blog.section": "// Latest from the blog",
+  "blog.cta.all": "All posts →",
+  "blog.cta.read": "Read post →",
+  "blog.loading": "Loading posts…",
+  "blog.empty": "No posts yet.",
+
+  "product.back": "← All Extensions",
 };
 
 const it: Dict = {
@@ -214,6 +222,14 @@ const it: Dict = {
   "notif.mark_all": "Segna tutto come letto",
   "notif.read_more": "Leggi l'articolo →",
   "notif.loading": "Caricamento…",
+
+  "blog.section": "// Dal blog",
+  "blog.cta.all": "Tutti gli articoli →",
+  "blog.cta.read": "Leggi l'articolo →",
+  "blog.loading": "Caricamento articoli…",
+  "blog.empty": "Nessun articolo per ora.",
+
+  "product.back": "← Tutte le estensioni",
 };
 
 const dicts: Record<Locale, Dict> = { en, it };

@@ -3,12 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { ProductCard } from "@/components/ProductCard";
 import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
-import { LanguageToggle, ThemeToggle } from "@/components/Toggles";
-import { NotificationBell } from "@/components/NotificationBell";
+import { BlogCarousel } from "@/components/BlogCarousel";
+import { SiteNav } from "@/components/SiteNav";
+import { SiteFooter } from "@/components/SiteFooter";
 import { getExtensionStats } from "@/lib/extension-stats.functions";
 import { getGithubStats } from "@/lib/github-stats.functions";
 import { useI18n } from "@/lib/i18n";
-import logo from "@/assets/marvellous-logo-opt.webp";
 import heroChrome from "@/assets/hero-chrome-opt.webp";
 
 import tgdChromeLight from "@/assets/tgd-chrome-light.png";
@@ -36,6 +36,10 @@ const TGD_EDGE_URL =
 const TMS_REPO = { owner: "gioxx", repo: "MarvellousSuspender" } as const;
 const TGD_REPO = { owner: "rkodey", repo: "the-great-er-discarder-er" } as const;
 
+const BLOG_URL = "https://kb.marvellouscode.works/blog";
+const BLOG_RSS_URL = "https://kb.marvellouscode.works/blog/rss.xml";
+const GITHUB_URL = "https://github.com/Marvellous-Codeworks";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     links: [
@@ -59,14 +63,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const DOCS_URL = "https://kb.marvellouscode.works/";
-const BLOG_URL = "https://kb.marvellouscode.works/blog";
-const BLOG_RSS_URL = "https://kb.marvellouscode.works/blog/rss.xml";
-const GITHUB_URL = "https://github.com/Marvellous-Codeworks";
-const TGD_ISSUES_URL = `https://github.com/${TGD_REPO.owner}/${TGD_REPO.repo}/issues`;
-const TMS_ISSUES_URL = `https://github.com/${TMS_REPO.owner}/${TMS_REPO.repo}/issues`;
-const TMS_DISCUSSIONS_URL = "https://github.com/gioxx/MarvellousSuspender/discussions";
 
 function Index() {
   const { t } = useI18n();
@@ -106,48 +102,7 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary">
-      {/* Nav */}
-      <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between gap-4">
-          <a href="#" className="flex items-center gap-3 min-w-0">
-            <img src={logo} alt="Marvellous Codeworks" className="h-7 w-auto" />
-            <span className="font-mono text-sm font-bold tracking-tighter uppercase truncate">
-              Marvellous Codeworks
-            </span>
-          </a>
-          <div className="flex items-center gap-5 sm:gap-8">
-            <a
-              href="#extensions"
-              className="hidden sm:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
-            >
-              {t("nav.extensions")}
-            </a>
-            <a
-              href={DOCS_URL}
-              className="hidden sm:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
-            >
-              {t("nav.docs")}
-            </a>
-            <a
-              href={BLOG_URL}
-              className="hidden sm:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
-            >
-              {t("nav.blog")}
-            </a>
-            <a
-              href={GITHUB_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="hidden sm:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
-            >
-              {t("nav.github")}
-            </a>
-            <NotificationBell />
-            <LanguageToggle />
-            <ThemeToggle />
-          </div>
-        </div>
-      </nav>
+      <SiteNav extensionsHref="#extensions" />
 
       {/* Hero */}
       <header className="relative pt-24 pb-16 px-6 overflow-hidden">
@@ -288,83 +243,23 @@ function Index() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border bg-card py-20 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
-          <div className="space-y-6">
-            <div className="flex items-center gap-2">
-              <img src={logo} alt="Marvellous Codeworks" className="h-4 w-auto" />
-              <span className="font-mono text-xs font-bold tracking-tighter uppercase">
-                Marvellous Codeworks
-              </span>
-            </div>
-            <p className="text-xs text-muted-foreground font-mono max-w-xs leading-relaxed">
-              {t("footer.tagline")}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-12">
-            <FooterCol
-              title={t("footer.col.extensions")}
-              links={[
-                { label: t("footer.link.tgd"), href: "#extensions" },
-                { label: t("footer.link.tms"), href: "#extensions" },
-              ]}
-            />
-            <FooterCol
-              title={t("footer.col.resources")}
-              links={[
-                { label: t("footer.link.docs"), href: DOCS_URL },
-                { label: t("footer.link.blog"), href: BLOG_URL },
-                { label: t("footer.link.rss"), href: BLOG_RSS_URL },
-              ]}
-            />
-            <FooterCol
-              title={t("footer.col.community")}
-              links={[
-                { label: t("footer.link.github"), href: GITHUB_URL },
-                { label: t("footer.link.issues.tgd"), href: TGD_ISSUES_URL },
-                { label: t("footer.link.issues.tms"), href: TMS_ISSUES_URL },
-                { label: t("footer.link.discussions.tms"), href: TMS_DISCUSSIONS_URL },
-              ]}
-            />
-          </div>
+      {/* Blog carousel */}
+      <section className="max-w-7xl mx-auto px-6 py-24 border-t border-border">
+        <div className="flex items-baseline justify-between gap-4 mb-8">
+          <h2 className="font-mono text-xs font-bold text-primary uppercase tracking-widest">
+            {t("blog.section")}
+          </h2>
+          <a
+            href={BLOG_URL}
+            className="font-mono text-[10px] text-muted-foreground hover:text-primary transition-colors"
+          >
+            {t("blog.cta.all")}
+          </a>
         </div>
-        <div className="max-w-7xl mx-auto mt-20 border-t border-border pt-8 space-y-4">
-          <span className="font-mono text-[10px] text-muted-foreground uppercase">
-            © {new Date().getFullYear()} Marvellous Codeworks
-          </span>
-          <p className="font-mono text-[10px] text-muted-foreground/60 leading-relaxed max-w-4xl">
-            {t("footer.copyright")}
-          </p>
-        </div>
-      </footer>
-    </div>
-  );
-}
+        <BlogCarousel />
+      </section>
 
-function FooterCol({
-  title,
-  links,
-}: {
-  title: string;
-  links: { label: string; href: string }[];
-}) {
-  return (
-    <div className="space-y-4">
-      <h4 className="font-mono text-[10px] uppercase tracking-widest text-foreground">{title}</h4>
-      <ul className="space-y-2">
-        {links.map((l) => (
-          <li key={l.label}>
-            <a
-              href={l.href}
-              className="text-xs text-muted-foreground hover:text-primary transition-colors"
-            >
-              {l.label}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <SiteFooter />
     </div>
   );
 }
