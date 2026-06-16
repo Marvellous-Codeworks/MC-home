@@ -165,8 +165,29 @@ function Index() {
         />
       </header>
 
+      {/* Blog carousel */}
+      <section className="max-w-7xl mx-auto px-6 py-24 border-t border-border">
+        <div className="flex items-baseline justify-between gap-4 mb-10">
+          <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
+            {t("blog.section")}
+          </h2>
+          <a
+            href={BLOG_URL}
+            className="font-mono text-[10px] text-muted-foreground hover:text-primary transition-colors"
+          >
+            {t("blog.cta.all")}
+          </a>
+        </div>
+        <BlogCarousel />
+      </section>
+
       {/* Dual showcase */}
-      <section id="extensions" className="scroll-mt-24 max-w-7xl mx-auto px-6 pb-24">
+      <section id="extensions" className="scroll-mt-24 max-w-7xl mx-auto px-6 pb-24 border-t border-border">
+        <div className="mb-10 pt-24">
+          <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
+            {t("nav.extensions")}
+          </h2>
+        </div>
         <div className="grid lg:grid-cols-2 lg:[grid-template-rows:repeat(6,auto)] gap-x-px bg-border border border-border overflow-hidden">
           <ProductCard
             name={t("tgd.name")}
@@ -187,6 +208,7 @@ function Index() {
             storeUrl={TGD_STORE_URL}
             edgeUrl={TGD_EDGE_URL}
             sourceUrl={`https://github.com/${TGD_REPO.owner}/${TGD_REPO.repo}`}
+            pageUrl="/tgd"
             stats={tgdStats.data}
             statsLoading={tgdStats.isLoading}
             github={tgdGithub.data}
@@ -212,6 +234,7 @@ function Index() {
             }
             storeUrl={TMS_STORE_URL}
             sourceUrl={`https://github.com/${TMS_REPO.owner}/${TMS_REPO.repo}`}
+            pageUrl="/tms"
             stats={tmsStats.data}
             statsLoading={tmsStats.isLoading}
             github={tmsGithub.data}
@@ -241,22 +264,6 @@ function Index() {
             </div>
           ))}
         </div>
-      </section>
-
-      {/* Blog carousel */}
-      <section className="max-w-7xl mx-auto px-6 py-24 border-t border-border">
-        <div className="flex items-baseline justify-between gap-4 mb-8">
-          <h2 className="font-mono text-xs font-bold text-primary uppercase tracking-widest">
-            {t("blog.section")}
-          </h2>
-          <a
-            href={BLOG_URL}
-            className="font-mono text-[10px] text-muted-foreground hover:text-primary transition-colors"
-          >
-            {t("blog.cta.all")}
-          </a>
-        </div>
-        <BlogCarousel />
       </section>
 
       <SiteFooter />

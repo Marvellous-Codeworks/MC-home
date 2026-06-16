@@ -16,6 +16,7 @@ export interface ProductCardProps {
   storeUrl: string;
   edgeUrl?: string;
   sourceUrl: string;
+  pageUrl?: string;
   stats?: ExtensionStats;
   statsLoading?: boolean;
   github?: GithubStats;
@@ -98,6 +99,7 @@ export function ProductCard({
   storeUrl,
   edgeUrl,
   sourceUrl,
+  pageUrl,
   stats,
   statsLoading,
   github,
@@ -136,7 +138,15 @@ export function ProductCard({
 
       {/* Row 2: name + description */}
       <div className="lg:pt-8 lg:pb-6">
-        <h2 className="text-3xl font-mono font-bold mb-4 tracking-tight">{name}</h2>
+        <h2 className="text-3xl font-mono font-bold mb-4 tracking-tight">
+          {pageUrl ? (
+            <a href={pageUrl} className="hover:text-primary transition-colors">
+              {name}
+            </a>
+          ) : (
+            name
+          )}
+        </h2>
         <p className="text-muted-foreground leading-relaxed">{description}</p>
       </div>
 

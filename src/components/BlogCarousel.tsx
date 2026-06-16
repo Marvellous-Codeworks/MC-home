@@ -25,18 +25,18 @@ function BlogPostCard({ post, readLabel }: { post: BlogPost; readLabel: string }
       href={post.url}
       target="_blank"
       rel="noreferrer"
-      className="group flex flex-col gap-3 h-full p-6 bg-background border border-border hover:border-primary/40 transition-colors"
+      className="group flex flex-col gap-4 h-full p-8 bg-background border border-border hover:border-primary/40 transition-colors"
     >
       {post.date && (
         <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
           {formatDate(post.date)}
         </span>
       )}
-      <h3 className="font-mono text-sm font-bold leading-snug text-foreground group-hover:text-primary transition-colors line-clamp-3">
+      <h3 className="font-mono text-base font-bold leading-snug text-foreground group-hover:text-primary transition-colors line-clamp-3">
         {post.title}
       </h3>
       {post.excerpt && (
-        <p className="text-xs text-muted-foreground leading-relaxed line-clamp-4 flex-1">
+        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-5 flex-1">
           {post.excerpt}
         </p>
       )}
@@ -101,11 +101,11 @@ export function BlogCarousel() {
   return (
     <div className="relative">
       <div ref={emblaRef} className="overflow-hidden">
-        <div className="flex gap-px">
+        <div className="flex gap-6">
           {posts.map((post) => (
             <div
               key={post.id}
-              className="min-w-0 shrink-0 grow-0 basis-full sm:basis-1/2 lg:basis-1/3"
+              className="min-w-0 shrink-0 grow-0 basis-[85%] sm:basis-[45%] lg:basis-[31%]"
             >
               <BlogPostCard post={post} readLabel={t("blog.cta.read")} />
             </div>
