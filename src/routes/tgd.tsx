@@ -8,6 +8,7 @@ import { getExtensionStats } from "@/lib/extension-stats.functions";
 import { getGithubStats } from "@/lib/github-stats.functions";
 import { getBlogPostsByTag } from "@/lib/blog-posts-by-tag.functions";
 import { useI18n } from "@/lib/i18n";
+import { Cpu, Zap, Shield, type LucideIcon } from "lucide-react";
 
 import tgdChromeLight from "@/assets/tgd-chrome-light.png";
 import tgdChromeDark from "@/assets/tgd-chrome-dark.png";
@@ -117,10 +118,10 @@ function TgdPage() {
   const usersValue = formatUsers(stats.data?.usersLabel ?? null, stats.data?.users ?? null);
   const ratingValue = stats.data?.rating != null ? `${stats.data.rating.toFixed(1)}★` : "—";
 
-  const features = [
-    { title: t("tgd.f1.t"), body: t("tgd.f1.b") },
-    { title: t("tgd.f2.t"), body: t("tgd.f2.b") },
-    { title: t("tgd.f3.t"), body: t("tgd.f3.b") },
+  const features: Array<{ title: string; body: string; icon: LucideIcon }> = [
+    { title: t("tgd.f1.t"), body: t("tgd.f1.b"), icon: Cpu },
+    { title: t("tgd.f2.t"), body: t("tgd.f2.b"), icon: Zap },
+    { title: t("tgd.f3.t"), body: t("tgd.f3.b"), icon: Shield },
   ];
 
   return (
@@ -218,16 +219,24 @@ function TgdPage() {
           <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest mb-8">
             {t("product.features")}
           </h2>
-          <ul className="grid md:grid-cols-3 gap-0 border-t border-border">
-            {features.map((f, i) => (
-              <li key={f.title} className="border-b border-r border-border px-6 py-8 space-y-3 last:border-r-0 md:[&:nth-child(3)]:border-r-0">
-                <span className="font-mono text-[10px] text-primary uppercase tracking-widest">
-                  {String(i + 1).padStart(2, "0")} //
-                </span>
-                <p className="font-mono text-sm font-bold text-foreground">{f.title}</p>
-                <p className="text-sm text-muted-foreground leading-relaxed">{f.body}</p>
-              </li>
-            ))}
+          <ul className="grid md:grid-cols-3 gap-6">
+            {features.map((f, i) => {
+              const Icon = f.icon;
+              return (
+                <li key={f.title} className="border border-border p-8 space-y-5">
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="font-mono text-[10px] text-primary uppercase tracking-widest mt-0.5">
+                      {String(i + 1).padStart(2, "0")} //
+                    </span>
+                    <Icon className="w-5 h-5 text-primary/70 shrink-0" />
+                  </div>
+                  <div className="space-y-2">
+                    <p className="font-mono text-sm font-bold text-foreground">{f.title}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{f.body}</p>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </div>
 
