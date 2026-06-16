@@ -35,12 +35,12 @@ function extractAllTags(xml: string, tag: string): string[] {
 
 function decodeEntities(text: string): string {
   return text
-    .replace(/&amp;/g, "&")
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
-    .replace(/&nbsp;/g, " ");
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&");
 }
 
 function stripHtml(html: string): string {
@@ -56,9 +56,17 @@ function stripHtml(html: string): string {
 const MIN_P_LEN = 80;
 
 function extractExcerpt(html: string, maxLen = 200): string {
-  const cleaned = html
-    .replace(/<script[\s\S]*?<\/script>/gi, "")
-    .replace(/<style[\s\S]*?<\/style>/gi, "");
+  let cleaned = html;
+  let prev: string;
+  do {
+    prev = cleaned;
+    cleaned = cleaned
+      .replace(/<script\b[\s\S]*?<\/script\s*>/gi, "")
+      .replace(/<style\b[\s\S]*?<\/style\s*>/gi, "");
+  } while (cleaned !== prev);
+  cleaned = cleaned
+    .replace(/<script\b[^>]*>/gi, "")
+    .replace(/<style\b[^>]*>/gi, "");
 
   const pRe = /<p[^>]*>([\s\S]*?)<\/p>/gi;
   let firstFallback: string | null = null;
