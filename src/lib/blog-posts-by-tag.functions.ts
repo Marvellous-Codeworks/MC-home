@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 
-const BLOG_BASE_URL = "https://kb.marvellouscode.works";
+const BLOG_RSS_URL = "https://kb.marvellouscode.works/blog/rss.xml";
 const MAX_POSTS = 3;
 
 export interface BlogPost {
@@ -19,6 +19,16 @@ function extractTag(xml: string, tag: string): string {
   if (cdataMatch) return cdataMatch[1].trim();
   const plainMatch = new RegExp(`<${escapedTag}[^>]*>([^<]*)<\\/${escapedTag}>`).exec(xml);
   return plainMatch ? plainMatch[1].trim() : "";
+}
+
+function extractAllTags(xml: string, tag: string): string[] {
+  const results: string[] = [];
+  const re = new RegExp(`<${tag}[^>]*>(?:<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>|([^<]*?))<\\/${tag}>`, "g");
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(xml)) !== null) {
+    results.push((m[1] ?? m[2] ?? "").trim());
+  }
+  return results;
 }
 
 function decodeEntities(text: string): string {
@@ -61,9 +71,8 @@ function extractExcerpt(html: string, maxLen = 200): string {
 export const getBlogPostsByTag = createServerFn({ method: "GET" })
   .inputValidator((data: { tag: string }) => data)
   .handler(async ({ data }): Promise<BlogPost[]> => {
-    const feedUrl = `${BLOG_BASE_URL}/blog/tags/${encodeURIComponent(data.tag)}/rss.xml`;
     try {
-      const res = await fetch(feedUrl, {
+      const res = await fetch(BLOG_RSS_URL, {
         headers: { "User-Agent": "marvellous-codeworks-site" },
       });
       if (!res.ok) return [];
@@ -71,10 +80,14 @@ export const getBlogPostsByTag = createServerFn({ method: "GET" })
 
       const itemBlocks = xml.split(/<item[^>]*>/).slice(1);
       const posts: BlogPost[] = [];
+      const filterTag = data.tag.toLowerCase();
 
       for (const block of itemBlocks) {
         const closing = block.indexOf("</item>");
         const item = closing >= 0 ? block.slice(0, closing) : block;
+
+        const categories = extractAllTags(item, "category").map((c) => c.toLowerCase());
+        if (!categories.includes(filterTag)) continue;
 
         const title = extractTag(item, "title");
         const link = extractTag(item, "link") || extractTag(item, "guid");
@@ -97,7 +110,7 @@ export const getBlogPostsByTag = createServerFn({ method: "GET" })
 
       return posts;
     } catch (err) {
-      console.error(`Blog posts by tag fetch failed (${feedUrl}):`, err);
+      console.error("Blog posts by tag fetch failed:", err);
       return [];
     }
   });
