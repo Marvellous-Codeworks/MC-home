@@ -55,18 +55,28 @@ function stripHtml(html: string): string {
 // Falls back to the first <p> found, or a plain strip if no <p> exists.
 const MIN_P_LEN = 80;
 
+function removeTagBlock(html: string, tagName: string): string {
+  let result = "";
+  let pos = 0;
+  const openPattern = "<" + tagName;
+  const closePattern = "</" + tagName;
+  const lower = html.toLowerCase();
+  while (pos < html.length) {
+    const openIdx = lower.indexOf(openPattern, pos);
+    if (openIdx === -1) { result += html.slice(pos); break; }
+    result += html.slice(pos, openIdx);
+    const tagClose = html.indexOf(">", openIdx);
+    if (tagClose === -1) break;
+    const closeIdx = lower.indexOf(closePattern, tagClose);
+    if (closeIdx === -1) break;
+    const afterClose = html.indexOf(">", closeIdx);
+    pos = afterClose === -1 ? html.length : afterClose + 1;
+  }
+  return result;
+}
+
 function extractExcerpt(html: string, maxLen = 200): string {
-  let cleaned = html;
-  let prev: string;
-  do {
-    prev = cleaned;
-    cleaned = cleaned
-      .replace(/<script\b[\s\S]*?<\/script\s*>/gi, "")
-      .replace(/<style\b[\s\S]*?<\/style\s*>/gi, "");
-  } while (cleaned !== prev);
-  cleaned = cleaned
-    .replace(/<script\b[^>]*>/gi, "")
-    .replace(/<style\b[^>]*>/gi, "");
+  const cleaned = removeTagBlock(removeTagBlock(html, "script"), "style");
 
   const pRe = /<p[^>]*>([\s\S]*?)<\/p>/gi;
   let firstFallback: string | null = null;
