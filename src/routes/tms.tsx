@@ -208,12 +208,14 @@ function TmsPage() {
         {/* Features */}
         <div>
           <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest mb-8">
-            // {t("nav.extensions")}
+            {t("product.features")}
           </h2>
-          <ul className="grid md:grid-cols-3 gap-8">
-            {features.map((f) => (
-              <li key={f.title} className="border border-border p-6 space-y-3">
-                <div className="size-1.5 bg-primary" aria-hidden />
+          <ul className="grid md:grid-cols-3 gap-0 border-t border-border">
+            {features.map((f, i) => (
+              <li key={f.title} className="border-b border-r border-border px-6 py-8 space-y-3 last:border-r-0 md:[&:nth-child(3)]:border-r-0">
+                <span className="font-mono text-[10px] text-primary uppercase tracking-widest">
+                  {String(i + 1).padStart(2, "0")} //
+                </span>
                 <p className="font-mono text-sm font-bold text-foreground">{f.title}</p>
                 <p className="text-sm text-muted-foreground leading-relaxed">{f.body}</p>
               </li>
@@ -226,7 +228,7 @@ function TmsPage() {
           <div>
             <div className="flex items-baseline justify-between gap-4 mb-8">
               <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
-                {t("blog.section")}
+                {t("blog.section.about", { name: "TMS" })}
               </h2>
               <a
                 href="https://kb.marvellouscode.works/blog"

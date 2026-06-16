@@ -116,6 +116,8 @@ const en: Dict = {
   "blog.empty": "No posts yet.",
 
   "product.back": "← All Extensions",
+  "product.features": "// Key Features",
+  "blog.section.about": "// Latest from the blog about {name}",
 };
 
 const it: Dict = {
@@ -230,6 +232,8 @@ const it: Dict = {
   "blog.empty": "Nessun articolo per ora.",
 
   "product.back": "← Tutte le estensioni",
+  "product.features": "// Caratteristiche principali",
+  "blog.section.about": "// Dal blog su {name}",
 };
 
 const dicts: Record<Locale, Dict> = { en, it };
