@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage } from "@/components/LegalPage";
 import { TMS_PRIVACY_CONTENT } from "@/lib/tms-legal-content";
 
-export const Route = createFileRoute("/tms/privacy")({
+export const Route = createFileRoute("/tms_/privacy")({
   head: () => ({
     meta: [
       { title: "Privacy Policy — The Marvellous Suspender" },

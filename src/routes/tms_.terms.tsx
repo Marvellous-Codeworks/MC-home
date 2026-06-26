@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage } from "@/components/LegalPage";
 import { TMS_TERMS_CONTENT } from "@/lib/tms-legal-content";
 
-export const Route = createFileRoute("/tms/terms")({
+export const Route = createFileRoute("/tms_/terms")({
   head: () => ({
     meta: [
       { title: "Terms of Use — The Marvellous Suspender" },

@@ -12,8 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TmsRouteImport } from './routes/tms'
 import { Route as TgdRouteImport } from './routes/tgd'
-import { Route as TmsPrivacyRouteImport } from './routes/tms.privacy'
-import { Route as TmsTermsRouteImport } from './routes/tms.terms'
+import { Route as TmsPrivacyRouteImport } from './routes/tms_.privacy'
+import { Route as TmsTermsRouteImport } from './routes/tms_.terms'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,13 +34,13 @@ const TgdRoute = TgdRouteImport.update({
 } as any)
 
 const TmsPrivacyRoute = TmsPrivacyRouteImport.update({
-  id: '/tms/privacy',
+  id: '/tms_/privacy',
   path: '/tms/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 const TmsTermsRoute = TmsTermsRouteImport.update({
-  id: '/tms/terms',
+  id: '/tms_/terms',
   path: '/tms/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
@@ -64,15 +64,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/tms': typeof TmsRoute
   '/tgd': typeof TgdRoute
-  '/tms/privacy': typeof TmsPrivacyRoute
-  '/tms/terms': typeof TmsTermsRoute
+  '/tms_/privacy': typeof TmsPrivacyRoute
+  '/tms_/terms': typeof TmsTermsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths: '/' | '/tms' | '/tgd' | '/tms/privacy' | '/tms/terms'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/tms' | '/tgd' | '/tms/privacy' | '/tms/terms'
-  id: '__root__' | '/' | '/tms' | '/tgd' | '/tms/privacy' | '/tms/terms'
+  id: '__root__' | '/' | '/tms' | '/tgd' | '/tms_/privacy' | '/tms_/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,15 +106,15 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TgdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tms/privacy': {
-      id: '/tms/privacy'
+    '/tms_/privacy': {
+      id: '/tms_/privacy'
       path: '/tms/privacy'
       fullPath: '/tms/privacy'
       preLoaderRoute: typeof TmsPrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tms/terms': {
-      id: '/tms/terms'
+    '/tms_/terms': {
+      id: '/tms_/terms'
       path: '/tms/terms'
       fullPath: '/tms/terms'
       preLoaderRoute: typeof TmsTermsRouteImport
