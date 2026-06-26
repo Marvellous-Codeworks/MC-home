@@ -94,9 +94,8 @@ const en: Dict = {
   "footer.link.issues.tgd": "TGD Issue Tracker",
   "footer.link.issues.tms": "TMS Issue Tracker",
   "footer.link.discussions.tms": "TMS Discussions",
-  "footer.col.legal": "Legal",
-  "footer.link.tms.privacy": "Privacy Policy",
-  "footer.link.tms.terms": "Terms of Use",
+  "tms.legal.privacy": "Privacy Policy",
+  "tms.legal.terms": "Terms of Use",
   "footer.copyright":
     "All trademarks mentioned are the property of their respective owners. Third-party trademarks, product names, trade names, corporate names and companies mentioned may be trademarks of their respective owners or registered trademarks of other companies and have been used for explanatory purposes only and for the benefit of the owner, without any intent to infringe existing copyright.",
 
@@ -213,9 +212,8 @@ const it: Dict = {
   "footer.link.issues.tgd": "Issue Tracker TGD",
   "footer.link.issues.tms": "Issue Tracker TMS",
   "footer.link.discussions.tms": "Discussioni TMS",
-  "footer.col.legal": "Legale",
-  "footer.link.tms.privacy": "Privacy Policy",
-  "footer.link.tms.terms": "Termini di utilizzo",
+  "tms.legal.privacy": "Privacy Policy",
+  "tms.legal.terms": "Termini di utilizzo",
   "footer.copyright":
     "Tutti i marchi citati appartengono ai legittimi proprietari; marchi di terzi, nomi di prodotti, nomi commerciali, nomi corporativi e società citati possono essere marchi di proprietà dei rispettivi titolari o marchi registrati d'altre società e sono stati utilizzati a puro scopo esplicativo ed a beneficio del possessore, senza alcun fine di violazione dei diritti di Copyright vigenti.",
 

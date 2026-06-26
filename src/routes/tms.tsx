@@ -277,6 +277,22 @@ function TmsPage() {
           </div>
         )}
 
+        {/* Legal */}
+        <div className="border-t border-border pt-8 flex flex-wrap gap-6">
+          <a
+            href="/tms/privacy"
+            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
+          >
+            {t("tms.legal.privacy")}
+          </a>
+          <a
+            href="/tms/terms"
+            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
+          >
+            {t("tms.legal.terms")}
+          </a>
+        </div>
+
       </main>
 
       <SiteFooter />

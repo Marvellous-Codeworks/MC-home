@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TmsRouteImport } from './routes/tms'
 import { Route as TgdRouteImport } from './routes/tgd'
+import { Route as TmsPrivacyRouteImport } from './routes/tms.privacy'
+import { Route as TmsTermsRouteImport } from './routes/tms.terms'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -31,34 +33,54 @@ const TgdRoute = TgdRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 
+const TmsPrivacyRoute = TmsPrivacyRouteImport.update({
+  id: '/tms/privacy',
+  path: '/tms/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+
+const TmsTermsRoute = TmsTermsRouteImport.update({
+  id: '/tms/terms',
+  path: '/tms/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/tms': typeof TmsRoute
   '/tgd': typeof TgdRoute
+  '/tms/privacy': typeof TmsPrivacyRoute
+  '/tms/terms': typeof TmsTermsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/tms': typeof TmsRoute
   '/tgd': typeof TgdRoute
+  '/tms/privacy': typeof TmsPrivacyRoute
+  '/tms/terms': typeof TmsTermsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/tms': typeof TmsRoute
   '/tgd': typeof TgdRoute
+  '/tms/privacy': typeof TmsPrivacyRoute
+  '/tms/terms': typeof TmsTermsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tms' | '/tgd'
+  fullPaths: '/' | '/tms' | '/tgd' | '/tms/privacy' | '/tms/terms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tms' | '/tgd'
-  id: '__root__' | '/' | '/tms' | '/tgd'
+  to: '/' | '/tms' | '/tgd' | '/tms/privacy' | '/tms/terms'
+  id: '__root__' | '/' | '/tms' | '/tgd' | '/tms/privacy' | '/tms/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   TmsRoute: typeof TmsRoute
   TgdRoute: typeof TgdRoute
+  TmsPrivacyRoute: typeof TmsPrivacyRoute
+  TmsTermsRoute: typeof TmsTermsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -84,6 +106,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TgdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tms/privacy': {
+      id: '/tms/privacy'
+      path: '/tms/privacy'
+      fullPath: '/tms/privacy'
+      preLoaderRoute: typeof TmsPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tms/terms': {
+      id: '/tms/terms'
+      path: '/tms/terms'
+      fullPath: '/tms/terms'
+      preLoaderRoute: typeof TmsTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -91,6 +127,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   TmsRoute: TmsRoute,
   TgdRoute: TgdRoute,
+  TmsPrivacyRoute: TmsPrivacyRoute,
+  TmsTermsRoute: TmsTermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
