@@ -17,7 +17,7 @@ export type LegalContent = {
 export const TMS_PRIVACY_CONTENT: LegalContent = {
   it: {
     title: "Informativa sulla Privacy",
-    effectiveDate: "2026-07-01",
+    effectiveDate: "2026-06-26",
     sections: [
       {
         heading: "Titolare del trattamento",
@@ -91,7 +91,7 @@ export const TMS_PRIVACY_CONTENT: LegalContent = {
 
   en: {
     title: "Privacy Policy",
-    effectiveDate: "2026-07-01",
+    effectiveDate: "2026-06-26",
     sections: [
       {
         heading: "Data Controller",
@@ -167,7 +167,7 @@ export const TMS_PRIVACY_CONTENT: LegalContent = {
 export const TMS_TERMS_CONTENT: LegalContent = {
   it: {
     title: "Termini di utilizzo",
-    effectiveDate: "2026-07-01",
+    effectiveDate: "2026-06-26",
     sections: [
       {
         heading: "Accettazione dei termini",
@@ -236,7 +236,7 @@ export const TMS_TERMS_CONTENT: LegalContent = {
 
   en: {
     title: "Terms of Use",
-    effectiveDate: "2026-07-01",
+    effectiveDate: "2026-06-26",
     sections: [
       {
         heading: "Acceptance of Terms",
