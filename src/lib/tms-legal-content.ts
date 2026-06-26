@@ -196,7 +196,7 @@ export const TMS_TERMS_CONTENT: LegalContent = {
       {
         heading: "Esclusione di garanzie",
         body: [
-          'TMS è fornita "così com\'è" (as is), senza garanzie di alcun tipo, espresse o implicite, incluse, a titolo esemplificativo e non esaustivo, le garanzie implicite di commerciabilità, idoneità per uno scopo particolare e non violazione di diritti di terzi, ai sensi dell\'art. 11 della GPLv2.',
+          'TMS è fornita "così com\'è" (as is), senza garanzie di alcun tipo, espresse o implicite, incluse, a titolo esemplificativo e non esaustivo, le garanzie implicite di commerciabilità, idoneità per uno scopo particolare e non violazione di diritti di terzi, come previsto dalla licenza GPLv2.',
         ],
       },
       {
@@ -265,7 +265,7 @@ export const TMS_TERMS_CONTENT: LegalContent = {
       {
         heading: "No Warranty",
         body: [
-          'TMS is provided "as is", without warranty of any kind, express or implied, including but not limited to the implied warranties of merchantability, fitness for a particular purpose and non-infringement, pursuant to GPLv2 §11.',
+          'TMS is provided "as is", without warranty of any kind, express or implied, including but not limited to the implied warranties of merchantability, fitness for a particular purpose and non-infringement, as set out in the GPLv2 license.',
         ],
       },
       {
