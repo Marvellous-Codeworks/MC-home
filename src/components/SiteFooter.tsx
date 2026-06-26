@@ -54,7 +54,7 @@ export function SiteFooter() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-12">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-12">
           <FooterCol
             title={t("footer.col.extensions")}
             links={[
@@ -77,6 +77,13 @@ export function SiteFooter() {
               { label: t("footer.link.issues.tgd"), href: TGD_ISSUES_URL, external: true },
               { label: t("footer.link.issues.tms"), href: TMS_ISSUES_URL, external: true },
               { label: t("footer.link.discussions.tms"), href: TMS_DISCUSSIONS_URL, external: true },
+            ]}
+          />
+          <FooterCol
+            title={t("footer.col.legal")}
+            links={[
+              { label: t("footer.link.tms.privacy"), href: "/tms/privacy" },
+              { label: t("footer.link.tms.terms"), href: "/tms/terms" },
             ]}
           />
         </div>
