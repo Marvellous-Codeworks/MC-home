@@ -88,7 +88,7 @@ export function NotificationBell() {
           )}
         </button>
       </PopoverTrigger>
-      <PopoverContent align="end" sideOffset={8} className="w-80 p-0 overflow-hidden">
+      <PopoverContent align="end" sideOffset={8} className="w-96 sm:w-[26rem] p-0 overflow-hidden">
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-border">
           <span className="font-mono text-xs font-bold uppercase tracking-widest text-foreground">
@@ -105,7 +105,7 @@ export function NotificationBell() {
         </div>
 
         {/* Body */}
-        <div className="divide-y divide-border">
+        <div className="divide-y divide-border max-h-[70vh] overflow-y-auto">
           {isLoading ? (
             <p className="px-4 py-6 font-mono text-xs text-muted-foreground text-center">
               {t("notif.loading")}
