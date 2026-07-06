@@ -278,24 +278,24 @@ function TmsPage() {
         )}
 
         {/* Legal */}
-        <div className="border-t border-border pt-8 flex flex-wrap gap-6">
+        <div className="border-t border-border pt-8 flex flex-wrap gap-3">
+          <a
+            href="/tms/report"
+            className="h-10 px-5 border border-primary/40 text-primary font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-primary/10 transition-colors rounded-sm"
+          >
+            {t("tms.legal.report")}
+          </a>
           <a
             href="/tms/privacy"
-            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
+            className="h-10 px-5 border border-border font-mono text-xs uppercase tracking-widest flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
           >
             {t("tms.legal.privacy")}
           </a>
           <a
             href="/tms/terms"
-            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
+            className="h-10 px-5 border border-border font-mono text-xs uppercase tracking-widest flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
           >
             {t("tms.legal.terms")}
-          </a>
-          <a
-            href="/tms/report"
-            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
-          >
-            {t("tms.legal.report")}
           </a>
         </div>
 
