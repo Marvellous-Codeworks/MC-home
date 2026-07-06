@@ -35,13 +35,26 @@ function TmsReportStatusPage() {
     queryKey: ["report-status", issueNumber],
     queryFn: async () => {
       const res = await fetch(`/api/report/status/${issueNumber}`);
-      if (!res.ok) throw new Error(`Status fetch failed: ${res.status}`);
+      if (!res.ok) {
+        const error = new Error(`Status fetch failed: ${res.status}`) as Error & {
+          status: number;
+        };
+        error.status = res.status;
+        throw error;
+      }
       return (await res.json()) as {
         issue: IssueSummary;
         comments: IssueComment[];
       };
     },
     staleTime: 1000 * 30,
+    retry: (failureCount, error) => {
+      const status = (error as Error & { status?: number }).status;
+      // A 4xx (not found / bad request) won't change on retry — fail fast
+      // instead of leaving the user staring at a loading state.
+      if (status !== undefined && status >= 400 && status < 500) return false;
+      return failureCount < 2;
+    },
   });
 
   async function submitComment() {

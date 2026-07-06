@@ -147,7 +147,9 @@ export async function getIssueWithComments(
     comments = raw.map((c) => ({
       id: c.id,
       body: c.body,
-      bodyHtml: c.body_html ?? escapeHtml(c.body).replace(/\n/g, "<br />"),
+      bodyHtml: sanitizeGithubHtml(
+        c.body_html ?? escapeHtml(c.body).replace(/\n/g, "<br />"),
+      ),
       createdAt: c.created_at,
       authorLogin: c.user?.login ?? "unknown",
     }));
@@ -161,6 +163,18 @@ function escapeHtml(input: string): string {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+// Defense-in-depth on top of GitHub's own sanitized `body_html`: this is not
+// a full HTML sanitizer (no dependency for that is available in this repo),
+// just a second layer that strips the specific constructs that would matter
+// for XSS if GitHub's sanitization were ever bypassed or buggy.
+function sanitizeGithubHtml(html: string): string {
+  return html
+    .replace(/<\/?(script|iframe|object|embed|form|style|link|meta)\b[^>]*>/gi, "")
+    .replace(/\son\w+\s*=\s*"[^"]*"/gi, "")
+    .replace(/\son\w+\s*=\s*'[^']*'/gi, "")
+    .replace(/(href|src)\s*=\s*("|')\s*javascript:[^"']*\2/gi, '$1=$2#$2');
 }
 
 function toIssueSummary(issue: {
