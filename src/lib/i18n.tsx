@@ -158,6 +158,7 @@ const en: Dict = {
   "report.status.comment.submitting": "Posting…",
   "report.status.comment.error": "Couldn't post your comment. Please try again.",
   "report.status.viewOnGithub": "View on GitHub",
+  "report.status.error": "We couldn't load this report. It may not exist, or something went wrong.",
 
   "tms.legal.report": "Report an issue",
 };
@@ -316,6 +317,7 @@ const it: Dict = {
   "report.status.comment.submitting": "Pubblicazione…",
   "report.status.comment.error": "Non siamo riusciti a pubblicare il commento. Riprova.",
   "report.status.viewOnGithub": "Vedi su GitHub",
+  "report.status.error": "Non siamo riusciti a caricare questa segnalazione. Potrebbe non esistere, oppure qualcosa è andato storto.",
 
   "tms.legal.report": "Segnala un problema",
 };

@@ -49,7 +49,6 @@ export function ReportForm({
           owner: repo.owner,
           repo: repo.repo,
           locale,
-          siteUrl: window.location.origin,
         },
       });
       setStatus("sent");

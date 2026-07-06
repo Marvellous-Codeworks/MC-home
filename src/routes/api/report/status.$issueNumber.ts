@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getIssueWithComments } from "@/lib/report-github";
-
-const TMS_REPO = { owner: "gioxx", repo: "MarvellousSuspender" } as const;
+import { TMS_REPO } from "@/lib/tms-repo";
 
 export const Route = createFileRoute("/api/report/status/$issueNumber")({
   server: {

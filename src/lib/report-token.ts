@@ -7,6 +7,7 @@ export interface PendingReport {
   type: "bug" | "feature";
   owner: string;
   repo: string;
+  locale: "en" | "it";
   exp: number;
 }
 

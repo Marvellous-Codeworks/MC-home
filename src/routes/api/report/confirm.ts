@@ -2,6 +2,45 @@ import { createFileRoute } from "@tanstack/react-router";
 import { verifyPendingReport } from "@/lib/report-token";
 import { createReportIssue } from "@/lib/report-github";
 
+function escapeHtml(input: string): string {
+  return input
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+const STRINGS = {
+  en: {
+    title: "Confirm your report",
+    body: (reportTitle: string) =>
+      `Click the button to confirm "${escapeHtml(reportTitle)}" and open the Issue on GitHub for you.`,
+    button: "Confirm report",
+  },
+  it: {
+    title: "Conferma la tua segnalazione",
+    body: (reportTitle: string) =>
+      `Clicca il pulsante per confermare "${escapeHtml(reportTitle)}" e aprire la Issue su GitHub per te.`,
+    button: "Conferma segnalazione",
+  },
+} as const;
+
+function confirmPageHtml(locale: "en" | "it", reportTitle: string, ct: string): string {
+  const s = STRINGS[locale];
+  return `<!doctype html>
+<html lang="${locale}">
+<head><meta charset="utf-8"><title>${s.title}</title></head>
+<body style="font-family: sans-serif; max-width: 32rem; margin: 4rem auto; padding: 0 1rem;">
+  <h1>${s.title}</h1>
+  <p>${s.body(reportTitle)}</p>
+  <form method="POST">
+    <input type="hidden" name="ct" value="${escapeHtml(ct)}" />
+    <button type="submit" style="height: 2.75rem; padding: 0 1.5rem; font-weight: bold;">${s.button}</button>
+  </form>
+</body>
+</html>`;
+}
+
 export const Route = createFileRoute("/api/report/confirm")({
   server: {
     handlers: {
@@ -11,6 +50,29 @@ export const Route = createFileRoute("/api/report/confirm")({
         const secret = process.env.REPORT_TOKEN_SECRET;
 
         if (!ct || !secret) {
+          return new Response("Missing token", { status: 400 });
+        }
+
+        const pending = verifyPendingReport(ct, secret);
+        if (!pending) {
+          return Response.redirect(
+            new URL("/tms/report?error=expired", url.origin).toString(),
+            302,
+          );
+        }
+
+        return new Response(confirmPageHtml(pending.locale, pending.title, ct), {
+          status: 200,
+          headers: { "Content-Type": "text/html; charset=utf-8" },
+        });
+      },
+      POST: async ({ request }) => {
+        const url = new URL(request.url);
+        const secret = process.env.REPORT_TOKEN_SECRET;
+        const formData = await request.formData();
+        const ct = formData.get("ct");
+
+        if (typeof ct !== "string" || !secret) {
           return new Response("Missing token", { status: 400 });
         }
 

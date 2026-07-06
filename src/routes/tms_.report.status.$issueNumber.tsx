@@ -75,6 +75,9 @@ function TmsReportStatusPage() {
         {query.isLoading && (
           <p className="text-sm text-muted-foreground">…</p>
         )}
+        {query.isError && (
+          <p className="text-sm text-destructive">{t("report.status.error")}</p>
+        )}
         {query.data && (
           <>
             <div className="space-y-2">

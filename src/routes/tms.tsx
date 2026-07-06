@@ -8,6 +8,7 @@ import { getExtensionStats } from "@/lib/extension-stats.functions";
 import { getGithubStats } from "@/lib/github-stats.functions";
 import { getBlogPostsByTag } from "@/lib/blog-posts-by-tag.functions";
 import { useI18n } from "@/lib/i18n";
+import { TMS_REPO } from "@/lib/tms-repo";
 import { SlidersHorizontal, RotateCcw, Zap, type LucideIcon } from "lucide-react";
 
 import tmsGoogle from "@/assets/tms-google.png";
@@ -20,7 +21,6 @@ import tmsKeyboard from "@/assets/tms-keyboard.png";
 
 const TMS_STORE_URL =
   "https://chromewebstore.google.com/detail/the-marvellous-suspender/noogafoofpebimajpfpamcfhoaifemoa";
-const TMS_REPO = { owner: "gioxx", repo: "MarvellousSuspender" } as const;
 const BLOG_TAG = "the marvellous suspender";
 
 const SLIDES = [

@@ -10,7 +10,6 @@ export interface SubmitReportInput {
   owner: string;
   repo: string;
   locale: "en" | "it";
-  siteUrl: string;
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -33,6 +32,9 @@ export const submitReport = createServerFn({ method: "POST" })
     const secret = process.env.REPORT_TOKEN_SECRET;
     if (!secret) throw new Error("REPORT_TOKEN_SECRET is not configured");
 
+    const siteUrl = process.env.SITE_URL;
+    if (!siteUrl) throw new Error("SITE_URL is not configured");
+
     const token = signPendingReport(
       {
         email: data.email,
@@ -41,10 +43,11 @@ export const submitReport = createServerFn({ method: "POST" })
         type: data.type,
         owner: data.owner,
         repo: data.repo,
+        locale: data.locale,
       },
       secret,
     );
-    const confirmUrl = `${data.siteUrl}/api/report/confirm?ct=${encodeURIComponent(token)}`;
+    const confirmUrl = `${siteUrl}/api/report/confirm?ct=${encodeURIComponent(token)}`;
 
     await sendConfirmationEmail({
       to: data.email,

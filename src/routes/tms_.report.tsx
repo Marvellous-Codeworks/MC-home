@@ -3,8 +3,7 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ReportForm } from "@/components/ReportForm";
 import { useI18n } from "@/lib/i18n";
-
-const TMS_REPO = { owner: "gioxx", repo: "MarvellousSuspender" } as const;
+import { TMS_REPO } from "@/lib/tms-repo";
 
 export const Route = createFileRoute("/tms_/report")({
   validateSearch: (search: Record<string, unknown>) => ({

@@ -83,7 +83,7 @@ export async function addReportComment(
     {
       method: "POST",
       headers: { ...authHeaders(), "Content-Type": "application/json" },
-      body: JSON.stringify({ body: `**[Utente]:** ${body}` }),
+      body: JSON.stringify({ body: `**[User]:** ${body}` }),
     },
   );
   if (!res.ok) {
