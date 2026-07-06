@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { verifyPendingReport } from "@/lib/report-token";
 import { createReportIssue } from "@/lib/report-github";
+import { sendReportCreatedEmail } from "@/lib/report-email";
 
 function escapeHtml(input: string): string {
   return input
@@ -93,10 +94,24 @@ export const Route = createFileRoute("/api/report/confirm")({
             type: pending.type,
             reporterEmail: pending.email,
           });
-          return Response.redirect(
-            new URL(`/tms/report/status/${issue.number}`, url.origin).toString(),
-            302,
-          );
+          const statusUrl = new URL(
+            `/tms/report/status/${issue.number}`,
+            url.origin,
+          ).toString();
+
+          try {
+            await sendReportCreatedEmail({
+              to: pending.email,
+              statusUrl,
+              locale: pending.locale,
+              title: pending.title,
+            });
+          } catch {
+            // Best-effort: the user is already being redirected to the status
+            // page, so a failed follow-up email shouldn't block that.
+          }
+
+          return Response.redirect(statusUrl, 302);
         } catch {
           return Response.redirect(
             new URL("/tms/report?error=github", url.origin).toString(),

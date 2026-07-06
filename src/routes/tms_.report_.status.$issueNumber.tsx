@@ -10,7 +10,7 @@ import { TMS_REPO } from "@/lib/tms-repo";
 import type { IssueComment, IssueSummary } from "@/lib/report-github";
 const FIFTEEN_DAYS_MS = 15 * 24 * 60 * 60 * 1000;
 
-export const Route = createFileRoute("/tms_/report/status/$issueNumber")({
+export const Route = createFileRoute("/tms_/report_/status/$issueNumber")({
   component: TmsReportStatusPage,
 });
 
@@ -23,7 +23,7 @@ function isWithinWindow(issue: IssueSummary): boolean {
 function TmsReportStatusPage() {
   const { t } = useI18n();
   const { issueNumber } = useParams({
-    from: "/tms_/report/status/$issueNumber",
+    from: "/tms_/report_/status/$issueNumber",
   });
   const queryClient = useQueryClient();
   const postComment = useServerFn(postReportComment);
