@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createFileRoute, useParams } from "@tanstack/react-router";
+import { createFileRoute, useParams, useSearch } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { SiteNav } from "@/components/SiteNav";
@@ -11,6 +11,9 @@ import type { IssueComment, IssueSummary } from "@/lib/report-github";
 const FIFTEEN_DAYS_MS = 15 * 24 * 60 * 60 * 1000;
 
 export const Route = createFileRoute("/tms_/report_/status/$issueNumber")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    rt: typeof search.rt === "string" ? search.rt : undefined,
+  }),
   component: TmsReportStatusPage,
 });
 
@@ -25,6 +28,7 @@ function TmsReportStatusPage() {
   const { issueNumber } = useParams({
     from: "/tms_/report_/status/$issueNumber",
   });
+  const { rt } = useSearch({ from: "/tms_/report_/status/$issueNumber" });
   const queryClient = useQueryClient();
   const postComment = useServerFn(postReportComment);
   const [draft, setDraft] = useState("");
@@ -32,9 +36,12 @@ function TmsReportStatusPage() {
   const [error, setError] = useState(false);
 
   const query = useQuery({
-    queryKey: ["report-status", issueNumber],
+    queryKey: ["report-status", issueNumber, rt],
     queryFn: async () => {
-      const res = await fetch(`/api/report/status/${issueNumber}`);
+      const url = rt
+        ? `/api/report/status/${issueNumber}?rt=${encodeURIComponent(rt)}`
+        : `/api/report/status/${issueNumber}`;
+      const res = await fetch(url);
       if (!res.ok) {
         const error = new Error(`Status fetch failed: ${res.status}`) as Error & {
           status: number;
@@ -67,6 +74,7 @@ function TmsReportStatusPage() {
           repo: TMS_REPO.repo,
           issueNumber: Number(issueNumber),
           body: draft,
+          reporterToken: rt ?? "",
         },
       });
       setDraft("");

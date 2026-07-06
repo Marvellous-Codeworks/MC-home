@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { verifyPendingReport } from "@/lib/report-token";
+import { verifyPendingReport, signReporterToken } from "@/lib/report-token";
 import { createReportIssue } from "@/lib/report-github";
 import { sendReportCreatedEmail } from "@/lib/report-email";
 
@@ -94,8 +94,12 @@ export const Route = createFileRoute("/api/report/confirm")({
             type: pending.type,
             reporterEmail: pending.email,
           });
+          const reporterToken = signReporterToken(
+            { owner: pending.owner, repo: pending.repo, issueNumber: issue.number },
+            secret,
+          );
           const statusUrl = new URL(
-            `/tms/report/status/${issue.number}`,
+            `/tms/report/status/${issue.number}?rt=${encodeURIComponent(reporterToken)}`,
             url.origin,
           ).toString();
 
