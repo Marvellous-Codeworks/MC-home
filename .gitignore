@@ -16,6 +16,9 @@ dist-ssr
 .nitro
 *.local
 
+# Local design docs / specs (not for GitHub)
+docs/
+
 # Vercel
 .vercel/
 
