@@ -10,9 +10,15 @@ export interface SubmitReportInput {
   owner: string;
   repo: string;
   locale: "en" | "it";
+  honeypot: string;
+  formLoadedAt: number;
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Anything faster than this since the form rendered is assumed to be a bot,
+// not a human filling out four fields.
+const MIN_ELAPSED_MS = 3000;
 
 export const submitReport = createServerFn({ method: "POST" })
   .inputValidator((data: SubmitReportInput) => {
@@ -26,9 +32,20 @@ export const submitReport = createServerFn({ method: "POST" })
     if (data.type !== "bug" && data.type !== "feature") {
       throw new Error("Invalid type");
     }
+    if (typeof data.formLoadedAt !== "number") {
+      throw new Error("Invalid request");
+    }
     return data;
   })
   .handler(async ({ data }): Promise<{ ok: true }> => {
+    // Spam heuristics: a filled honeypot or an implausibly fast submission.
+    // Report success without doing any work (no token, no Resend send) so
+    // bots see no signal to distinguish this from a real submission.
+    const elapsedMs = Date.now() - data.formLoadedAt;
+    if (data.honeypot.trim().length > 0 || elapsedMs < MIN_ELAPSED_MS) {
+      return { ok: true };
+    }
+
     const secret = process.env.REPORT_TOKEN_SECRET;
     if (!secret) throw new Error("REPORT_TOKEN_SECRET is not configured");
 

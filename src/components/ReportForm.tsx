@@ -19,6 +19,7 @@ const schema = z.object({
   title: z.string().min(5).max(200),
   body: z.string().min(10).max(5000),
   email: z.string().email(),
+  honeypot: z.string(),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -34,10 +35,11 @@ export function ReportForm({
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle",
   );
+  const [formLoadedAt] = useState(() => Date.now());
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { type: "bug", title: "", body: "", email: "" },
+    defaultValues: { type: "bug", title: "", body: "", email: "", honeypot: "" },
   });
 
   async function onSubmit(values: FormValues) {
@@ -49,6 +51,7 @@ export function ReportForm({
           owner: repo.owner,
           repo: repo.repo,
           locale,
+          formLoadedAt,
         },
       });
       setStatus("sent");
@@ -76,6 +79,14 @@ export function ReportForm({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 max-w-xl">
+        <input
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="absolute left-[-9999px] h-px w-px overflow-hidden"
+          {...form.register("honeypot")}
+        />
         <FormField
           control={form.control}
           name="type"
