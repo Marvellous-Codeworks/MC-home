@@ -92,7 +92,7 @@ function TmsReportStatusPage() {
                 href={query.data.issue.htmlUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="text-xs text-muted-foreground hover:text-primary"
+                className="h-10 px-5 border border-border font-mono text-xs uppercase tracking-widest inline-flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
               >
                 {t("report.status.viewOnGithub")}
               </a>
@@ -104,7 +104,10 @@ function TmsReportStatusPage() {
               </h2>
               {query.data.comments.map((c) => (
                 <div key={c.id} className="border border-border p-4 text-sm">
-                  <p className="whitespace-pre-wrap">{c.body}</p>
+                  <div
+                    className="[&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-sm [&_p]:my-2 [&_p:first-child]:mt-0 [&_p:last-child]:mb-0"
+                    dangerouslySetInnerHTML={{ __html: c.bodyHtml }}
+                  />
                 </div>
               ))}
             </div>

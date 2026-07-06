@@ -6,12 +6,29 @@ const HEADERS: Record<string, string> = {
   "X-GitHub-Api-Version": "2022-11-28",
 };
 
+// Issue/comment reads use this instead of the plain HEADERS above so the
+// response includes GitHub's own server-rendered, sanitized `body_html` —
+// letting us show formatted comments (images, bold, etc.) without pulling in
+// a markdown-rendering dependency.
+const READ_HEADERS: Record<string, string> = {
+  ...HEADERS,
+  Accept: "application/vnd.github.full+json",
+};
+
 function authHeaders(): Record<string, string> {
   const token = process.env.GITHUB_ISSUES_TOKEN;
   if (!token) {
     throw new Error("GITHUB_ISSUES_TOKEN is not configured");
   }
   return { ...HEADERS, Authorization: `Bearer ${token}` };
+}
+
+function authReadHeaders(): Record<string, string> {
+  const token = process.env.GITHUB_ISSUES_TOKEN;
+  if (!token) {
+    throw new Error("GITHUB_ISSUES_TOKEN is not configured");
+  }
+  return { ...READ_HEADERS, Authorization: `Bearer ${token}` };
 }
 
 export interface CreateIssueInput {
@@ -35,6 +52,7 @@ export interface IssueSummary {
 export interface IssueComment {
   id: number;
   body: string;
+  bodyHtml: string;
   createdAt: string;
   authorLogin: string;
 }
@@ -98,11 +116,11 @@ export async function getIssueWithComments(
 ): Promise<{ issue: IssueSummary; comments: IssueComment[] } | null> {
   const [issueRes, commentsRes] = await Promise.all([
     fetch(`https://api.github.com/repos/${owner}/${repo}/issues/${issueNumber}`, {
-      headers: authHeaders(),
+      headers: authReadHeaders(),
     }),
     fetch(
       `https://api.github.com/repos/${owner}/${repo}/issues/${issueNumber}/comments`,
-      { headers: authHeaders() },
+      { headers: authReadHeaders() },
     ),
   ]);
   if (issueRes.status === 404) return null;
@@ -122,17 +140,27 @@ export async function getIssueWithComments(
     const raw = (await commentsRes.json()) as Array<{
       id: number;
       body: string;
+      body_html?: string;
       created_at: string;
       user: { login: string } | null;
     }>;
     comments = raw.map((c) => ({
       id: c.id,
       body: c.body,
+      bodyHtml: c.body_html ?? escapeHtml(c.body).replace(/\n/g, "<br />"),
       createdAt: c.created_at,
       authorLogin: c.user?.login ?? "unknown",
     }));
   }
   return { issue: toIssueSummary(issue), comments };
+}
+
+function escapeHtml(input: string): string {
+  return input
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 function toIssueSummary(issue: {
