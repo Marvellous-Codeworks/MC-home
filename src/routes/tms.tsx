@@ -291,6 +291,12 @@ function TmsPage() {
           >
             {t("tms.legal.terms")}
           </a>
+          <a
+            href="/tms/report"
+            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
+          >
+            {t("tms.legal.report")}
+          </a>
         </div>
 
       </main>
