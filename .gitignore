@@ -19,6 +19,9 @@ dist-ssr
 # Local design docs / specs (not for GitHub)
 docs/
 
+# Subagent-driven-development scratch (ledger, briefs, review packages)
+.superpowers/
+
 # Vercel
 .vercel/
 
