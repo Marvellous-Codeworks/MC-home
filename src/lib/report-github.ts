@@ -169,12 +169,24 @@ function escapeHtml(input: string): string {
 // a full HTML sanitizer (no dependency for that is available in this repo),
 // just a second layer that strips the specific constructs that would matter
 // for XSS if GitHub's sanitization were ever bypassed or buggy.
+//
+// Each replacement runs to a fixed point (repeated until the string stops
+// changing) rather than a single pass, since a single pass is bypassable by
+// nesting — e.g. "<scr<script>ipt>" becomes "<script>" after one pass over
+// the inner tag, but converges to nothing once the outer remnants are
+// re-scanned.
 function sanitizeGithubHtml(html: string): string {
-  return html
-    .replace(/<\/?(script|iframe|object|embed|form|style|link|meta)\b[^>]*>/gi, "")
-    .replace(/\son\w+\s*=\s*"[^"]*"/gi, "")
-    .replace(/\son\w+\s*=\s*'[^']*'/gi, "")
-    .replace(/(href|src)\s*=\s*("|')\s*javascript:[^"']*\2/gi, '$1=$2#$2');
+  let current = html;
+  for (let i = 0; i < 10; i++) {
+    const next = current
+      .replace(/<\/?(script|iframe|object|embed|form|style|link|meta)\b[^>]*>/gi, "")
+      .replace(/\son\w+\s*=\s*"[^"]*"/gi, "")
+      .replace(/\son\w+\s*=\s*'[^']*'/gi, "")
+      .replace(/(href|src)\s*=\s*("|')\s*javascript:[^"']*\2/gi, '$1=$2#$2');
+    if (next === current) break;
+    current = next;
+  }
+  return current;
 }
 
 function toIssueSummary(issue: {
