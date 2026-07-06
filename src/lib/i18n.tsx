@@ -120,6 +120,47 @@ const en: Dict = {
   "product.back": "← All Extensions",
   "product.features": "// Key Features",
   "blog.section.about": "// Latest from the blog about {name}",
+
+  "report.form.heading": "Report a bug or request a feature",
+  "report.form.intro":
+    "Tell us what's wrong or what you'd like to see. We'll email you a confirmation link, then open a GitHub Issue on your behalf — you'll never need a GitHub account.",
+  "report.form.type": "Type",
+  "report.form.type.bug": "Bug report",
+  "report.form.type.feature": "Feature request",
+  "report.form.title": "Title",
+  "report.form.title.placeholder": "Short summary of the issue",
+  "report.form.body": "Description",
+  "report.form.body.placeholder": "What happened? What did you expect instead?",
+  "report.form.email": "Email",
+  "report.form.email.placeholder": "you@example.com",
+  "report.form.submit": "Send confirmation email",
+  "report.form.submitting": "Sending…",
+  "report.form.success.title": "Check your inbox",
+  "report.form.success.body":
+    "We've sent a confirmation link to {email}. Click it to open your report on GitHub.",
+  "report.form.error": "Something went wrong. Please try again.",
+  "report.form.error.rateLimited": "Too many submissions — please wait a bit and try again.",
+
+  "report.confirm.error.title": "This link is invalid or has expired",
+  "report.confirm.error.body": "Please submit a new report — links expire after one hour.",
+  "report.confirm.error.cta": "New report",
+  "report.confirm.error.github": "We couldn't create the GitHub Issue. Please try the link again in a minute.",
+
+  "report.status.badge.open": "Open",
+  "report.status.badge.closed": "Closed",
+  "report.status.readonly.title": "This report is now read-only",
+  "report.status.readonly.body":
+    "This issue has been closed for more than 15 days, so new comments are disabled here.",
+  "report.status.readonly.cta": "Open a new report",
+  "report.status.comments.heading": "Comments",
+  "report.status.comment.placeholder": "Add a comment…",
+  "report.status.comment.submit": "Post comment",
+  "report.status.comment.submitting": "Posting…",
+  "report.status.comment.error": "Couldn't post your comment. Please try again.",
+  "report.status.viewOnGithub": "View on GitHub",
+  "report.status.error": "We couldn't load this report. It may not exist, or something went wrong.",
+
+  "tms.legal.report": "Report an issue",
 };
 
 const it: Dict = {
@@ -238,6 +279,47 @@ const it: Dict = {
   "product.back": "← Tutte le estensioni",
   "product.features": "// Caratteristiche principali",
   "blog.section.about": "// Dal blog su {name}",
+
+  "report.form.heading": "Segnala un bug o richiedi una funzionalità",
+  "report.form.intro":
+    "Raccontaci cosa non va o cosa vorresti vedere. Ti invieremo un'email di conferma, poi apriremo una Issue su GitHub per te — non ti serve un account GitHub.",
+  "report.form.type": "Tipo",
+  "report.form.type.bug": "Segnalazione bug",
+  "report.form.type.feature": "Richiesta funzionalità",
+  "report.form.title": "Titolo",
+  "report.form.title.placeholder": "Breve riassunto del problema",
+  "report.form.body": "Descrizione",
+  "report.form.body.placeholder": "Cosa è successo? Cosa ti aspettavi invece?",
+  "report.form.email": "Email",
+  "report.form.email.placeholder": "tu@esempio.com",
+  "report.form.submit": "Invia email di conferma",
+  "report.form.submitting": "Invio in corso…",
+  "report.form.success.title": "Controlla la tua casella di posta",
+  "report.form.success.body":
+    "Abbiamo inviato un link di conferma a {email}. Clicca per aprire la tua segnalazione su GitHub.",
+  "report.form.error": "Qualcosa è andato storto. Riprova.",
+  "report.form.error.rateLimited": "Troppi invii — attendi qualche minuto e riprova.",
+
+  "report.confirm.error.title": "Questo link non è valido o è scaduto",
+  "report.confirm.error.body": "Invia una nuova segnalazione — i link scadono dopo un'ora.",
+  "report.confirm.error.cta": "Nuova segnalazione",
+  "report.confirm.error.github": "Non siamo riusciti a creare la Issue su GitHub. Riprova il link tra un minuto.",
+
+  "report.status.badge.open": "Aperta",
+  "report.status.badge.closed": "Chiusa",
+  "report.status.readonly.title": "Questa segnalazione è ora di sola lettura",
+  "report.status.readonly.body":
+    "Questa issue è chiusa da più di 15 giorni, quindi qui i nuovi commenti sono disabilitati.",
+  "report.status.readonly.cta": "Apri una nuova segnalazione",
+  "report.status.comments.heading": "Commenti",
+  "report.status.comment.placeholder": "Aggiungi un commento…",
+  "report.status.comment.submit": "Pubblica commento",
+  "report.status.comment.submitting": "Pubblicazione…",
+  "report.status.comment.error": "Non siamo riusciti a pubblicare il commento. Riprova.",
+  "report.status.viewOnGithub": "Vedi su GitHub",
+  "report.status.error": "Non siamo riusciti a caricare questa segnalazione. Potrebbe non esistere, oppure qualcosa è andato storto.",
+
+  "tms.legal.report": "Segnala un problema",
 };
 
 const dicts: Record<Locale, Dict> = { en, it };

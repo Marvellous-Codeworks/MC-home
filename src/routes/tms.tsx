@@ -8,6 +8,7 @@ import { getExtensionStats } from "@/lib/extension-stats.functions";
 import { getGithubStats } from "@/lib/github-stats.functions";
 import { getBlogPostsByTag } from "@/lib/blog-posts-by-tag.functions";
 import { useI18n } from "@/lib/i18n";
+import { TMS_REPO } from "@/lib/tms-repo";
 import { SlidersHorizontal, RotateCcw, Zap, type LucideIcon } from "lucide-react";
 
 import tmsGoogle from "@/assets/tms-google.png";
@@ -20,7 +21,6 @@ import tmsKeyboard from "@/assets/tms-keyboard.png";
 
 const TMS_STORE_URL =
   "https://chromewebstore.google.com/detail/the-marvellous-suspender/noogafoofpebimajpfpamcfhoaifemoa";
-const TMS_REPO = { owner: "gioxx", repo: "MarvellousSuspender" } as const;
 const BLOG_TAG = "the marvellous suspender";
 
 const SLIDES = [
@@ -176,6 +176,28 @@ function TmsPage() {
           </div>
         </div>
 
+        {/* Legal / report (top) */}
+        <div className="flex flex-wrap gap-3">
+          <a
+            href="/tms/report"
+            className="h-10 px-5 border border-primary/40 text-primary font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-primary/10 transition-colors rounded-sm"
+          >
+            {t("tms.legal.report")}
+          </a>
+          <a
+            href="/tms/privacy"
+            className="h-10 px-5 border border-border font-mono text-xs uppercase tracking-widest flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
+          >
+            {t("tms.legal.privacy")}
+          </a>
+          <a
+            href="/tms/terms"
+            className="h-10 px-5 border border-border font-mono text-xs uppercase tracking-widest flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
+          >
+            {t("tms.legal.terms")}
+          </a>
+        </div>
+
         {/* Stats bar */}
         <div className="border border-border p-6">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 divide-x divide-border">
@@ -278,16 +300,22 @@ function TmsPage() {
         )}
 
         {/* Legal */}
-        <div className="border-t border-border pt-8 flex flex-wrap gap-6">
+        <div className="border-t border-border pt-8 flex flex-wrap gap-3">
+          <a
+            href="/tms/report"
+            className="h-10 px-5 border border-primary/40 text-primary font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-primary/10 transition-colors rounded-sm"
+          >
+            {t("tms.legal.report")}
+          </a>
           <a
             href="/tms/privacy"
-            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
+            className="h-10 px-5 border border-border font-mono text-xs uppercase tracking-widest flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
           >
             {t("tms.legal.privacy")}
           </a>
           <a
             href="/tms/terms"
-            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
+            className="h-10 px-5 border border-border font-mono text-xs uppercase tracking-widest flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
           >
             {t("tms.legal.terms")}
           </a>
