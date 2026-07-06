@@ -6,9 +6,8 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useI18n } from "@/lib/i18n";
 import { postReportComment } from "@/lib/report-comment.functions";
+import { TMS_REPO } from "@/lib/tms-repo";
 import type { IssueComment, IssueSummary } from "@/lib/report-github";
-
-const TMS_REPO = { owner: "gioxx", repo: "MarvellousSuspender" } as const;
 const FIFTEEN_DAYS_MS = 15 * 24 * 60 * 60 * 1000;
 
 export const Route = createFileRoute("/tms_/report/status/$issueNumber")({
@@ -75,7 +74,7 @@ function TmsReportStatusPage() {
         {query.isLoading && (
           <p className="text-sm text-muted-foreground">…</p>
         )}
-        {query.isError && (
+        {query.isError && !query.data && (
           <p className="text-sm text-destructive">{t("report.status.error")}</p>
         )}
         {query.data && (
