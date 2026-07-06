@@ -176,6 +176,28 @@ function TmsPage() {
           </div>
         </div>
 
+        {/* Legal / report (top) */}
+        <div className="flex flex-wrap gap-3">
+          <a
+            href="/tms/report"
+            className="h-10 px-5 border border-primary/40 text-primary font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-primary/10 transition-colors rounded-sm"
+          >
+            {t("tms.legal.report")}
+          </a>
+          <a
+            href="/tms/privacy"
+            className="h-10 px-5 border border-border font-mono text-xs uppercase tracking-widest flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
+          >
+            {t("tms.legal.privacy")}
+          </a>
+          <a
+            href="/tms/terms"
+            className="h-10 px-5 border border-border font-mono text-xs uppercase tracking-widest flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
+          >
+            {t("tms.legal.terms")}
+          </a>
+        </div>
+
         {/* Stats bar */}
         <div className="border border-border p-6">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 divide-x divide-border">
