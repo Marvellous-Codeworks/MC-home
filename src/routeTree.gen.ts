@@ -9,89 +9,148 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
 import { Route as TmsRouteImport } from './routes/tms'
 import { Route as TgdRouteImport } from './routes/tgd'
-import { Route as TmsPrivacyRouteImport } from './routes/tms_.privacy'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as TmsTermsRouteImport } from './routes/tms_.terms'
-
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
+import { Route as TmsReportRouteImport } from './routes/tms_.report'
+import { Route as TmsPrivacyRouteImport } from './routes/tms_.privacy'
+import { Route as ApiReportConfirmRouteImport } from './routes/api/report/confirm'
+import { Route as TmsReportStatusIssueNumberRouteImport } from './routes/tms_.report_.status.$issueNumber'
+import { Route as ApiReportStatusIssueNumberRouteImport } from './routes/api/report/status.$issueNumber'
 
 const TmsRoute = TmsRouteImport.update({
   id: '/tms',
   path: '/tms',
   getParentRoute: () => rootRouteImport,
 } as any)
-
 const TgdRoute = TgdRouteImport.update({
   id: '/tgd',
   path: '/tgd',
   getParentRoute: () => rootRouteImport,
 } as any)
-
-const TmsPrivacyRoute = TmsPrivacyRouteImport.update({
-  id: '/tms_/privacy',
-  path: '/tms/privacy',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-
 const TmsTermsRoute = TmsTermsRouteImport.update({
   id: '/tms_/terms',
   path: '/tms/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TmsReportRoute = TmsReportRouteImport.update({
+  id: '/tms_/report',
+  path: '/tms/report',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TmsPrivacyRoute = TmsPrivacyRouteImport.update({
+  id: '/tms_/privacy',
+  path: '/tms/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiReportConfirmRoute = ApiReportConfirmRouteImport.update({
+  id: '/api/report/confirm',
+  path: '/api/report/confirm',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TmsReportStatusIssueNumberRoute =
+  TmsReportStatusIssueNumberRouteImport.update({
+    id: '/tms_/report_/status/$issueNumber',
+    path: '/tms/report/status/$issueNumber',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiReportStatusIssueNumberRoute =
+  ApiReportStatusIssueNumberRouteImport.update({
+    id: '/api/report/status/$issueNumber',
+    path: '/api/report/status/$issueNumber',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/tms': typeof TmsRoute
   '/tgd': typeof TgdRoute
+  '/tms': typeof TmsRoute
   '/tms/privacy': typeof TmsPrivacyRoute
+  '/tms/report': typeof TmsReportRoute
   '/tms/terms': typeof TmsTermsRoute
+  '/api/report/confirm': typeof ApiReportConfirmRoute
+  '/api/report/status/$issueNumber': typeof ApiReportStatusIssueNumberRoute
+  '/tms/report/status/$issueNumber': typeof TmsReportStatusIssueNumberRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/tms': typeof TmsRoute
   '/tgd': typeof TgdRoute
+  '/tms': typeof TmsRoute
   '/tms/privacy': typeof TmsPrivacyRoute
+  '/tms/report': typeof TmsReportRoute
   '/tms/terms': typeof TmsTermsRoute
+  '/api/report/confirm': typeof ApiReportConfirmRoute
+  '/api/report/status/$issueNumber': typeof ApiReportStatusIssueNumberRoute
+  '/tms/report/status/$issueNumber': typeof TmsReportStatusIssueNumberRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/tms': typeof TmsRoute
   '/tgd': typeof TgdRoute
+  '/tms': typeof TmsRoute
   '/tms_/privacy': typeof TmsPrivacyRoute
+  '/tms_/report': typeof TmsReportRoute
   '/tms_/terms': typeof TmsTermsRoute
+  '/api/report/confirm': typeof ApiReportConfirmRoute
+  '/api/report/status/$issueNumber': typeof ApiReportStatusIssueNumberRoute
+  '/tms_/report_/status/$issueNumber': typeof TmsReportStatusIssueNumberRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tms' | '/tgd' | '/tms/privacy' | '/tms/terms'
+  fullPaths:
+    | '/'
+    | '/tgd'
+    | '/tms'
+    | '/tms/privacy'
+    | '/tms/report'
+    | '/tms/terms'
+    | '/api/report/confirm'
+    | '/api/report/status/$issueNumber'
+    | '/tms/report/status/$issueNumber'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tms' | '/tgd' | '/tms/privacy' | '/tms/terms'
-  id: '__root__' | '/' | '/tms' | '/tgd' | '/tms_/privacy' | '/tms_/terms'
+  to:
+    | '/'
+    | '/tgd'
+    | '/tms'
+    | '/tms/privacy'
+    | '/tms/report'
+    | '/tms/terms'
+    | '/api/report/confirm'
+    | '/api/report/status/$issueNumber'
+    | '/tms/report/status/$issueNumber'
+  id:
+    | '__root__'
+    | '/'
+    | '/tgd'
+    | '/tms'
+    | '/tms_/privacy'
+    | '/tms_/report'
+    | '/tms_/terms'
+    | '/api/report/confirm'
+    | '/api/report/status/$issueNumber'
+    | '/tms_/report_/status/$issueNumber'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  TmsRoute: typeof TmsRoute
   TgdRoute: typeof TgdRoute
+  TmsRoute: typeof TmsRoute
   TmsPrivacyRoute: typeof TmsPrivacyRoute
+  TmsReportRoute: typeof TmsReportRoute
   TmsTermsRoute: typeof TmsTermsRoute
+  ApiReportConfirmRoute: typeof ApiReportConfirmRoute
+  ApiReportStatusIssueNumberRoute: typeof ApiReportStatusIssueNumberRoute
+  TmsReportStatusIssueNumberRoute: typeof TmsReportStatusIssueNumberRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/tms': {
       id: '/tms'
       path: '/tms'
@@ -106,11 +165,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TgdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tms_/privacy': {
-      id: '/tms_/privacy'
-      path: '/tms/privacy'
-      fullPath: '/tms/privacy'
-      preLoaderRoute: typeof TmsPrivacyRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tms_/terms': {
@@ -120,15 +179,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TmsTermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tms_/report': {
+      id: '/tms_/report'
+      path: '/tms/report'
+      fullPath: '/tms/report'
+      preLoaderRoute: typeof TmsReportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tms_/privacy': {
+      id: '/tms_/privacy'
+      path: '/tms/privacy'
+      fullPath: '/tms/privacy'
+      preLoaderRoute: typeof TmsPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/report/confirm': {
+      id: '/api/report/confirm'
+      path: '/api/report/confirm'
+      fullPath: '/api/report/confirm'
+      preLoaderRoute: typeof ApiReportConfirmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tms_/report_/status/$issueNumber': {
+      id: '/tms_/report_/status/$issueNumber'
+      path: '/tms/report/status/$issueNumber'
+      fullPath: '/tms/report/status/$issueNumber'
+      preLoaderRoute: typeof TmsReportStatusIssueNumberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/report/status/$issueNumber': {
+      id: '/api/report/status/$issueNumber'
+      path: '/api/report/status/$issueNumber'
+      fullPath: '/api/report/status/$issueNumber'
+      preLoaderRoute: typeof ApiReportStatusIssueNumberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  TmsRoute: TmsRoute,
   TgdRoute: TgdRoute,
+  TmsRoute: TmsRoute,
   TmsPrivacyRoute: TmsPrivacyRoute,
+  TmsReportRoute: TmsReportRoute,
   TmsTermsRoute: TmsTermsRoute,
+  ApiReportConfirmRoute: ApiReportConfirmRoute,
+  ApiReportStatusIssueNumberRoute: ApiReportStatusIssueNumberRoute,
+  TmsReportStatusIssueNumberRoute: TmsReportStatusIssueNumberRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
