@@ -106,7 +106,7 @@ function Index() {
 
       {/* Hero */}
       <header className="relative pt-24 pb-16 px-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto relative">
+        <div className="max-w-6xl mx-auto relative">
 
           {/* Hero visual — browser screenshot, faded into the page */}
           <div aria-hidden className="hidden lg:block absolute -top-24 -bottom-16 right-0 w-[62%] pointer-events-none z-0">
@@ -166,7 +166,7 @@ function Index() {
       </header>
 
       {/* Blog carousel */}
-      <section className="max-w-7xl mx-auto px-6 py-24 border-t border-border">
+      <section className="max-w-6xl mx-auto px-6 py-24 border-t border-border">
         <div className="flex items-baseline justify-between gap-4 mb-10">
           <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
             {t("blog.section")}
@@ -182,7 +182,7 @@ function Index() {
       </section>
 
       {/* Dual showcase */}
-      <section id="extensions" className="scroll-mt-24 max-w-7xl mx-auto px-6 pb-24 border-t border-border">
+      <section id="extensions" className="scroll-mt-24 max-w-6xl mx-auto px-6 pb-24 border-t border-border">
         <div className="mb-10 pt-24">
           <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
             {"// "}{t("nav.extensions")}
@@ -245,7 +245,7 @@ function Index() {
       </section>
 
       {/* Trust signals */}
-      <section className="max-w-7xl mx-auto px-6 py-24 border-t border-border">
+      <section className="max-w-6xl mx-auto px-6 py-24 border-t border-border">
         <div className="grid md:grid-cols-3 gap-12">
           {[
             { n: "01", t: t("trust.01.t"), b: t("trust.01.b") },
