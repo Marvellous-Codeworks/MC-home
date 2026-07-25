@@ -32,9 +32,7 @@ export function ReportForm({
 }) {
   const { t, locale } = useI18n();
   const submit = useServerFn(submitReport);
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
-    "idle",
-  );
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [formLoadedAt] = useState(() => Date.now());
 
   const form = useForm<FormValues>({
@@ -63,14 +61,9 @@ export function ReportForm({
   if (status === "sent") {
     return (
       <div className="border border-border p-8 space-y-2">
-        <p className="font-mono text-sm font-bold">
-          {t("report.form.success.title")}
-        </p>
+        <p className="font-mono text-sm font-bold">{t("report.form.success.title")}</p>
         <p className="text-sm text-muted-foreground">
-          {t("report.form.success.body").replace(
-            "{email}",
-            form.getValues("email"),
-          )}
+          {t("report.form.success.body").replace("{email}", form.getValues("email"))}
         </p>
       </div>
     );
@@ -159,17 +152,13 @@ export function ReportForm({
             </FormItem>
           )}
         />
-        {status === "error" && (
-          <p className="text-sm text-destructive">{t("report.form.error")}</p>
-        )}
+        {status === "error" && <p className="text-sm text-destructive">{t("report.form.error")}</p>}
         <button
           type="submit"
           disabled={status === "sending"}
           className="h-11 px-6 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest hover:bg-foreground transition-colors rounded-sm disabled:opacity-50"
         >
-          {status === "sending"
-            ? t("report.form.submitting")
-            : t("report.form.submit")}
+          {status === "sending" ? t("report.form.submitting") : t("report.form.submit")}
         </button>
       </form>
     </Form>

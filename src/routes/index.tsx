@@ -43,7 +43,12 @@ const GITHUB_URL = "https://github.com/Marvellous-Codeworks";
 export const Route = createFileRoute("/")({
   head: () => ({
     links: [
-      { rel: "alternate", type: "application/rss+xml", title: "Marvellous Codeworks Blog", href: BLOG_RSS_URL },
+      {
+        rel: "alternate",
+        type: "application/rss+xml",
+        title: "Marvellous Codeworks Blog",
+        href: BLOG_RSS_URL,
+      },
     ],
     meta: [
       { title: "Marvellous Codeworks — Precision Chromium Extensions" },
@@ -107,9 +112,11 @@ function Index() {
       {/* Hero */}
       <header className="relative pt-24 pb-16 px-6 overflow-hidden">
         <div className="max-w-6xl mx-auto relative">
-
           {/* Hero visual — browser screenshot, faded into the page */}
-          <div aria-hidden className="hidden lg:block absolute -top-24 -bottom-16 right-0 w-[62%] pointer-events-none z-0">
+          <div
+            aria-hidden
+            className="hidden lg:block absolute -top-24 -bottom-16 right-0 w-[62%] pointer-events-none z-0"
+          >
             <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-background via-background/60 to-transparent z-10" />
             <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background to-transparent z-10" />
             <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-background to-transparent z-10" />
@@ -182,10 +189,14 @@ function Index() {
       </section>
 
       {/* Dual showcase */}
-      <section id="extensions" className="scroll-mt-24 max-w-6xl mx-auto px-6 pb-24 border-t border-border">
+      <section
+        id="extensions"
+        className="scroll-mt-24 max-w-6xl mx-auto px-6 pb-24 border-t border-border"
+      >
         <div className="mb-10 pt-24">
           <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
-            {"// "}{t("nav.extensions")}
+            {"// "}
+            {t("nav.extensions")}
           </h2>
         </div>
         <div className="grid lg:grid-cols-2 lg:[grid-template-rows:repeat(6,auto)] gap-x-px bg-border border border-border overflow-hidden">
@@ -197,11 +208,11 @@ function Index() {
               <ScreenshotCarousel
                 slides={[
                   { src: tgdChromeLight, alt: "The Great-er Tab Discarder — Chrome (light)" },
-                  { src: tgdChromeDark,  alt: "The Great-er Tab Discarder — Chrome (dark)" },
-                  { src: tgdPopupLight,  alt: "The Great-er Tab Discarder — Popup (light)" },
-                  { src: tgdPopupDark,   alt: "The Great-er Tab Discarder — Popup (dark)" },
+                  { src: tgdChromeDark, alt: "The Great-er Tab Discarder — Chrome (dark)" },
+                  { src: tgdPopupLight, alt: "The Great-er Tab Discarder — Popup (light)" },
+                  { src: tgdPopupDark, alt: "The Great-er Tab Discarder — Popup (dark)" },
                   { src: tgdOptionsLight, alt: "The Great-er Tab Discarder — Options (light)" },
-                  { src: tgdOptionsDark,  alt: "The Great-er Tab Discarder — Options (dark)" },
+                  { src: tgdOptionsDark, alt: "The Great-er Tab Discarder — Options (dark)" },
                 ]}
               />
             }
@@ -222,13 +233,13 @@ function Index() {
             preview={
               <ScreenshotCarousel
                 slides={[
-                  { src: tmsGoogle,     alt: "The Marvellous Suspender — Google (light)" },
+                  { src: tmsGoogle, alt: "The Marvellous Suspender — Google (light)" },
                   { src: tmsGoogleDark, alt: "The Marvellous Suspender — Google (dark)" },
-                  { src: tmsSuspend,    alt: "The Marvellous Suspender — Suspended tab" },
-                  { src: tmsSettings,   alt: "The Marvellous Suspender — Settings" },
-                  { src: tmsSession,    alt: "The Marvellous Suspender — Session management" },
-                  { src: tmsAbout,      alt: "The Marvellous Suspender — About" },
-                  { src: tmsKeyboard,   alt: "The Marvellous Suspender — Keyboard shortcuts" },
+                  { src: tmsSuspend, alt: "The Marvellous Suspender — Suspended tab" },
+                  { src: tmsSettings, alt: "The Marvellous Suspender — Settings" },
+                  { src: tmsSession, alt: "The Marvellous Suspender — Session management" },
+                  { src: tmsAbout, alt: "The Marvellous Suspender — About" },
+                  { src: tmsKeyboard, alt: "The Marvellous Suspender — Keyboard shortcuts" },
                 ]}
               />
             }

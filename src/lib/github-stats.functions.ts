@@ -45,10 +45,9 @@ export const getGithubStats = createServerFn({ method: "GET" })
         fetch(`https://api.github.com/repos/${data.owner}/${data.repo}`, {
           headers: HEADERS,
         }),
-        fetch(
-          `https://api.github.com/repos/${data.owner}/${data.repo}/releases/latest`,
-          { headers: HEADERS },
-        ),
+        fetch(`https://api.github.com/repos/${data.owner}/${data.repo}/releases/latest`, {
+          headers: HEADERS,
+        }),
       ]);
 
       if (!repoRes.ok) {

@@ -117,10 +117,7 @@ export const Route = createFileRoute("/api/report/confirm")({
 
           return Response.redirect(statusUrl, 302);
         } catch {
-          return Response.redirect(
-            new URL("/tms/report?error=github", url.origin).toString(),
-            302,
-          );
+          return Response.redirect(new URL("/tms/report?error=github", url.origin).toString(), 302);
         }
       },
     },

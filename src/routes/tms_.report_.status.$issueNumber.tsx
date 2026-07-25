@@ -92,9 +92,7 @@ function TmsReportStatusPage() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteNav />
       <main className="max-w-2xl mx-auto px-6 py-12 space-y-8">
-        {query.isLoading && (
-          <p className="text-sm text-muted-foreground">…</p>
-        )}
+        {query.isLoading && <p className="text-sm text-muted-foreground">…</p>}
         {query.isError && !query.data && (
           <p className="text-sm text-destructive">{t("report.status.error")}</p>
         )}
@@ -106,9 +104,7 @@ function TmsReportStatusPage() {
                   ? t("report.status.badge.open")
                   : t("report.status.badge.closed")}
               </span>
-              <h1 className="text-2xl font-mono font-bold">
-                {query.data.issue.title}
-              </h1>
+              <h1 className="text-2xl font-mono font-bold">{query.data.issue.title}</h1>
               <a
                 href={query.data.issue.htmlUrl}
                 target="_blank"
@@ -143,9 +139,7 @@ function TmsReportStatusPage() {
                   className="w-full border border-border bg-background px-3 py-2 text-sm"
                 />
                 {error && (
-                  <p className="text-sm text-destructive">
-                    {t("report.status.comment.error")}
-                  </p>
+                  <p className="text-sm text-destructive">{t("report.status.comment.error")}</p>
                 )}
                 <button
                   onClick={submitComment}
@@ -159,12 +153,8 @@ function TmsReportStatusPage() {
               </div>
             ) : (
               <div className="border border-border p-6 space-y-2">
-                <p className="font-mono text-sm font-bold">
-                  {t("report.status.readonly.title")}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {t("report.status.readonly.body")}
-                </p>
+                <p className="font-mono text-sm font-bold">{t("report.status.readonly.title")}</p>
+                <p className="text-sm text-muted-foreground">{t("report.status.readonly.body")}</p>
                 <a
                   href="/tms/report"
                   className="inline-block font-mono text-[10px] uppercase tracking-widest text-primary hover:underline"

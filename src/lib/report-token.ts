@@ -41,10 +41,7 @@ function signWithExpiry<T extends { exp: number }>(
   return `${toBase64Url(json)}.${toBase64Url(signature)}`;
 }
 
-function verifyWithExpiry<T extends { exp: number }>(
-  token: string,
-  secret: string,
-): T | null {
+function verifyWithExpiry<T extends { exp: number }>(token: string, secret: string): T | null {
   const parts = token.split(".");
   if (parts.length !== 2) return null;
   const [payloadPart, signaturePart] = parts;
@@ -76,39 +73,24 @@ function verifyWithExpiry<T extends { exp: number }>(
   } catch {
     return null;
   }
-  if (
-    typeof payload.exp !== "number" ||
-    payload.exp < Math.floor(Date.now() / 1000)
-  ) {
+  if (typeof payload.exp !== "number" || payload.exp < Math.floor(Date.now() / 1000)) {
     return null;
   }
   return payload;
 }
 
-export function signPendingReport(
-  payload: Omit<PendingReport, "exp">,
-  secret: string,
-): string {
+export function signPendingReport(payload: Omit<PendingReport, "exp">, secret: string): string {
   return signWithExpiry<PendingReport>(payload, PENDING_TTL_SECONDS, secret);
 }
 
-export function verifyPendingReport(
-  token: string,
-  secret: string,
-): PendingReport | null {
+export function verifyPendingReport(token: string, secret: string): PendingReport | null {
   return verifyWithExpiry<PendingReport>(token, secret);
 }
 
-export function signReporterToken(
-  payload: Omit<ReporterToken, "exp">,
-  secret: string,
-): string {
+export function signReporterToken(payload: Omit<ReporterToken, "exp">, secret: string): string {
   return signWithExpiry<ReporterToken>(payload, REPORTER_TTL_SECONDS, secret);
 }
 
-export function verifyReporterToken(
-  token: string,
-  secret: string,
-): ReporterToken | null {
+export function verifyReporterToken(token: string, secret: string): ReporterToken | null {
   return verifyWithExpiry<ReporterToken>(token, secret);
 }

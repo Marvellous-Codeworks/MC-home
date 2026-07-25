@@ -28,11 +28,7 @@ export const Route = createFileRoute("/api/report/status/$issueNumber")({
           return new Response("Not found", { status: 404 });
         }
 
-        const result = await getIssueWithComments(
-          TMS_REPO.owner,
-          TMS_REPO.repo,
-          issueNumber,
-        );
+        const result = await getIssueWithComments(TMS_REPO.owner, TMS_REPO.repo, issueNumber);
         if (!result || !result.issue.hasReportLabel) {
           return new Response("Not found", { status: 404 });
         }

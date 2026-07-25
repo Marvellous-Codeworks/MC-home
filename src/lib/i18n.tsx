@@ -144,7 +144,8 @@ const en: Dict = {
   "report.confirm.error.title": "This link is invalid or has expired",
   "report.confirm.error.body": "Please submit a new report — links expire after one hour.",
   "report.confirm.error.cta": "New report",
-  "report.confirm.error.github": "We couldn't create the GitHub Issue. Please try the link again in a minute.",
+  "report.confirm.error.github":
+    "We couldn't create the GitHub Issue. Please try the link again in a minute.",
 
   "report.status.badge.open": "Open",
   "report.status.badge.closed": "Closed",
@@ -303,7 +304,8 @@ const it: Dict = {
   "report.confirm.error.title": "Questo link non è valido o è scaduto",
   "report.confirm.error.body": "Invia una nuova segnalazione — i link scadono dopo un'ora.",
   "report.confirm.error.cta": "Nuova segnalazione",
-  "report.confirm.error.github": "Non siamo riusciti a creare la Issue su GitHub. Riprova il link tra un minuto.",
+  "report.confirm.error.github":
+    "Non siamo riusciti a creare la Issue su GitHub. Riprova il link tra un minuto.",
 
   "report.status.badge.open": "Aperta",
   "report.status.badge.closed": "Chiusa",
@@ -317,7 +319,8 @@ const it: Dict = {
   "report.status.comment.submitting": "Pubblicazione…",
   "report.status.comment.error": "Non siamo riusciti a pubblicare il commento. Riprova.",
   "report.status.viewOnGithub": "Vedi su GitHub",
-  "report.status.error": "Non siamo riusciti a caricare questa segnalazione. Potrebbe non esistere, oppure qualcosa è andato storto.",
+  "report.status.error":
+    "Non siamo riusciti a caricare questa segnalazione. Potrebbe non esistere, oppure qualcosa è andato storto.",
 
   "tms.legal.report": "Segnala un problema",
 };

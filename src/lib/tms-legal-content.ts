@@ -21,10 +21,7 @@ export const TMS_PRIVACY_CONTENT: LegalContent = {
     sections: [
       {
         heading: "Titolare del trattamento",
-        body: [
-          'Giovanni Solone ("Marvellous Codeworks")',
-          "E-mail: privacy@marvellouscode.works",
-        ],
+        body: ['Giovanni Solone ("Marvellous Codeworks")', "E-mail: privacy@marvellouscode.works"],
       },
       {
         heading: "Dati trattati",
@@ -51,7 +48,7 @@ export const TMS_PRIVACY_CONTENT: LegalContent = {
         heading: "Terze parti — Google Drive",
         body: [
           "TMS utilizza le API di Google Drive per salvare i file di backup nell'account Google dell'utente. I dati vengono trasmessi direttamente tra il browser dell'utente e i server di Google LLC; Marvellous Codeworks non riceve né accede a tali dati. Si applicano la Privacy Policy e i Termini di servizio di Google (policies.google.com/privacy).",
-          '• Lo scope OAuth richiesto è drive.file: TMS può accedere esclusivamente ai file che esso stesso ha creato nella cartella "TMS Backups" dell\'account Drive dell\'utente.',
+          "• Lo scope OAuth richiesto è drive.file: TMS può accedere esclusivamente ai file che esso stesso ha creato nella cartella \"TMS Backups\" dell'account Drive dell'utente.",
         ],
       },
       {
@@ -63,7 +60,7 @@ export const TMS_PRIVACY_CONTENT: LegalContent = {
       {
         heading: "Diritti degli interessati",
         body: [
-          'Ai sensi degli artt. 15–21 del GDPR, l\'utente ha il diritto di accedere ai propri dati, rettificarli o cancellarli, opporsi al trattamento o richiederne la limitazione, revocare il consenso in qualsiasi momento revocando l\'accesso OAuth dalla pagina di impostazioni di TMS o dalla sezione "App e servizi" del proprio account Google.',
+          "Ai sensi degli artt. 15–21 del GDPR, l'utente ha il diritto di accedere ai propri dati, rettificarli o cancellarli, opporsi al trattamento o richiederne la limitazione, revocare il consenso in qualsiasi momento revocando l'accesso OAuth dalla pagina di impostazioni di TMS o dalla sezione \"App e servizi\" del proprio account Google.",
           "L'utente può proporre reclamo all'autorità di controllo competente. In Italia: Garante per la Protezione dei Dati Personali — garanteprivacy.it.",
         ],
       },
@@ -95,10 +92,7 @@ export const TMS_PRIVACY_CONTENT: LegalContent = {
     sections: [
       {
         heading: "Data Controller",
-        body: [
-          'Giovanni Solone ("Marvellous Codeworks")',
-          "E-mail: privacy@marvellouscode.works",
-        ],
+        body: ['Giovanni Solone ("Marvellous Codeworks")', "E-mail: privacy@marvellouscode.works"],
       },
       {
         heading: "Data We Process",
@@ -202,7 +196,7 @@ export const TMS_TERMS_CONTENT: LegalContent = {
       {
         heading: "Limitazione di responsabilità",
         body: [
-          'Nei limiti consentiti dalla legge applicabile, Giovanni Solone ("Marvellous Codeworks") non è responsabile per la perdita di sessioni, schede o dati di navigazione; il malfunzionamento dell\'estensione a seguito di aggiornamenti del browser; l\'eliminazione o il danneggiamento di file su Google Drive; qualsiasi danno diretto, indiretto, incidentale o consequenziale derivante dall\'uso o dall\'impossibilità di utilizzare l\'estensione.',
+          "Nei limiti consentiti dalla legge applicabile, Giovanni Solone (\"Marvellous Codeworks\") non è responsabile per la perdita di sessioni, schede o dati di navigazione; il malfunzionamento dell'estensione a seguito di aggiornamenti del browser; l'eliminazione o il danneggiamento di file su Google Drive; qualsiasi danno diretto, indiretto, incidentale o consequenziale derivante dall'uso o dall'impossibilità di utilizzare l'estensione.",
           "L'utente è responsabile del mantenimento di copie di backup indipendenti dei dati ritenuti importanti.",
         ],
       },
@@ -226,10 +220,7 @@ export const TMS_TERMS_CONTENT: LegalContent = {
       },
       {
         heading: "Contatti",
-        body: [
-          "privacy@marvellouscode.works",
-          "github.com/gioxx/MarvellousSuspender/issues",
-        ],
+        body: ["privacy@marvellouscode.works", "github.com/gioxx/MarvellousSuspender/issues"],
       },
     ],
   },
@@ -295,10 +286,7 @@ export const TMS_TERMS_CONTENT: LegalContent = {
       },
       {
         heading: "Contact",
-        body: [
-          "privacy@marvellouscode.works",
-          "github.com/gioxx/MarvellousSuspender/issues",
-        ],
+        body: ["privacy@marvellouscode.works", "github.com/gioxx/MarvellousSuspender/issues"],
       },
     ],
   },

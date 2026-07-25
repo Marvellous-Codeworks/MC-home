@@ -3,17 +3,13 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { type LegalContent } from "@/lib/tms-legal-content";
 
-export function LegalPage({
-  content,
-}: {
-  content: LegalContent;
-}) {
+export function LegalPage({ content }: { content: LegalContent }) {
   const { locale } = useI18n();
   const doc = content[locale] ?? content.en;
 
   const effectiveDate = new Date(doc.effectiveDate).toLocaleDateString(
     locale === "it" ? "it-IT" : "en-GB",
-    { year: "numeric", month: "long", day: "numeric" }
+    { year: "numeric", month: "long", day: "numeric" },
   );
 
   return (
@@ -56,7 +52,7 @@ export function LegalPage({
                     </p>
                   ) : (
                     <p key={j}>{line}</p>
-                  )
+                  ),
                 )}
               </div>
             </section>

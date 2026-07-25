@@ -77,9 +77,7 @@ async function sendEmail(to: string, subject: string, html: string): Promise<voi
   }
 }
 
-export async function sendConfirmationEmail(
-  input: ConfirmationEmailInput,
-): Promise<void> {
+export async function sendConfirmationEmail(input: ConfirmationEmailInput): Promise<void> {
   await sendEmail(
     input.to,
     SUBJECT[input.locale],
@@ -87,9 +85,7 @@ export async function sendConfirmationEmail(
   );
 }
 
-export async function sendReportCreatedEmail(
-  input: ReportCreatedEmailInput,
-): Promise<void> {
+export async function sendReportCreatedEmail(input: ReportCreatedEmailInput): Promise<void> {
   await sendEmail(
     input.to,
     CREATED_SUBJECT[input.locale],

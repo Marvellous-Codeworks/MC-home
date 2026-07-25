@@ -40,22 +40,13 @@ export const postReportComment = createServerFn({ method: "POST" })
       throw new Error("Not authorized for this report");
     }
 
-    const result = await getIssueWithComments(
-      data.owner,
-      data.repo,
-      data.issueNumber,
-    );
+    const result = await getIssueWithComments(data.owner, data.repo, data.issueNumber);
     if (!result || !result.issue.hasReportLabel) {
       throw new Error("Not a report issue");
     }
     if (!isWithinCommentWindow(result.issue)) {
       throw new Error("Comment window closed");
     }
-    await addReportCommentOnGithub(
-      data.owner,
-      data.repo,
-      data.issueNumber,
-      data.body.trim(),
-    );
+    await addReportCommentOnGithub(data.owner, data.repo, data.issueNumber, data.body.trim());
     return { ok: true };
   });

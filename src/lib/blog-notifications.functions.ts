@@ -25,7 +25,10 @@ function extractTag(xml: string, tag: string): string {
 
 function extractAllTags(xml: string, tag: string): string[] {
   const results: string[] = [];
-  const re = new RegExp(`<${tag}[^>]*>(?:<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>|([^<]*?))<\\/${tag}>`, "g");
+  const re = new RegExp(
+    `<${tag}[^>]*>(?:<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>|([^<]*?))<\\/${tag}>`,
+    "g",
+  );
   let m: RegExpExecArray | null;
   while ((m = re.exec(xml)) !== null) {
     results.push((m[1] ?? m[2] ?? "").trim());
@@ -63,7 +66,10 @@ function removeTagBlock(html: string, tagName: string): string {
   const lower = html.toLowerCase();
   while (pos < html.length) {
     const openIdx = lower.indexOf(openPattern, pos);
-    if (openIdx === -1) { result += html.slice(pos); break; }
+    if (openIdx === -1) {
+      result += html.slice(pos);
+      break;
+    }
     result += html.slice(pos, openIdx);
     const tagClose = html.indexOf(">", openIdx);
     if (tagClose === -1) break;
@@ -83,18 +89,22 @@ function extractExcerpt(html: string, maxLen = 200): string {
   let m: RegExpExecArray | null;
 
   while ((m = pRe.exec(cleaned)) !== null) {
-    const text = stripHtml(m[1]).replace(/\s{2,}/g, " ").trim();
+    const text = stripHtml(m[1])
+      .replace(/\s{2,}/g, " ")
+      .trim();
     if (!text) continue;
     if (firstFallback === null) firstFallback = text;
     if (text.length >= MIN_P_LEN) {
-      return text.length <= maxLen
-        ? text
-        : text.slice(0, maxLen).replace(/\s+\S*$/, "") + "…";
+      return text.length <= maxLen ? text : text.slice(0, maxLen).replace(/\s+\S*$/, "") + "…";
     }
   }
 
   // No paragraph long enough — use first paragraph found or full strip
-  const raw = firstFallback ?? stripHtml(cleaned).replace(/\s{2,}/g, " ").trim();
+  const raw =
+    firstFallback ??
+    stripHtml(cleaned)
+      .replace(/\s{2,}/g, " ")
+      .trim();
   return raw.length <= maxLen ? raw : raw.slice(0, maxLen).replace(/\s+\S*$/, "") + "…";
 }
 
@@ -116,9 +126,7 @@ export const getBlogNotifications = createServerFn({ method: "GET" }).handler(
         const closing = block.indexOf("</item>");
         const item = closing >= 0 ? block.slice(0, closing) : block;
 
-        const categories = extractAllTags(item, "category").map((c) =>
-          c.toLowerCase(),
-        );
+        const categories = extractAllTags(item, "category").map((c) => c.toLowerCase());
         if (!categories.includes(NOTIFICATION_TAG)) continue;
 
         const title = extractTag(item, "title");
@@ -128,7 +136,9 @@ export const getBlogNotifications = createServerFn({ method: "GET" }).handler(
         // or a <!-- truncate --> after the intro paragraph — use it directly.
         // Fall back to parsing content:encoded for posts that have neither.
         const rawDescription = extractTag(item, "description");
-        const descriptionText = stripHtml(rawDescription).replace(/\s{2,}/g, " ").trim();
+        const descriptionText = stripHtml(rawDescription)
+          .replace(/\s{2,}/g, " ")
+          .trim();
         const fullContent = extractTag(item, "content:encoded");
         const excerpt =
           descriptionText.length >= MIN_P_LEN

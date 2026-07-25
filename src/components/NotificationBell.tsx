@@ -55,17 +55,14 @@ export function NotificationBell() {
 
   const unreadCount = posts.filter((p) => !readIds.has(p.id)).length;
 
-  const markRead = useCallback(
-    (id: string) => {
-      setReadIds((prev) => {
-        const next = new Set(prev);
-        next.add(id);
-        saveReadIds(next);
-        return next;
-      });
-    },
-    [],
-  );
+  const markRead = useCallback((id: string) => {
+    setReadIds((prev) => {
+      const next = new Set(prev);
+      next.add(id);
+      saveReadIds(next);
+      return next;
+    });
+  }, []);
 
   const markAllRead = useCallback(() => {
     const next = new Set(posts.map((p) => p.id));

@@ -83,19 +83,11 @@ export function BlogCarousel() {
   }, [emblaApi, updateState]);
 
   if (isLoading) {
-    return (
-      <p className="font-mono text-xs text-muted-foreground py-8">
-        {t("blog.loading")}
-      </p>
-    );
+    return <p className="font-mono text-xs text-muted-foreground py-8">{t("blog.loading")}</p>;
   }
 
   if (posts.length === 0) {
-    return (
-      <p className="font-mono text-xs text-muted-foreground py-8">
-        {t("blog.empty")}
-      </p>
-    );
+    return <p className="font-mono text-xs text-muted-foreground py-8">{t("blog.empty")}</p>;
   }
 
   return (
@@ -123,7 +115,12 @@ export function BlogCarousel() {
             className="h-7 w-7 flex items-center justify-center border border-border text-foreground disabled:opacity-30 hover:border-primary hover:text-primary transition-colors"
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-              <path d="M8 2L4 6L8 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+              <path
+                d="M8 2L4 6L8 10"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="square"
+              />
             </svg>
           </button>
           <button
@@ -133,7 +130,12 @@ export function BlogCarousel() {
             className="h-7 w-7 flex items-center justify-center border border-border text-foreground disabled:opacity-30 hover:border-primary hover:text-primary transition-colors"
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-              <path d="M4 2L8 6L4 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+              <path
+                d="M4 2L8 6L4 10"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="square"
+              />
             </svg>
           </button>
         </div>
@@ -147,9 +149,7 @@ export function BlogCarousel() {
               aria-label={`Go to post ${i + 1}`}
               className={
                 "h-1 transition-all " +
-                (i === current
-                  ? "w-4 bg-primary"
-                  : "w-1 bg-foreground/30 hover:bg-foreground/60")
+                (i === current ? "w-4 bg-primary" : "w-1 bg-foreground/30 hover:bg-foreground/60")
               }
             />
           ))}

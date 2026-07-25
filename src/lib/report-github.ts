@@ -57,25 +57,19 @@ export interface IssueComment {
   authorLogin: string;
 }
 
-export async function createReportIssue(
-  input: CreateIssueInput,
-): Promise<IssueSummary> {
+export async function createReportIssue(input: CreateIssueInput): Promise<IssueSummary> {
   const typeLabel = input.type === "bug" ? "bug" : "enhancement";
-  const body =
-    `${input.body}\n\n---\n_Reported via the site form. Reporter email withheld from this public issue._`;
+  const body = `${input.body}\n\n---\n_Reported via the site form. Reporter email withheld from this public issue._`;
 
-  const res = await fetch(
-    `https://api.github.com/repos/${input.owner}/${input.repo}/issues`,
-    {
-      method: "POST",
-      headers: { ...authHeaders(), "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title: input.title,
-        body,
-        labels: [REPORT_LABEL, typeLabel],
-      }),
-    },
-  );
+  const res = await fetch(`https://api.github.com/repos/${input.owner}/${input.repo}/issues`, {
+    method: "POST",
+    headers: { ...authHeaders(), "Content-Type": "application/json" },
+    body: JSON.stringify({
+      title: input.title,
+      body,
+      labels: [REPORT_LABEL, typeLabel],
+    }),
+  });
   if (!res.ok) {
     throw new Error(`GitHub create issue failed: ${res.status}`);
   }
@@ -118,10 +112,9 @@ export async function getIssueWithComments(
     fetch(`https://api.github.com/repos/${owner}/${repo}/issues/${issueNumber}`, {
       headers: authReadHeaders(),
     }),
-    fetch(
-      `https://api.github.com/repos/${owner}/${repo}/issues/${issueNumber}/comments`,
-      { headers: authReadHeaders() },
-    ),
+    fetch(`https://api.github.com/repos/${owner}/${repo}/issues/${issueNumber}/comments`, {
+      headers: authReadHeaders(),
+    }),
   ]);
   if (issueRes.status === 404) return null;
   if (!issueRes.ok) {

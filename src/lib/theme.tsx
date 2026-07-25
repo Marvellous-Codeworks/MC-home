@@ -14,8 +14,7 @@ const STORAGE_KEY = "mc.theme";
 function applyTheme(choice: ThemeChoice): "light" | "dark" {
   if (typeof document === "undefined") return "light";
   const prefersDark =
-    typeof window !== "undefined" &&
-    window.matchMedia?.("(prefers-color-scheme: dark)").matches;
+    typeof window !== "undefined" && window.matchMedia?.("(prefers-color-scheme: dark)").matches;
   const resolved: "light" | "dark" =
     choice === "system" ? (prefersDark ? "dark" : "light") : choice;
   const root = document.documentElement;

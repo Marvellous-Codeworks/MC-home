@@ -76,7 +76,11 @@ export function SiteFooter() {
               { label: t("footer.link.github"), href: GITHUB_URL, external: true },
               { label: t("footer.link.issues.tgd"), href: TGD_ISSUES_URL, external: true },
               { label: t("footer.link.issues.tms"), href: TMS_ISSUES_URL, external: true },
-              { label: t("footer.link.discussions.tms"), href: TMS_DISCUSSIONS_URL, external: true },
+              {
+                label: t("footer.link.discussions.tms"),
+                href: TMS_DISCUSSIONS_URL,
+                external: true,
+              },
             ]}
           />
         </div>

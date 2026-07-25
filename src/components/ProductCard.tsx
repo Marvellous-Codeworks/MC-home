@@ -82,7 +82,11 @@ function StatBlock({
         ) : null}
       </div>
       <span className="font-mono text-2xl font-bold tracking-tight tabular-nums">
-        {loading ? <span className="inline-block h-6 w-16 bg-muted animate-pulse rounded-sm" /> : value}
+        {loading ? (
+          <span className="inline-block h-6 w-16 bg-muted animate-pulse rounded-sm" />
+        ) : (
+          value
+        )}
       </span>
       {sub && !loading ? (
         <span className="font-mono text-[10px] text-muted-foreground">{sub}</span>

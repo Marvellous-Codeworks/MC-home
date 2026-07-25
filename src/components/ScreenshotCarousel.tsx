@@ -19,7 +19,9 @@ export function ScreenshotCarousel({ slides }: ScreenshotCarouselProps) {
     const update = () => setCurrent(emblaApi.selectedScrollSnap());
     emblaApi.on("select", update);
     update();
-    return () => { emblaApi.off("select", update); };
+    return () => {
+      emblaApi.off("select", update);
+    };
   }, [emblaApi]);
 
   const scrollTo = useCallback((i: number) => emblaApi?.scrollTo(i), [emblaApi]);
@@ -70,9 +72,7 @@ export function ScreenshotCarousel({ slides }: ScreenshotCarouselProps) {
             aria-label={`Go to screenshot ${i + 1}`}
             className={
               "h-1 transition-all " +
-              (i === current
-                ? "w-4 bg-primary"
-                : "w-1 bg-foreground/30 hover:bg-foreground/60")
+              (i === current ? "w-4 bg-primary" : "w-1 bg-foreground/30 hover:bg-foreground/60")
             }
           />
         ))}

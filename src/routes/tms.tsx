@@ -24,13 +24,13 @@ const TMS_STORE_URL =
 const BLOG_TAG = "the marvellous suspender";
 
 const SLIDES = [
-  { src: tmsGoogle,     alt: "The Marvellous Suspender — Google (light)" },
+  { src: tmsGoogle, alt: "The Marvellous Suspender — Google (light)" },
   { src: tmsGoogleDark, alt: "The Marvellous Suspender — Google (dark)" },
-  { src: tmsSuspend,    alt: "The Marvellous Suspender — Suspended tab" },
-  { src: tmsSettings,   alt: "The Marvellous Suspender — Settings" },
-  { src: tmsSession,    alt: "The Marvellous Suspender — Session management" },
-  { src: tmsAbout,      alt: "The Marvellous Suspender — About" },
-  { src: tmsKeyboard,   alt: "The Marvellous Suspender — Keyboard shortcuts" },
+  { src: tmsSuspend, alt: "The Marvellous Suspender — Suspended tab" },
+  { src: tmsSettings, alt: "The Marvellous Suspender — Settings" },
+  { src: tmsSession, alt: "The Marvellous Suspender — Session management" },
+  { src: tmsAbout, alt: "The Marvellous Suspender — About" },
+  { src: tmsKeyboard, alt: "The Marvellous Suspender — Keyboard shortcuts" },
 ];
 
 export const Route = createFileRoute("/tms")({
@@ -72,9 +72,13 @@ function formatUsers(label: string | null, n: number | null): string {
 function formatDate(dateStr: string): string {
   try {
     return new Date(dateStr).toLocaleDateString(undefined, {
-      year: "numeric", month: "short", day: "numeric",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     });
-  } catch { return ""; }
+  } catch {
+    return "";
+  }
 }
 
 function Stat({ label, value, loading }: { label: string; value: string; loading?: boolean }) {
@@ -129,7 +133,6 @@ function TmsPage() {
       <SiteNav />
 
       <main className="max-w-6xl mx-auto px-6 py-12 space-y-16">
-
         {/* Breadcrumb + hero */}
         <div>
           <a
@@ -201,21 +204,45 @@ function TmsPage() {
         {/* Stats bar */}
         <div className="border border-border p-6">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 divide-x divide-border">
-            <Stat label={t("card.users")} value={usersValue} loading={stats.isLoading && !stats.data} />
+            <Stat
+              label={t("card.users")}
+              value={usersValue}
+              loading={stats.isLoading && !stats.data}
+            />
             <div className="pl-6">
-              <Stat label={t("card.rating")} value={ratingValue} loading={stats.isLoading && !stats.data} />
+              <Stat
+                label={t("card.rating")}
+                value={ratingValue}
+                loading={stats.isLoading && !stats.data}
+              />
             </div>
             <div className="pl-6">
-              <Stat label={t("card.stars")} value={formatCount(github.data?.stars)} loading={github.isLoading && !github.data} />
+              <Stat
+                label={t("card.stars")}
+                value={formatCount(github.data?.stars)}
+                loading={github.isLoading && !github.data}
+              />
             </div>
             <div className="pl-6">
-              <Stat label={t("card.forks")} value={formatCount(github.data?.forks)} loading={github.isLoading && !github.data} />
+              <Stat
+                label={t("card.forks")}
+                value={formatCount(github.data?.forks)}
+                loading={github.isLoading && !github.data}
+              />
             </div>
             <div className="pl-6">
-              <Stat label={t("card.issues")} value={formatCount(github.data?.openIssues)} loading={github.isLoading && !github.data} />
+              <Stat
+                label={t("card.issues")}
+                value={formatCount(github.data?.openIssues)}
+                loading={github.isLoading && !github.data}
+              />
             </div>
             <div className="pl-6">
-              <Stat label={t("card.release")} value={github.data?.latestRelease ?? "—"} loading={github.isLoading && !github.data} />
+              <Stat
+                label={t("card.release")}
+                value={github.data?.latestRelease ?? "—"}
+                loading={github.isLoading && !github.data}
+              />
             </div>
           </div>
         </div>
@@ -292,7 +319,9 @@ function TmsPage() {
                       {post.excerpt}
                     </p>
                   )}
-                  <span className="font-mono text-[10px] text-primary mt-auto">{t("blog.cta.read")}</span>
+                  <span className="font-mono text-[10px] text-primary mt-auto">
+                    {t("blog.cta.read")}
+                  </span>
                 </a>
               ))}
             </div>
@@ -320,7 +349,6 @@ function TmsPage() {
             {t("tms.legal.terms")}
           </a>
         </div>
-
       </main>
 
       <SiteFooter />
