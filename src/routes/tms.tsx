@@ -12,7 +12,6 @@ import { TMS_REPO } from "@/lib/tms-repo";
 import { SlidersHorizontal, RotateCcw, Zap, type LucideIcon } from "lucide-react";
 
 import tmsGoogle from "@/assets/tms-google.webp";
-import tmsGoogleDark from "@/assets/tms-google-dark.webp";
 import tmsSettings from "@/assets/tms-settings.webp";
 import tmsSuspend from "@/assets/tms-suspend.webp";
 import tmsSession from "@/assets/tms-session.webp";
@@ -25,7 +24,6 @@ const BLOG_TAG = "the marvellous suspender";
 
 const SLIDES = [
   { src: tmsGoogle, alt: "The Marvellous Suspender — Google (light)" },
-  { src: tmsGoogleDark, alt: "The Marvellous Suspender — Google (dark)" },
   { src: tmsSuspend, alt: "The Marvellous Suspender — Suspended tab" },
   { src: tmsSettings, alt: "The Marvellous Suspender — Settings" },
   { src: tmsSession, alt: "The Marvellous Suspender — Session management" },
