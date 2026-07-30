@@ -18,13 +18,13 @@ import tgdOptionsDark from "@/assets/tgd-options-dark.png";
 import tgdPopupLight from "@/assets/tgd-popup-light.png";
 import tgdPopupDark from "@/assets/tgd-popup-dark.png";
 
-import tmsGoogle from "@/assets/tms-google.png";
-import tmsGoogleDark from "@/assets/tms-google-dark.png";
-import tmsSettings from "@/assets/tms-settings.png";
-import tmsSuspend from "@/assets/tms-suspend.png";
-import tmsSession from "@/assets/tms-session.png";
-import tmsAbout from "@/assets/tms-about.png";
-import tmsKeyboard from "@/assets/tms-keyboard.png";
+import tmsGoogle from "@/assets/tms-google.webp";
+import tmsGoogleDark from "@/assets/tms-google-dark.webp";
+import tmsSettings from "@/assets/tms-settings.webp";
+import tmsSuspend from "@/assets/tms-suspend.webp";
+import tmsSession from "@/assets/tms-session.webp";
+import tmsAbout from "@/assets/tms-about.webp";
+import tmsKeyboard from "@/assets/tms-keyboard.webp";
 
 const TMS_STORE_URL =
   "https://chromewebstore.google.com/detail/the-marvellous-suspender/noogafoofpebimajpfpamcfhoaifemoa";
