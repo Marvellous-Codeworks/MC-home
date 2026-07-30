@@ -19,7 +19,7 @@ import tgdPopupLight from "@/assets/tgd-popup-light.png";
 import tgdPopupDark from "@/assets/tgd-popup-dark.png";
 
 import tmsGoogle from "@/assets/tms-google.webp";
-import tmsGoogleDark from "@/assets/tms-google-dark.webp";
+import tmsQuickActions from "@/assets/tms-quick-actions.webp";
 import tmsSettings from "@/assets/tms-settings.webp";
 import tmsSuspend from "@/assets/tms-suspend.webp";
 import tmsSession from "@/assets/tms-session.webp";
@@ -234,7 +234,7 @@ function Index() {
               <ScreenshotCarousel
                 slides={[
                   { src: tmsGoogle, alt: "The Marvellous Suspender — Google (light)" },
-                  { src: tmsGoogleDark, alt: "The Marvellous Suspender — Google (dark)" },
+                  { src: tmsQuickActions, alt: "The Marvellous Suspender — Quick actions" },
                   { src: tmsSuspend, alt: "The Marvellous Suspender — Suspended tab" },
                   { src: tmsSettings, alt: "The Marvellous Suspender — Settings" },
                   { src: tmsSession, alt: "The Marvellous Suspender — Session management" },
