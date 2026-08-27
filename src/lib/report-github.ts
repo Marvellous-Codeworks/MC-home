@@ -58,7 +58,10 @@ export interface IssueComment {
 }
 
 export async function createReportIssue(input: CreateIssueInput): Promise<IssueSummary> {
-  const typeLabel = input.type === "bug" ? "bug" : "enhancement";
+  // Mirror the labels the GitHub issue forms apply on open: neither path
+  // gets to assert "bug" before triage confirms it (see the triage taxonomy).
+  const typeLabels =
+    input.type === "bug" ? ["to be investigated"] : ["enhancement", "to be evaluated"];
   const body = `${input.body}\n\n---\n_Reported via the site form. Reporter email withheld from this public issue._`;
 
   const res = await fetch(`https://api.github.com/repos/${input.owner}/${input.repo}/issues`, {
@@ -67,7 +70,7 @@ export async function createReportIssue(input: CreateIssueInput): Promise<IssueS
     body: JSON.stringify({
       title: input.title,
       body,
-      labels: [REPORT_LABEL, typeLabel],
+      labels: [REPORT_LABEL, ...typeLabels],
     }),
   });
   if (!res.ok) {
