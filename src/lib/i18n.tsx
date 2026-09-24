@@ -155,6 +155,9 @@ const en: Dict = {
   "report.form.diagnosticHint":
     "For intermittent or hard-to-reproduce bugs, a debug report helps a lot.",
   "report.form.diagnosticHint.link": "How to get one",
+  "report.form.diagnosticHint.privacy": "It can include tab titles/URLs, so upload it to",
+  "report.form.diagnosticHint.logdropLink": "logdrop",
+  "report.form.diagnosticHint.privacySuffix": "instead of pasting it in the issue.",
   "report.form.email": "Email",
   "report.form.email.placeholder": "you@example.com",
   "report.form.submit": "Send confirmation email",
@@ -339,6 +342,9 @@ const it: Dict = {
   "report.form.diagnosticHint":
     "Per bug intermittenti o difficili da riprodurre, un report di debug aiuta molto.",
   "report.form.diagnosticHint.link": "Come ottenerlo",
+  "report.form.diagnosticHint.privacy": "Può contenere titoli/URL delle tue schede, quindi caricalo su",
+  "report.form.diagnosticHint.logdropLink": "logdrop",
+  "report.form.diagnosticHint.privacySuffix": "invece di incollarlo nell'issue.",
   "report.form.email": "Email",
   "report.form.email.placeholder": "tu@esempio.com",
   "report.form.submit": "Invia email di conferma",

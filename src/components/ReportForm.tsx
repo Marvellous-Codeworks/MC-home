@@ -18,6 +18,7 @@ const BROWSERS = ["Chrome", "Edge", "Brave", "Vivaldi", "Opera", "Other"] as con
 const OPERATING_SYSTEMS = ["Windows", "macOS", "Linux", "ChromeOS", "Other"] as const;
 
 const DIAGNOSTIC_GUIDE_URL = "https://kb.marvellouscode.works/docs/TMS/pages/diagnostic-page";
+const LOGDROP_URL = "https://logdrop.marvellouscode.works";
 
 const REQUIRED = "This field is required.";
 const TOO_SHORT = "Please add a bit more detail.";
@@ -351,6 +352,16 @@ export function ReportForm({
               >
                 {t("report.form.diagnosticHint.link")}
               </a>
+              . {t("report.form.diagnosticHint.privacy")}{" "}
+              <a
+                href={LOGDROP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-foreground"
+              >
+                {t("report.form.diagnosticHint.logdropLink")}
+              </a>{" "}
+              {t("report.form.diagnosticHint.privacySuffix")}
             </p>
           </>
         )}
