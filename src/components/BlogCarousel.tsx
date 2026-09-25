@@ -147,11 +147,16 @@ export function BlogCarousel() {
               key={i}
               onClick={() => emblaApi?.scrollTo(i)}
               aria-label={`Go to post ${i + 1}`}
-              className={
-                "h-1 transition-all " +
-                (i === current ? "w-4 bg-primary" : "w-1 bg-foreground/30 hover:bg-foreground/60")
-              }
-            />
+              className="h-6 w-6 flex items-center justify-center"
+            >
+              <span
+                aria-hidden="true"
+                className={
+                  "h-1 transition-all rounded-full " +
+                  (i === current ? "w-4 bg-primary" : "w-1 bg-foreground/30 hover:bg-foreground/60")
+                }
+              />
+            </button>
           ))}
         </div>
       </div>

@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { getGithubStats } from "@/lib/github-stats.functions";
 import { useI18n } from "@/lib/i18n";
 import { UploadCloud, KeyRound, Timer, type LucideIcon } from "lucide-react";
+import logdropIcon from "@/assets/logdrop-icon.svg";
 
 const LOGDROP_URL = "https://logdrop.marvellouscode.works";
 const LOGDROP_REPO = { owner: "Marvellous-Codeworks", repo: "logdrop" } as const;
@@ -88,11 +89,7 @@ function LogdropPage() {
 
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
             <div className="space-y-4 max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-2 py-1 border border-primary/20 bg-primary/5">
-                <span className="font-mono text-[9px] uppercase tracking-widest text-primary">
-                  {t("logdrop.tagline")}
-                </span>
-              </div>
+              <img src={logdropIcon} alt="" className="h-12 w-12 rounded-[7px]" />
               <h1 className="text-4xl md:text-5xl font-mono font-extrabold tracking-tight leading-[0.95]">
                 {t("logdrop.name")}
               </h1>

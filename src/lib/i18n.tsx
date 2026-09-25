@@ -13,7 +13,7 @@ const en: Dict = {
   "hero.title.b": "BROWSER",
   "hero.title.c": " MEMORY.",
   "hero.subtitle":
-    "Precision tools for the professional web. Marvellous Codeworks builds open-source Chromium extensions that turn memory-hungry browsers into lean execution environments.",
+    "Precision tools for the professional web. Marvellous Codeworks builds open-source software — from Chromium extensions that turn memory-hungry browsers into lean execution environments, to self-hostable utilities like logdrop.",
   "hero.cta.view": "View Extensions",
   "hero.cta.github": "GitHub Org",
 
@@ -38,7 +38,6 @@ const en: Dict = {
   "tms.f3.b": "Automatically suspends tabs when battery drops below a threshold.",
 
   "logdrop.name": "logdrop",
-  "logdrop.tagline": "Web App · Self-hostable drop-off",
   "logdrop.description":
     "A generic, self-hostable, PrivateBin-style plain-text drop-off. Anyone can upload text or a .txt file with no account; only allow-listed maintainers can read an upload back, via a magic-link login. Built to safely collect diagnostic reports — like TMS debug logs — without pasting them into a public GitHub issue.",
   "logdrop.f1.t": "No account uploads.",
@@ -92,7 +91,7 @@ const en: Dict = {
     "Maintained by Marvellous Codeworks and a global community of developers. Fork it, improve it, or contribute under a permissive open-source license.",
 
   "footer.tagline":
-    "A small team and a global open-source community, keeping your browser fast and lean.",
+    "A small team and a global open-source community, building precision tools for the professional web.",
   "footer.col.extensions": "Products",
   "footer.col.resources": "Resources",
   "footer.col.community": "Community",
@@ -214,7 +213,7 @@ const it: Dict = {
   "hero.title.b": "MEMORIA",
   "hero.title.c": " DEL TUO BROWSER.",
   "hero.subtitle":
-    "Strumenti di precisione per il web professionale. Marvellous Codeworks sviluppa estensioni Chromium open source che trasformano browser affamati di memoria in ambienti d'esecuzione snelli.",
+    "Strumenti di precisione per il web professionale. Marvellous Codeworks sviluppa software open source — dalle estensioni Chromium che trasformano browser affamati di memoria in ambienti d'esecuzione snelli, a utility autospitabili come logdrop.",
   "hero.cta.view": "Vedi le estensioni",
   "hero.cta.github": "Org GitHub",
 
@@ -239,7 +238,6 @@ const it: Dict = {
   "tms.f3.b": "Sospende automaticamente le schede quando la batteria scende sotto una soglia.",
 
   "logdrop.name": "logdrop",
-  "logdrop.tagline": "Web App · Autospitabile",
   "logdrop.description":
     "Un drop-off di testo generico, autospitabile, in stile PrivateBin: chiunque può caricare testo o un file .txt senza account; solo i manutentori in una lista consentita possono rileggerlo, tramite login con magic-link. Pensato per raccogliere in sicurezza report diagnostici — come i debug log di TMS — senza incollarli in una issue pubblica su GitHub.",
   "logdrop.f1.t": "Caricamenti senza account.",
@@ -293,7 +291,7 @@ const it: Dict = {
     "Mantenuto da Marvellous Codeworks e da una community globale di sviluppatori. Forka, migliora o contribuisci sotto una licenza open source permissiva.",
 
   "footer.tagline":
-    "Un piccolo team e una community open source globale, per un browser sempre veloce e leggero.",
+    "Un piccolo team e una community open source globale, che sviluppa strumenti di precisione per il web professionale.",
   "footer.col.extensions": "Prodotti",
   "footer.col.resources": "Risorse",
   "footer.col.community": "Community",

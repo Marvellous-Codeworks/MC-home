@@ -10,6 +10,7 @@ import { getExtensionStats } from "@/lib/extension-stats.functions";
 import { getGithubStats } from "@/lib/github-stats.functions";
 import { useI18n } from "@/lib/i18n";
 import heroChrome from "@/assets/hero-chrome-opt.webp";
+import logdropIcon from "@/assets/logdrop-icon.svg";
 
 import tgdChromeLight from "@/assets/tgd-chrome-light.png";
 import tgdChromeDark from "@/assets/tgd-chrome-dark.png";
@@ -163,6 +164,7 @@ function Index() {
         />
       </header>
 
+      <main>
       {/* Blog carousel */}
       <section className="max-w-6xl mx-auto px-6 py-24 border-t border-border">
         <div className="flex items-baseline justify-between gap-4 mb-10">
@@ -256,11 +258,7 @@ function Index() {
         </div>
         <div className="border border-border p-8 lg:p-12 flex flex-col md:flex-row md:items-center gap-8">
           <div className="flex-1 space-y-3">
-            <div className="inline-flex items-center gap-2 px-2 py-1 border border-primary/20 bg-primary/5">
-              <span className="font-mono text-[9px] uppercase tracking-widest text-primary">
-                {t("logdrop.tagline")}
-              </span>
-            </div>
+            <img src={logdropIcon} alt="" className="h-10 w-10 rounded-[6px]" />
             <h3 className="text-2xl font-mono font-bold tracking-tight">
               <a href="/logdrop" className="hover:text-primary transition-colors">
                 {t("logdrop.name")}
@@ -302,6 +300,7 @@ function Index() {
           ))}
         </div>
       </section>
+      </main>
 
       <SiteFooter />
     </div>
