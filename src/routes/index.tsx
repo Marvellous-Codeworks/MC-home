@@ -248,9 +248,31 @@ function Index() {
         </div>
       </section>
 
+      {/* Trust signals — extension-specific, keep it right under the extension showcase */}
+      <section className="max-w-6xl mx-auto px-6 py-24 border-t border-border">
+        <div className="grid md:grid-cols-3 gap-12">
+          {[
+            { n: "01", t: t("trust.01.t"), b: t("trust.01.b") },
+            { n: "02", t: t("trust.02.t"), b: t("trust.02.b") },
+            { n: "03", t: t("trust.03.t"), b: t("trust.03.b") },
+          ].map((p, i) => (
+            <div
+              key={p.n}
+              className="animate-reveal"
+              style={{ animationDelay: `${400 + i * 50}ms` }}
+            >
+              <h3 className="font-mono text-xs font-bold text-primary uppercase tracking-widest mb-4">
+                {p.n} // {p.t}
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{p.b}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Other products */}
-      <section className="max-w-6xl mx-auto px-6 pb-24">
-        <div className="mb-10">
+      <section className="max-w-6xl mx-auto px-6 pb-24 border-t border-border">
+        <div className="mb-10 pt-24">
           <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
             {"// "}
             {t("home.moreTools")}
@@ -276,28 +298,6 @@ function Index() {
               {t("product.learnMore")}
             </a>
           </div>
-        </div>
-      </section>
-
-      {/* Trust signals */}
-      <section className="max-w-6xl mx-auto px-6 py-24 border-t border-border">
-        <div className="grid md:grid-cols-3 gap-12">
-          {[
-            { n: "01", t: t("trust.01.t"), b: t("trust.01.b") },
-            { n: "02", t: t("trust.02.t"), b: t("trust.02.b") },
-            { n: "03", t: t("trust.03.t"), b: t("trust.03.b") },
-          ].map((p, i) => (
-            <div
-              key={p.n}
-              className="animate-reveal"
-              style={{ animationDelay: `${400 + i * 50}ms` }}
-            >
-              <h3 className="font-mono text-xs font-bold text-primary uppercase tracking-widest mb-4">
-                {p.n} // {p.t}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{p.b}</p>
-            </div>
-          ))}
         </div>
       </section>
       </main>

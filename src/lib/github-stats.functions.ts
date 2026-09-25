@@ -21,6 +21,12 @@ if (process.env.GITHUB_TOKEN) {
   HEADERS.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
 }
 
+// Cheap process-local cache: GitHub's unauthenticated rate limit (60 req/hr) is shared
+// across every visitor, since these calls run server-side from Vercel's IP. This won't
+// survive a cold start, but on a warm lambda it cuts repeat calls dramatically.
+const CACHE_TTL_MS = 10 * 60 * 1000;
+const cache = new Map<string, { data: GithubStats; expires: number }>();
+
 export const getGithubStats = createServerFn({ method: "GET" })
   .inputValidator((data: { owner: string; repo: string }) => {
     const ok = /^[a-zA-Z0-9._-]+$/;
@@ -30,6 +36,10 @@ export const getGithubStats = createServerFn({ method: "GET" })
     return data;
   })
   .handler(async ({ data }): Promise<GithubStats> => {
+    const cacheKey = `${data.owner}/${data.repo}`;
+    const cached = cache.get(cacheKey);
+    if (cached && cached.expires > Date.now()) return cached.data;
+
     const repoUrl = `https://github.com/${data.owner}/${data.repo}`;
     const empty: GithubStats = {
       stars: null,
@@ -73,7 +83,7 @@ export const getGithubStats = createServerFn({ method: "GET" })
         latestReleaseAt = rel.published_at ?? null;
       }
 
-      return {
+      const result: GithubStats = {
         stars: repo.stargazers_count ?? null,
         forks: repo.forks_count ?? null,
         openIssues: repo.open_issues_count ?? null,
@@ -82,6 +92,8 @@ export const getGithubStats = createServerFn({ method: "GET" })
         pushedAt: repo.pushed_at ?? null,
         repoUrl,
       };
+      cache.set(cacheKey, { data: result, expires: Date.now() + CACHE_TTL_MS });
+      return result;
     } catch (err) {
       console.error("GitHub fetch failed:", err);
       return { ...empty, error: "Could not reach GitHub" };
