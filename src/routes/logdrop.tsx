@@ -9,13 +9,13 @@ import { getLogdropVersion } from "@/lib/logdrop-version.functions";
 import { useI18n } from "@/lib/i18n";
 import { UploadCloud, KeyRound, Timer, type LucideIcon } from "lucide-react";
 import logdropIcon from "@/assets/logdrop-icon.svg";
-import logdropUpload from "@/assets/logdrop-upload.webp";
+import logdropUploadFilled from "@/assets/logdrop-upload-filled.webp";
 import logdropAdminLogin from "@/assets/logdrop-admin-login.webp";
 import logdropAdminDashboard from "@/assets/logdrop-admin-dashboard.webp";
 import logdropPasteView from "@/assets/logdrop-paste-view.webp";
 
 const SLIDES = [
-  { src: logdropUpload, alt: "logdrop — public upload form" },
+  { src: logdropUploadFilled, alt: "logdrop — uploading a log, ready to submit" },
   { src: logdropAdminDashboard, alt: "logdrop — admin dashboard" },
   { src: logdropAdminLogin, alt: "logdrop — admin sign-in" },
   { src: logdropPasteView, alt: "logdrop — single paste view" },
