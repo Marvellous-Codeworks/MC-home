@@ -60,6 +60,7 @@ export function SiteFooter() {
             links={[
               { label: t("footer.link.tgd"), href: "/tgd" },
               { label: t("footer.link.tms"), href: "/tms" },
+              { label: t("footer.link.logdrop"), href: "/logdrop" },
             ]}
           />
           <FooterCol

@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TmsRouteImport } from './routes/tms'
 import { Route as TgdRouteImport } from './routes/tgd'
+import { Route as LogdropRouteImport } from './routes/logdrop'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TmsTermsRouteImport } from './routes/tms_.terms'
 import { Route as TmsReportRouteImport } from './routes/tms_.report'
@@ -27,6 +28,11 @@ const TmsRoute = TmsRouteImport.update({
 const TgdRoute = TgdRouteImport.update({
   id: '/tgd',
   path: '/tgd',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LogdropRoute = LogdropRouteImport.update({
+  id: '/logdrop',
+  path: '/logdrop',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -69,6 +75,7 @@ const ApiReportStatusIssueNumberRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/logdrop': typeof LogdropRoute
   '/tgd': typeof TgdRoute
   '/tms': typeof TmsRoute
   '/tms/privacy': typeof TmsPrivacyRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/logdrop': typeof LogdropRoute
   '/tgd': typeof TgdRoute
   '/tms': typeof TmsRoute
   '/tms/privacy': typeof TmsPrivacyRoute
@@ -92,6 +100,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/logdrop': typeof LogdropRoute
   '/tgd': typeof TgdRoute
   '/tms': typeof TmsRoute
   '/tms_/privacy': typeof TmsPrivacyRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/logdrop'
     | '/tgd'
     | '/tms'
     | '/tms/privacy'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/logdrop'
     | '/tgd'
     | '/tms'
     | '/tms/privacy'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/logdrop'
     | '/tgd'
     | '/tms'
     | '/tms_/privacy'
@@ -139,6 +151,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LogdropRoute: typeof LogdropRoute
   TgdRoute: typeof TgdRoute
   TmsRoute: typeof TmsRoute
   TmsPrivacyRoute: typeof TmsPrivacyRoute
@@ -163,6 +176,13 @@ declare module '@tanstack/react-router' {
       path: '/tgd'
       fullPath: '/tgd'
       preLoaderRoute: typeof TgdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/logdrop': {
+      id: '/logdrop'
+      path: '/logdrop'
+      fullPath: '/logdrop'
+      preLoaderRoute: typeof LogdropRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -219,6 +239,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LogdropRoute: LogdropRoute,
   TgdRoute: TgdRoute,
   TmsRoute: TmsRoute,
   TmsPrivacyRoute: TmsPrivacyRoute,

@@ -129,15 +129,6 @@ function Index() {
 
           {/* Text — z-10 to sit above the mascot layer */}
           <div className="relative z-10 animate-reveal [animation-delay:100ms]">
-            <div className="inline-flex items-center gap-2 px-2 py-1 rounded border border-primary/20 bg-primary/5 mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-              </span>
-              <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
-                {t("hero.badge")}
-              </span>
-            </div>
             <h1 className="text-5xl md:text-7xl font-mono font-extrabold tracking-tight text-balance leading-[0.9] max-w-4xl">
               {t("hero.title.a")}
               <span className="text-primary">{t("hero.title.b")}</span>

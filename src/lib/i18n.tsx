@@ -9,7 +9,6 @@ const en: Dict = {
   "nav.docs": "Docs",
   "nav.blog": "Blog",
   "nav.github": "GitHub",
-  "hero.badge": "Manifest V3 ready · Open-source Chromium tools",
   "hero.title.a": "RECLAIM YOUR ",
   "hero.title.b": "BROWSER",
   "hero.title.c": " MEMORY.",
@@ -37,6 +36,18 @@ const en: Dict = {
   "tms.f2.b": "Recover all suspended tabs even after a browser crash or restart.",
   "tms.f3.t": "Power Mode.",
   "tms.f3.b": "Automatically suspends tabs when battery drops below a threshold.",
+
+  "logdrop.name": "logdrop",
+  "logdrop.tagline": "Web App · Self-hostable drop-off",
+  "logdrop.description":
+    "A generic, self-hostable, PrivateBin-style plain-text drop-off. Anyone can upload text or a .txt file with no account; only allow-listed maintainers can read an upload back, via a magic-link login. Built to safely collect diagnostic reports — like TMS debug logs — without pasting them into a public GitHub issue.",
+  "logdrop.f1.t": "No account uploads.",
+  "logdrop.f1.b": "Anyone can drop off text or a .txt file — no sign-up, no friction.",
+  "logdrop.f2.t": "Magic-link reads.",
+  "logdrop.f2.b": "Only allow-listed maintainer emails can read an upload back, via a passwordless login.",
+  "logdrop.f3.t": "Automatic expiry.",
+  "logdrop.f3.b": "Uploads are deleted after a configurable retention window — nothing lingers.",
+  "logdrop.cta.open": "Open logdrop",
 
   "card.cws": "// Chrome Web Store",
   "card.users": "Users",
@@ -82,11 +93,12 @@ const en: Dict = {
 
   "footer.tagline":
     "A small team and a global open-source community, keeping your browser fast and lean.",
-  "footer.col.extensions": "Extensions",
+  "footer.col.extensions": "Products",
   "footer.col.resources": "Resources",
   "footer.col.community": "Community",
   "footer.link.tgd": "The Great-er Tab Discarder (TGD)",
   "footer.link.tms": "The Marvellous Suspender (TMS)",
+  "footer.link.logdrop": "logdrop",
   "footer.link.docs": "Documentation",
   "footer.link.blog": "Blog",
   "footer.link.rss": "RSS Feed",
@@ -196,7 +208,6 @@ const it: Dict = {
   "nav.docs": "Documentazione",
   "nav.blog": "Blog",
   "nav.github": "GitHub",
-  "hero.badge": "Compatibile con Manifest V3 · Strumenti Chromium open source",
   "hero.title.a": "LIBERA LA ",
   "hero.title.b": "MEMORIA",
   "hero.title.c": " DEL TUO BROWSER.",
@@ -224,6 +235,18 @@ const it: Dict = {
   "tms.f2.b": "Ripristina tutte le schede sospese anche dopo un crash o un riavvio del browser.",
   "tms.f3.t": "Modalità risparmio.",
   "tms.f3.b": "Sospende automaticamente le schede quando la batteria scende sotto una soglia.",
+
+  "logdrop.name": "logdrop",
+  "logdrop.tagline": "Web App · Autospitabile",
+  "logdrop.description":
+    "Un drop-off di testo generico, autospitabile, in stile PrivateBin: chiunque può caricare testo o un file .txt senza account; solo i manutentori in una lista consentita possono rileggerlo, tramite login con magic-link. Pensato per raccogliere in sicurezza report diagnostici — come i debug log di TMS — senza incollarli in una issue pubblica su GitHub.",
+  "logdrop.f1.t": "Caricamenti senza account.",
+  "logdrop.f1.b": "Chiunque può caricare testo o un file .txt — nessuna registrazione, nessun attrito.",
+  "logdrop.f2.t": "Lettura via magic-link.",
+  "logdrop.f2.b": "Solo le email dei manutentori in lista possono rileggere un caricamento, con login senza password.",
+  "logdrop.f3.t": "Scadenza automatica.",
+  "logdrop.f3.b": "I caricamenti vengono eliminati dopo una finestra di conservazione configurabile — niente resta appeso.",
+  "logdrop.cta.open": "Apri logdrop",
 
   "card.cws": "// Chrome Web Store",
   "card.users": "Utenti",
@@ -269,11 +292,12 @@ const it: Dict = {
 
   "footer.tagline":
     "Un piccolo team e una community open source globale, per un browser sempre veloce e leggero.",
-  "footer.col.extensions": "Estensioni",
+  "footer.col.extensions": "Prodotti",
   "footer.col.resources": "Risorse",
   "footer.col.community": "Community",
   "footer.link.tgd": "The Great-er Tab Discarder (TGD)",
   "footer.link.tms": "The Marvellous Suspender (TMS)",
+  "footer.link.logdrop": "logdrop",
   "footer.link.docs": "Documentazione",
   "footer.link.blog": "Blog",
   "footer.link.rss": "Feed RSS",
