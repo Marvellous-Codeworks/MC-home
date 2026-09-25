@@ -5,16 +5,15 @@ export type Locale = "en" | "it";
 type Dict = Record<string, string>;
 
 const en: Dict = {
-  "nav.extensions": "Extensions",
+  "nav.extensions": "Products",
   "nav.docs": "Docs",
   "nav.blog": "Blog",
   "nav.github": "GitHub",
-  "hero.badge": "Manifest V3 ready · Open-source Chromium tools",
   "hero.title.a": "RECLAIM YOUR ",
   "hero.title.b": "BROWSER",
   "hero.title.c": " MEMORY.",
   "hero.subtitle":
-    "Precision tools for the professional web. Marvellous Codeworks builds open-source Chromium extensions that turn memory-hungry browsers into lean execution environments.",
+    "Precision tools for the professional web. Marvellous Codeworks builds open-source software — from Chromium extensions that turn memory-hungry browsers into lean execution environments, to self-hostable utilities like logdrop.",
   "hero.cta.view": "View Extensions",
   "hero.cta.github": "GitHub Org",
 
@@ -37,6 +36,17 @@ const en: Dict = {
   "tms.f2.b": "Recover all suspended tabs even after a browser crash or restart.",
   "tms.f3.t": "Power Mode.",
   "tms.f3.b": "Automatically suspends tabs when battery drops below a threshold.",
+
+  "logdrop.name": "logdrop",
+  "logdrop.description":
+    "A generic, self-hostable, PrivateBin-style plain-text drop-off. Anyone can upload text or a .txt file with no account; only allow-listed maintainers can read an upload back, via a magic-link login. Built to safely collect diagnostic reports — like TMS debug logs — without pasting them into a public GitHub issue.",
+  "logdrop.f1.t": "No account uploads.",
+  "logdrop.f1.b": "Anyone can drop off text or a .txt file — no sign-up, no friction.",
+  "logdrop.f2.t": "Magic-link reads.",
+  "logdrop.f2.b": "Only allow-listed maintainer emails can read an upload back, via a passwordless login.",
+  "logdrop.f3.t": "Automatic expiry.",
+  "logdrop.f3.b": "Uploads are deleted after a configurable retention window — nothing lingers.",
+  "logdrop.cta.open": "Open logdrop",
 
   "card.cws": "// Chrome Web Store",
   "card.users": "Users",
@@ -81,12 +91,13 @@ const en: Dict = {
     "Maintained by Marvellous Codeworks and a global community of developers. Fork it, improve it, or contribute under a permissive open-source license.",
 
   "footer.tagline":
-    "A small team and a global open-source community, keeping your browser fast and lean.",
-  "footer.col.extensions": "Extensions",
+    "A small team and a global open-source community, building precision tools for the professional web.",
+  "footer.col.extensions": "Products",
   "footer.col.resources": "Resources",
   "footer.col.community": "Community",
   "footer.link.tgd": "The Great-er Tab Discarder (TGD)",
   "footer.link.tms": "The Marvellous Suspender (TMS)",
+  "footer.link.logdrop": "logdrop",
   "footer.link.docs": "Documentation",
   "footer.link.blog": "Blog",
   "footer.link.rss": "RSS Feed",
@@ -117,8 +128,10 @@ const en: Dict = {
   "blog.loading": "Loading posts…",
   "blog.empty": "No posts yet.",
 
-  "product.back": "← All Extensions",
+  "product.back": "← All Products",
   "product.features": "// Key Features",
+  "product.learnMore": "Learn More",
+  "home.moreTools": "More tools",
   "blog.section.about": "// Latest from the blog about {name}",
 
   "report.form.heading": "Report a bug or request a feature",
@@ -192,16 +205,15 @@ const en: Dict = {
 };
 
 const it: Dict = {
-  "nav.extensions": "Estensioni",
+  "nav.extensions": "Prodotti",
   "nav.docs": "Documentazione",
   "nav.blog": "Blog",
   "nav.github": "GitHub",
-  "hero.badge": "Compatibile con Manifest V3 · Strumenti Chromium open source",
   "hero.title.a": "LIBERA LA ",
   "hero.title.b": "MEMORIA",
   "hero.title.c": " DEL TUO BROWSER.",
   "hero.subtitle":
-    "Strumenti di precisione per il web professionale. Marvellous Codeworks sviluppa estensioni Chromium open source che trasformano browser affamati di memoria in ambienti d'esecuzione snelli.",
+    "Strumenti di precisione per il web professionale. Marvellous Codeworks sviluppa software open source — dalle estensioni Chromium che trasformano browser affamati di memoria in ambienti d'esecuzione snelli, a utility autospitabili come logdrop.",
   "hero.cta.view": "Vedi le estensioni",
   "hero.cta.github": "Org GitHub",
 
@@ -224,6 +236,17 @@ const it: Dict = {
   "tms.f2.b": "Ripristina tutte le schede sospese anche dopo un crash o un riavvio del browser.",
   "tms.f3.t": "Modalità risparmio.",
   "tms.f3.b": "Sospende automaticamente le schede quando la batteria scende sotto una soglia.",
+
+  "logdrop.name": "logdrop",
+  "logdrop.description":
+    "Un drop-off di testo generico, autospitabile, in stile PrivateBin: chiunque può caricare testo o un file .txt senza account; solo i manutentori in una lista consentita possono rileggerlo, tramite login con magic-link. Pensato per raccogliere in sicurezza report diagnostici — come i debug log di TMS — senza incollarli in una issue pubblica su GitHub.",
+  "logdrop.f1.t": "Caricamenti senza account.",
+  "logdrop.f1.b": "Chiunque può caricare testo o un file .txt — nessuna registrazione, nessun attrito.",
+  "logdrop.f2.t": "Lettura via magic-link.",
+  "logdrop.f2.b": "Solo le email dei manutentori in lista possono rileggere un caricamento, con login senza password.",
+  "logdrop.f3.t": "Scadenza automatica.",
+  "logdrop.f3.b": "I caricamenti vengono eliminati dopo una finestra di conservazione configurabile — niente resta appeso.",
+  "logdrop.cta.open": "Apri logdrop",
 
   "card.cws": "// Chrome Web Store",
   "card.users": "Utenti",
@@ -268,12 +291,13 @@ const it: Dict = {
     "Mantenuto da Marvellous Codeworks e da una community globale di sviluppatori. Forka, migliora o contribuisci sotto una licenza open source permissiva.",
 
   "footer.tagline":
-    "Un piccolo team e una community open source globale, per un browser sempre veloce e leggero.",
-  "footer.col.extensions": "Estensioni",
+    "Un piccolo team e una community open source globale, che sviluppa strumenti di precisione per il web professionale.",
+  "footer.col.extensions": "Prodotti",
   "footer.col.resources": "Risorse",
   "footer.col.community": "Community",
   "footer.link.tgd": "The Great-er Tab Discarder (TGD)",
   "footer.link.tms": "The Marvellous Suspender (TMS)",
+  "footer.link.logdrop": "logdrop",
   "footer.link.docs": "Documentazione",
   "footer.link.blog": "Blog",
   "footer.link.rss": "Feed RSS",
@@ -304,8 +328,10 @@ const it: Dict = {
   "blog.loading": "Caricamento articoli…",
   "blog.empty": "Nessun articolo per ora.",
 
-  "product.back": "← Tutte le estensioni",
+  "product.back": "← Tutti i prodotti",
   "product.features": "// Caratteristiche principali",
+  "product.learnMore": "Scopri di più",
+  "home.moreTools": "Altri strumenti",
   "blog.section.about": "// Dal blog su {name}",
 
   "report.form.heading": "Segnala un bug o richiedi una funzionalità",

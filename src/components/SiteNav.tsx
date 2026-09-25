@@ -19,7 +19,7 @@ export function SiteNav({ extensionsHref = "/#extensions" }: SiteNavProps) {
     <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between gap-4">
         <a href="/" className="flex items-center gap-3 min-w-0">
-          <img src={logo} alt="Marvellous Codeworks" className="h-7 w-auto" />
+          <img src={logo} alt="" className="h-7 w-auto" />
           <span className="font-mono text-sm font-bold tracking-tighter uppercase truncate">
             Marvellous Codeworks
           </span>

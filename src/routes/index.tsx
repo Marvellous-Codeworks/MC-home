@@ -10,6 +10,7 @@ import { getExtensionStats } from "@/lib/extension-stats.functions";
 import { getGithubStats } from "@/lib/github-stats.functions";
 import { useI18n } from "@/lib/i18n";
 import heroChrome from "@/assets/hero-chrome-opt.webp";
+import logdropIcon from "@/assets/logdrop-icon.svg";
 
 import tgdChromeLight from "@/assets/tgd-chrome-light.png";
 import tgdChromeDark from "@/assets/tgd-chrome-dark.png";
@@ -51,17 +52,17 @@ export const Route = createFileRoute("/")({
       },
     ],
     meta: [
-      { title: "Marvellous Codeworks — Precision Chromium Extensions" },
+      { title: "Marvellous Codeworks — Precision Tools for the Web" },
       {
         name: "description",
         content:
-          "Marvellous Codeworks ships The Great-er Tab Discarder and The Marvellous Suspender — open-source Chromium extensions that reclaim browser memory without slowing you down.",
+          "Marvellous Codeworks ships The Great-er Tab Discarder and The Marvellous Suspender — open-source Chromium extensions that reclaim browser memory — plus logdrop, a self-hostable plain-text drop-off.",
       },
-      { property: "og:title", content: "Marvellous Codeworks — Precision Chromium Extensions" },
+      { property: "og:title", content: "Marvellous Codeworks — Precision Tools for the Web" },
       {
         property: "og:description",
         content:
-          "Open-source browser extensions engineered for memory efficiency. Discard or suspend inactive tabs without losing your session.",
+          "Open-source software for the professional web: memory-efficient Chromium extensions, plus self-hostable utilities like logdrop.",
       },
       { property: "og:type", content: "website" },
     ],
@@ -129,15 +130,6 @@ function Index() {
 
           {/* Text — z-10 to sit above the mascot layer */}
           <div className="relative z-10 animate-reveal [animation-delay:100ms]">
-            <div className="inline-flex items-center gap-2 px-2 py-1 rounded border border-primary/20 bg-primary/5 mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-              </span>
-              <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
-                {t("hero.badge")}
-              </span>
-            </div>
             <h1 className="text-5xl md:text-7xl font-mono font-extrabold tracking-tight text-balance leading-[0.9] max-w-4xl">
               {t("hero.title.a")}
               <span className="text-primary">{t("hero.title.b")}</span>
@@ -172,6 +164,7 @@ function Index() {
         />
       </header>
 
+      <main>
       {/* Blog carousel */}
       <section className="max-w-6xl mx-auto px-6 py-24 border-t border-border">
         <div className="flex items-baseline justify-between gap-4 mb-10">
@@ -255,7 +248,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Trust signals */}
+      {/* Trust signals — extension-specific, keep it right under the extension showcase */}
       <section className="max-w-6xl mx-auto px-6 py-24 border-t border-border">
         <div className="grid md:grid-cols-3 gap-12">
           {[
@@ -276,6 +269,38 @@ function Index() {
           ))}
         </div>
       </section>
+
+      {/* Other products */}
+      <section className="max-w-6xl mx-auto px-6 pb-24 border-t border-border">
+        <div className="mb-10 pt-24">
+          <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
+            {"// "}
+            {t("home.moreTools")}
+          </h2>
+        </div>
+        <div className="border border-border p-8 lg:p-12 flex flex-col md:flex-row md:items-center gap-8">
+          <div className="flex-1 space-y-3">
+            <img src={logdropIcon} alt="" className="h-10 w-10 rounded-[6px]" />
+            <h3 className="text-2xl font-mono font-bold tracking-tight">
+              <a href="/logdrop" className="hover:text-primary transition-colors">
+                {t("logdrop.name")}
+              </a>
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-prose">
+              {t("logdrop.description")}
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 shrink-0 md:min-w-[200px]">
+            <a
+              href="/logdrop"
+              className="h-11 px-6 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-foreground transition-colors rounded-sm"
+            >
+              {t("product.learnMore")}
+            </a>
+          </div>
+        </div>
+      </section>
+      </main>
 
       <SiteFooter />
     </div>

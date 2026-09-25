@@ -22,6 +22,9 @@ docs/
 # Subagent-driven-development scratch (ledger, briefs, review packages)
 .superpowers/
 
+# Agent skills installed locally (e.g. modern-web-guidance) — not project content
+.agents/
+
 # Vercel
 .vercel/
 

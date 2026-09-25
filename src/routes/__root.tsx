@@ -84,14 +84,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Marvellous Codeworks — open-source Chromium extensions for browser memory efficiency.",
+          "Marvellous Codeworks — open-source software for the professional web, from Chromium extensions to self-hostable utilities.",
       },
       { name: "author", content: "Marvellous Codeworks" },
       { property: "og:title", content: "Marvellous Codeworks" },
       {
         property: "og:description",
         content:
-          "Open-source Chromium extensions that reclaim browser memory without slowing you down.",
+          "Open-source software for the professional web, from Chromium extensions to self-hostable utilities.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
