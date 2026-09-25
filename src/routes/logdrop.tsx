@@ -3,11 +3,23 @@ import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { ScreenshotGallery } from "@/components/ScreenshotGallery";
 import { getGithubStats } from "@/lib/github-stats.functions";
 import { getLogdropVersion } from "@/lib/logdrop-version.functions";
 import { useI18n } from "@/lib/i18n";
 import { UploadCloud, KeyRound, Timer, type LucideIcon } from "lucide-react";
 import logdropIcon from "@/assets/logdrop-icon.svg";
+import logdropUpload from "@/assets/logdrop-upload.webp";
+import logdropAdminLogin from "@/assets/logdrop-admin-login.webp";
+import logdropAdminDashboard from "@/assets/logdrop-admin-dashboard.webp";
+import logdropPasteView from "@/assets/logdrop-paste-view.webp";
+
+const SLIDES = [
+  { src: logdropUpload, alt: "logdrop — public upload form" },
+  { src: logdropAdminDashboard, alt: "logdrop — admin dashboard" },
+  { src: logdropAdminLogin, alt: "logdrop — admin sign-in" },
+  { src: logdropPasteView, alt: "logdrop — single paste view" },
+];
 
 const LOGDROP_URL = "https://logdrop.marvellouscode.works";
 const LOGDROP_REPO = { owner: "Marvellous-Codeworks", repo: "logdrop" } as const;
@@ -157,6 +169,14 @@ function LogdropPage() {
               />
             </div>
           </div>
+        </div>
+
+        {/* Screenshot gallery */}
+        <div>
+          <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest mb-6">
+            // Screenshots
+          </h2>
+          <ScreenshotGallery slides={SLIDES} />
         </div>
 
         {/* Features */}
