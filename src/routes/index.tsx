@@ -52,17 +52,17 @@ export const Route = createFileRoute("/")({
       },
     ],
     meta: [
-      { title: "Marvellous Codeworks — Precision Chromium Extensions" },
+      { title: "Marvellous Codeworks — Precision Tools for the Web" },
       {
         name: "description",
         content:
-          "Marvellous Codeworks ships The Great-er Tab Discarder and The Marvellous Suspender — open-source Chromium extensions that reclaim browser memory without slowing you down.",
+          "Marvellous Codeworks ships The Great-er Tab Discarder and The Marvellous Suspender — open-source Chromium extensions that reclaim browser memory — plus logdrop, a self-hostable plain-text drop-off.",
       },
-      { property: "og:title", content: "Marvellous Codeworks — Precision Chromium Extensions" },
+      { property: "og:title", content: "Marvellous Codeworks — Precision Tools for the Web" },
       {
         property: "og:description",
         content:
-          "Open-source browser extensions engineered for memory efficiency. Discard or suspend inactive tabs without losing your session.",
+          "Open-source software for the professional web: memory-efficient Chromium extensions, plus self-hostable utilities like logdrop.",
       },
       { property: "og:type", content: "website" },
     ],
