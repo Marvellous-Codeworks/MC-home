@@ -5,7 +5,6 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ScreenshotGallery } from "@/components/ScreenshotGallery";
 import { getGithubStats } from "@/lib/github-stats.functions";
-import { getLogdropVersion } from "@/lib/logdrop-version.functions";
 import { useI18n } from "@/lib/i18n";
 import { UploadCloud, KeyRound, Timer, type LucideIcon } from "lucide-react";
 import logdropIcon from "@/assets/logdrop-icon.svg";
@@ -72,16 +71,10 @@ function Stat({ label, value, loading }: { label: string; value: string; loading
 function LogdropPage() {
   const { t } = useI18n();
   const fetchGithub = useServerFn(getGithubStats);
-  const fetchVersion = useServerFn(getLogdropVersion);
 
   const github = useQuery({
     queryKey: ["gh-stats", LOGDROP_REPO.owner, LOGDROP_REPO.repo],
     queryFn: () => fetchGithub({ data: LOGDROP_REPO }),
-    staleTime: 1000 * 60 * 60,
-  });
-  const version = useQuery({
-    queryKey: ["logdrop-version"],
-    queryFn: () => fetchVersion(),
     staleTime: 1000 * 60 * 60,
   });
 
@@ -166,8 +159,8 @@ function LogdropPage() {
             <div className="pl-6">
               <Stat
                 label={t("card.release")}
-                value={version.data ? `v${version.data}` : "—"}
-                loading={version.isLoading && !version.data}
+                value={github.data?.latestRelease ?? "—"}
+                loading={github.isLoading && !github.data}
               />
             </div>
           </div>
