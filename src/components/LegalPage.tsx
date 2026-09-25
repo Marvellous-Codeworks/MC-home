@@ -60,7 +60,7 @@ export function LegalPage({ content }: { content: LegalContent }) {
         </div>
 
         <div className="border-t border-border pt-8">
-          <p className="font-mono text-[10px] text-muted-foreground/60 uppercase tracking-widest">
+          <p className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">
             {locale === "it"
               ? `Ultimo aggiornamento: ${effectiveDate} · Giovanni Solone ("Marvellous Codeworks")`
               : `Last updated: ${effectiveDate} · Giovanni Solone ("Marvellous Codeworks")`}

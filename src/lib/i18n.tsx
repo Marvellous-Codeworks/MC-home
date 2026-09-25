@@ -5,7 +5,7 @@ export type Locale = "en" | "it";
 type Dict = Record<string, string>;
 
 const en: Dict = {
-  "nav.extensions": "Extensions",
+  "nav.extensions": "Products",
   "nav.docs": "Docs",
   "nav.blog": "Blog",
   "nav.github": "GitHub",
@@ -129,8 +129,10 @@ const en: Dict = {
   "blog.loading": "Loading posts…",
   "blog.empty": "No posts yet.",
 
-  "product.back": "← All Extensions",
+  "product.back": "← All Products",
   "product.features": "// Key Features",
+  "product.learnMore": "Learn More",
+  "home.moreTools": "More tools",
   "blog.section.about": "// Latest from the blog about {name}",
 
   "report.form.heading": "Report a bug or request a feature",
@@ -204,7 +206,7 @@ const en: Dict = {
 };
 
 const it: Dict = {
-  "nav.extensions": "Estensioni",
+  "nav.extensions": "Prodotti",
   "nav.docs": "Documentazione",
   "nav.blog": "Blog",
   "nav.github": "GitHub",
@@ -328,8 +330,10 @@ const it: Dict = {
   "blog.loading": "Caricamento articoli…",
   "blog.empty": "Nessun articolo per ora.",
 
-  "product.back": "← Tutte le estensioni",
+  "product.back": "← Tutti i prodotti",
   "product.features": "// Caratteristiche principali",
+  "product.learnMore": "Scopri di più",
+  "home.moreTools": "Altri strumenti",
   "blog.section.about": "// Dal blog su {name}",
 
   "report.form.heading": "Segnala un bug o richiedi una funzionalità",

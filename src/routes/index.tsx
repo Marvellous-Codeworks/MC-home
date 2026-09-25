@@ -246,6 +246,41 @@ function Index() {
         </div>
       </section>
 
+      {/* Other products */}
+      <section className="max-w-6xl mx-auto px-6 pb-24">
+        <div className="mb-10">
+          <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
+            {"// "}
+            {t("home.moreTools")}
+          </h2>
+        </div>
+        <div className="border border-border p-8 lg:p-12 flex flex-col md:flex-row md:items-center gap-8">
+          <div className="flex-1 space-y-3">
+            <div className="inline-flex items-center gap-2 px-2 py-1 border border-primary/20 bg-primary/5">
+              <span className="font-mono text-[9px] uppercase tracking-widest text-primary">
+                {t("logdrop.tagline")}
+              </span>
+            </div>
+            <h3 className="text-2xl font-mono font-bold tracking-tight">
+              <a href="/logdrop" className="hover:text-primary transition-colors">
+                {t("logdrop.name")}
+              </a>
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-prose">
+              {t("logdrop.description")}
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 shrink-0 md:min-w-[200px]">
+            <a
+              href="/logdrop"
+              className="h-11 px-6 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-foreground transition-colors rounded-sm"
+            >
+              {t("product.learnMore")}
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Trust signals */}
       <section className="max-w-6xl mx-auto px-6 py-24 border-t border-border">
         <div className="grid md:grid-cols-3 gap-12">

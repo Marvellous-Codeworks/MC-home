@@ -18,7 +18,7 @@ function FooterCol({
 }) {
   return (
     <div className="space-y-4">
-      <h4 className="font-mono text-[10px] uppercase tracking-widest text-foreground">{title}</h4>
+      <h3 className="font-mono text-[10px] uppercase tracking-widest text-foreground">{title}</h3>
       <ul className="space-y-2">
         {links.map((l) => (
           <li key={l.label}>
@@ -44,7 +44,7 @@ export function SiteFooter() {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
         <div className="space-y-6">
           <div className="flex items-center gap-2">
-            <img src={logo} alt="Marvellous Codeworks" className="h-4 w-auto" />
+            <img src={logo} alt="" className="h-4 w-auto" />
             <span className="font-mono text-xs font-bold tracking-tighter uppercase">
               Marvellous Codeworks
             </span>
@@ -90,7 +90,7 @@ export function SiteFooter() {
         <span className="font-mono text-[10px] text-muted-foreground uppercase">
           © {new Date().getFullYear()} Marvellous Codeworks
         </span>
-        <p className="font-mono text-[10px] text-muted-foreground/60 leading-relaxed max-w-4xl">
+        <p className="font-mono text-[10px] text-muted-foreground leading-relaxed max-w-4xl">
           {t("footer.copyright")}
         </p>
       </div>

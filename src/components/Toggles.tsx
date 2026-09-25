@@ -48,7 +48,6 @@ export function LanguageToggle() {
     <button
       type="button"
       onClick={() => setLocale(next)}
-      aria-label={t("lang.label")}
       title={t("lang.label")}
       className="inline-flex items-center gap-1.5 h-7 px-2 rounded-sm border border-border bg-card font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
     >
