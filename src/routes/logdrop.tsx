@@ -10,14 +10,16 @@ import { useI18n } from "@/lib/i18n";
 import { UploadCloud, KeyRound, Timer, type LucideIcon } from "lucide-react";
 import logdropIcon from "@/assets/logdrop-icon.svg";
 import logdropUploadFilled from "@/assets/logdrop-upload-filled.webp";
+import logdropUploadResult from "@/assets/logdrop-upload-result.webp";
 import logdropAdminLogin from "@/assets/logdrop-admin-login.webp";
 import logdropAdminDashboard from "@/assets/logdrop-admin-dashboard.webp";
 import logdropPasteView from "@/assets/logdrop-paste-view.webp";
 
 const SLIDES = [
   { src: logdropUploadFilled, alt: "logdrop — uploading a log, ready to submit" },
-  { src: logdropAdminDashboard, alt: "logdrop — admin dashboard" },
+  { src: logdropUploadResult, alt: "logdrop — link ready after upload" },
   { src: logdropAdminLogin, alt: "logdrop — admin sign-in" },
+  { src: logdropAdminDashboard, alt: "logdrop — admin dashboard" },
   { src: logdropPasteView, alt: "logdrop — single paste view" },
 ];
 
