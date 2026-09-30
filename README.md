@@ -12,15 +12,15 @@ Documentation for every project lives in the knowledge base at [kb.marvellouscod
 
 ## Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | [TanStack Start](https://tanstack.com/start) + [TanStack Router](https://tanstack.com/router) (file-based routing) |
-| UI | React 19, [shadcn/ui](https://ui.shadcn.com/) (Radix UI primitives), Tailwind CSS v4 |
-| Data fetching | TanStack Query, server functions |
-| Markdown | react-markdown + remark-gfm (GitHub release notes) |
-| Runtime | [Bun](https://bun.sh/) |
-| Build | Vite 8 |
-| Language | TypeScript |
+| Layer         | Technology                                                                                                         |
+| ------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Framework     | [TanStack Start](https://tanstack.com/start) + [TanStack Router](https://tanstack.com/router) (file-based routing) |
+| UI            | React 19, [shadcn/ui](https://ui.shadcn.com/) (Radix UI primitives), Tailwind CSS v4                               |
+| Data fetching | TanStack Query, server functions                                                                                   |
+| Markdown      | react-markdown + remark-gfm (GitHub release notes)                                                                 |
+| Runtime       | [Bun](https://bun.sh/)                                                                                             |
+| Build         | Vite 8                                                                                                             |
+| Language      | TypeScript                                                                                                         |
 
 ## Getting started
 

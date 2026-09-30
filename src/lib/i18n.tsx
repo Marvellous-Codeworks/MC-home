@@ -43,7 +43,8 @@ const en: Dict = {
   "logdrop.f1.t": "No account uploads.",
   "logdrop.f1.b": "Anyone can drop off text or a .txt file — no sign-up, no friction.",
   "logdrop.f2.t": "Magic-link reads.",
-  "logdrop.f2.b": "Only allow-listed maintainer emails can read an upload back, via a passwordless login.",
+  "logdrop.f2.b":
+    "Only allow-listed maintainer emails can read an upload back, via a passwordless login.",
   "logdrop.f3.t": "Automatic expiry.",
   "logdrop.f3.b": "Uploads are deleted after a configurable retention window — nothing lingers.",
   "logdrop.cta.open": "Open logdrop",
@@ -244,11 +245,14 @@ const it: Dict = {
   "logdrop.description":
     "Un drop-off di testo generico, autospitabile, in stile PrivateBin: chiunque può caricare testo o un file .txt senza account; solo i manutentori in una lista consentita possono rileggerlo, tramite login con magic-link. Pensato per raccogliere in sicurezza report diagnostici — come i debug log di TMS — senza incollarli in una issue pubblica su GitHub.",
   "logdrop.f1.t": "Caricamenti senza account.",
-  "logdrop.f1.b": "Chiunque può caricare testo o un file .txt — nessuna registrazione, nessun attrito.",
+  "logdrop.f1.b":
+    "Chiunque può caricare testo o un file .txt — nessuna registrazione, nessun attrito.",
   "logdrop.f2.t": "Lettura via magic-link.",
-  "logdrop.f2.b": "Solo le email dei manutentori in lista possono rileggere un caricamento, con login senza password.",
+  "logdrop.f2.b":
+    "Solo le email dei manutentori in lista possono rileggere un caricamento, con login senza password.",
   "logdrop.f3.t": "Scadenza automatica.",
-  "logdrop.f3.b": "I caricamenti vengono eliminati dopo una finestra di conservazione configurabile — niente resta appeso.",
+  "logdrop.f3.b":
+    "I caricamenti vengono eliminati dopo una finestra di conservazione configurabile — niente resta appeso.",
   "logdrop.cta.open": "Apri logdrop",
   "logdrop.cta.docs": "Documentazione",
 
@@ -374,7 +378,8 @@ const it: Dict = {
   "report.form.diagnosticHint":
     "Per bug intermittenti o difficili da riprodurre, un report di debug aiuta molto.",
   "report.form.diagnosticHint.link": "Come ottenerlo",
-  "report.form.diagnosticHint.privacy": "Può contenere titoli/URL delle tue schede, quindi caricalo su",
+  "report.form.diagnosticHint.privacy":
+    "Può contenere titoli/URL delle tue schede, quindi caricalo su",
   "report.form.diagnosticHint.logdropLink": "logdrop",
   "report.form.diagnosticHint.privacySuffix": "invece di incollarlo nell'issue.",
   "report.form.email": "Email",

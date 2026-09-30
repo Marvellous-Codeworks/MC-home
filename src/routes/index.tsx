@@ -165,141 +165,141 @@ function Index() {
       </header>
 
       <main>
-      {/* Blog carousel */}
-      <section className="max-w-6xl mx-auto px-6 py-24 border-t border-border">
-        <div className="flex items-baseline justify-between gap-4 mb-10">
-          <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
-            {t("blog.section")}
-          </h2>
-          <a
-            href={BLOG_URL}
-            className="font-mono text-[10px] text-muted-foreground hover:text-primary transition-colors"
-          >
-            {t("blog.cta.all")}
-          </a>
-        </div>
-        <BlogCarousel />
-      </section>
-
-      {/* Dual showcase */}
-      <section
-        id="extensions"
-        className="scroll-mt-24 max-w-6xl mx-auto px-6 pb-24 border-t border-border"
-      >
-        <div className="mb-10 pt-24">
-          <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
-            {"// "}
-            {t("nav.extensions")}
-          </h2>
-        </div>
-        <div className="grid lg:grid-cols-2 lg:[grid-template-rows:repeat(6,auto)] gap-x-px bg-border border border-border overflow-hidden">
-          <ProductCard
-            name={t("tgd.name")}
-            description={t("tgd.description")}
-            features={tgdFeatures}
-            preview={
-              <ScreenshotCarousel
-                slides={[
-                  { src: tgdChromeLight, alt: "The Great-er Tab Discarder — Chrome (light)" },
-                  { src: tgdChromeDark, alt: "The Great-er Tab Discarder — Chrome (dark)" },
-                  { src: tgdPopupLight, alt: "The Great-er Tab Discarder — Popup (light)" },
-                  { src: tgdPopupDark, alt: "The Great-er Tab Discarder — Popup (dark)" },
-                  { src: tgdOptionsLight, alt: "The Great-er Tab Discarder — Options (light)" },
-                  { src: tgdOptionsDark, alt: "The Great-er Tab Discarder — Options (dark)" },
-                ]}
-              />
-            }
-            storeUrl={TGD_STORE_URL}
-            edgeUrl={TGD_EDGE_URL}
-            sourceUrl={`https://github.com/${TGD_REPO.owner}/${TGD_REPO.repo}`}
-            pageUrl="/tgd"
-            stats={tgdStats.data}
-            statsLoading={tgdStats.isLoading}
-            github={tgdGithub.data}
-            githubLoading={tgdGithub.isLoading}
-            delay={200}
-          />
-          <ProductCard
-            name={t("tms.name")}
-            description={t("tms.description")}
-            features={tmsFeatures}
-            preview={
-              <ScreenshotCarousel
-                slides={[
-                  { src: tmsGoogle, alt: "The Marvellous Suspender — Google (light)" },
-                  { src: tmsQuickActions, alt: "The Marvellous Suspender — Quick actions" },
-                  { src: tmsSuspend, alt: "The Marvellous Suspender — Suspended tab" },
-                  { src: tmsSettings, alt: "The Marvellous Suspender — Settings" },
-                  { src: tmsSession, alt: "The Marvellous Suspender — Session management" },
-                  { src: tmsAbout, alt: "The Marvellous Suspender — About" },
-                  { src: tmsKeyboard, alt: "The Marvellous Suspender — Keyboard shortcuts" },
-                ]}
-              />
-            }
-            storeUrl={TMS_STORE_URL}
-            sourceUrl={`https://github.com/${TMS_REPO.owner}/${TMS_REPO.repo}`}
-            pageUrl="/tms"
-            stats={tmsStats.data}
-            statsLoading={tmsStats.isLoading}
-            github={tmsGithub.data}
-            githubLoading={tmsGithub.isLoading}
-            delay={300}
-          />
-        </div>
-      </section>
-
-      {/* Trust signals — extension-specific, keep it right under the extension showcase */}
-      <section className="max-w-6xl mx-auto px-6 py-24 border-t border-border">
-        <div className="grid md:grid-cols-3 gap-12">
-          {[
-            { n: "01", t: t("trust.01.t"), b: t("trust.01.b") },
-            { n: "02", t: t("trust.02.t"), b: t("trust.02.b") },
-            { n: "03", t: t("trust.03.t"), b: t("trust.03.b") },
-          ].map((p, i) => (
-            <div
-              key={p.n}
-              className="animate-reveal"
-              style={{ animationDelay: `${400 + i * 50}ms` }}
-            >
-              <h3 className="font-mono text-xs font-bold text-primary uppercase tracking-widest mb-4">
-                {p.n} // {p.t}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{p.b}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Other products */}
-      <section className="max-w-6xl mx-auto px-6 pb-24 border-t border-border">
-        <div className="mb-10 pt-24">
-          <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
-            {"// "}
-            {t("home.moreTools")}
-          </h2>
-        </div>
-        <div className="border border-border p-8 lg:p-12 flex flex-col md:flex-row md:items-center gap-8">
-          <div className="flex-1 space-y-3">
-            <img src={logdropIcon} alt="" className="h-10 w-10 rounded-[6px]" />
-            <h3 className="text-2xl font-mono font-bold tracking-tight">
-              <a href="/logdrop" className="hover:text-primary transition-colors">
-                {t("logdrop.name")}
-              </a>
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-prose">
-              {t("logdrop.description")}
-            </p>
-          </div>
-          <div className="flex flex-col gap-3 shrink-0 md:min-w-[200px]">
+        {/* Blog carousel */}
+        <section className="max-w-6xl mx-auto px-6 py-24 border-t border-border">
+          <div className="flex items-baseline justify-between gap-4 mb-10">
+            <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
+              {t("blog.section")}
+            </h2>
             <a
-              href="/logdrop"
-              className="h-11 px-6 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-foreground transition-colors rounded-sm"
+              href={BLOG_URL}
+              className="font-mono text-[10px] text-muted-foreground hover:text-primary transition-colors"
             >
-              {t("product.learnMore")}
+              {t("blog.cta.all")}
             </a>
           </div>
-        </div>
-      </section>
+          <BlogCarousel />
+        </section>
+
+        {/* Dual showcase */}
+        <section
+          id="extensions"
+          className="scroll-mt-24 max-w-6xl mx-auto px-6 pb-24 border-t border-border"
+        >
+          <div className="mb-10 pt-24">
+            <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
+              {"// "}
+              {t("nav.extensions")}
+            </h2>
+          </div>
+          <div className="grid lg:grid-cols-2 lg:[grid-template-rows:repeat(6,auto)] gap-x-px bg-border border border-border overflow-hidden">
+            <ProductCard
+              name={t("tgd.name")}
+              description={t("tgd.description")}
+              features={tgdFeatures}
+              preview={
+                <ScreenshotCarousel
+                  slides={[
+                    { src: tgdChromeLight, alt: "The Great-er Tab Discarder — Chrome (light)" },
+                    { src: tgdChromeDark, alt: "The Great-er Tab Discarder — Chrome (dark)" },
+                    { src: tgdPopupLight, alt: "The Great-er Tab Discarder — Popup (light)" },
+                    { src: tgdPopupDark, alt: "The Great-er Tab Discarder — Popup (dark)" },
+                    { src: tgdOptionsLight, alt: "The Great-er Tab Discarder — Options (light)" },
+                    { src: tgdOptionsDark, alt: "The Great-er Tab Discarder — Options (dark)" },
+                  ]}
+                />
+              }
+              storeUrl={TGD_STORE_URL}
+              edgeUrl={TGD_EDGE_URL}
+              sourceUrl={`https://github.com/${TGD_REPO.owner}/${TGD_REPO.repo}`}
+              pageUrl="/tgd"
+              stats={tgdStats.data}
+              statsLoading={tgdStats.isLoading}
+              github={tgdGithub.data}
+              githubLoading={tgdGithub.isLoading}
+              delay={200}
+            />
+            <ProductCard
+              name={t("tms.name")}
+              description={t("tms.description")}
+              features={tmsFeatures}
+              preview={
+                <ScreenshotCarousel
+                  slides={[
+                    { src: tmsGoogle, alt: "The Marvellous Suspender — Google (light)" },
+                    { src: tmsQuickActions, alt: "The Marvellous Suspender — Quick actions" },
+                    { src: tmsSuspend, alt: "The Marvellous Suspender — Suspended tab" },
+                    { src: tmsSettings, alt: "The Marvellous Suspender — Settings" },
+                    { src: tmsSession, alt: "The Marvellous Suspender — Session management" },
+                    { src: tmsAbout, alt: "The Marvellous Suspender — About" },
+                    { src: tmsKeyboard, alt: "The Marvellous Suspender — Keyboard shortcuts" },
+                  ]}
+                />
+              }
+              storeUrl={TMS_STORE_URL}
+              sourceUrl={`https://github.com/${TMS_REPO.owner}/${TMS_REPO.repo}`}
+              pageUrl="/tms"
+              stats={tmsStats.data}
+              statsLoading={tmsStats.isLoading}
+              github={tmsGithub.data}
+              githubLoading={tmsGithub.isLoading}
+              delay={300}
+            />
+          </div>
+        </section>
+
+        {/* Trust signals — extension-specific, keep it right under the extension showcase */}
+        <section className="max-w-6xl mx-auto px-6 py-24 border-t border-border">
+          <div className="grid md:grid-cols-3 gap-12">
+            {[
+              { n: "01", t: t("trust.01.t"), b: t("trust.01.b") },
+              { n: "02", t: t("trust.02.t"), b: t("trust.02.b") },
+              { n: "03", t: t("trust.03.t"), b: t("trust.03.b") },
+            ].map((p, i) => (
+              <div
+                key={p.n}
+                className="animate-reveal"
+                style={{ animationDelay: `${400 + i * 50}ms` }}
+              >
+                <h3 className="font-mono text-xs font-bold text-primary uppercase tracking-widest mb-4">
+                  {p.n} // {p.t}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{p.b}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Other products */}
+        <section className="max-w-6xl mx-auto px-6 pb-24 border-t border-border">
+          <div className="mb-10 pt-24">
+            <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
+              {"// "}
+              {t("home.moreTools")}
+            </h2>
+          </div>
+          <div className="border border-border p-8 lg:p-12 flex flex-col md:flex-row md:items-center gap-8">
+            <div className="flex-1 space-y-3">
+              <img src={logdropIcon} alt="" className="h-10 w-10 rounded-[6px]" />
+              <h3 className="text-2xl font-mono font-bold tracking-tight">
+                <a href="/logdrop" className="hover:text-primary transition-colors">
+                  {t("logdrop.name")}
+                </a>
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-prose">
+                {t("logdrop.description")}
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 shrink-0 md:min-w-[200px]">
+              <a
+                href="/logdrop"
+                className="h-11 px-6 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-foreground transition-colors rounded-sm"
+              >
+                {t("product.learnMore")}
+              </a>
+            </div>
+          </div>
+        </section>
       </main>
 
       <SiteFooter />
