@@ -75,11 +75,13 @@ export function BlogCarousel() {
   return (
     <div className="relative">
       <div ref={emblaRef} className="overflow-hidden">
-        <div className="flex gap-6">
+        {/* Spacing via slide padding, not `gap`: Embla's loop doesn't account for
+            flex gap, so the last and first slides would touch at the wrap point. */}
+        <div className="flex -ml-6">
           {posts.map((post) => (
             <div
               key={post.id}
-              className="min-w-0 shrink-0 grow-0 basis-[85%] sm:basis-[45%] lg:basis-[31%]"
+              className="min-w-0 shrink-0 grow-0 pl-6 basis-[85%] sm:basis-[45%] lg:basis-[31%]"
             >
               <BlogPostCard post={post} readLabel={t("blog.cta.read")} />
             </div>
