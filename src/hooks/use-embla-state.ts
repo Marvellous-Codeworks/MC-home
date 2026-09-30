@@ -5,17 +5,29 @@ type EmblaCarouselType = NonNullable<UseEmblaCarouselType[1]>;
 
 export interface EmblaState {
   selected: number;
+  /** Number of scroll snaps (one per reachable position, e.g. for dot indicators). */
+  snapCount: number;
   canScrollPrev: boolean;
   canScrollNext: boolean;
 }
 
-const INITIAL: EmblaState = { selected: 0, canScrollPrev: false, canScrollNext: false };
+const INITIAL: EmblaState = {
+  selected: 0,
+  snapCount: 0,
+  canScrollPrev: false,
+  canScrollNext: false,
+};
 
 // Snapshots must be referentially stable, so the state is encoded as a string
 // and decoded outside the store.
 function encode(api: EmblaCarouselType | undefined): string {
-  if (!api) return "0|0|0";
-  return `${api.selectedScrollSnap()}|${api.canScrollPrev() ? 1 : 0}|${api.canScrollNext() ? 1 : 0}`;
+  if (!api) return "0|0|0|0";
+  return [
+    api.selectedScrollSnap(),
+    api.scrollSnapList().length,
+    api.canScrollPrev() ? 1 : 0,
+    api.canScrollNext() ? 1 : 0,
+  ].join("|");
 }
 
 /** Selected slide and prev/next availability of an Embla carousel, kept in sync with its events. */
@@ -38,6 +50,11 @@ export function useEmblaState(api: EmblaCarouselType | undefined): EmblaState {
     () => encode(undefined),
   );
   if (!api) return INITIAL;
-  const [selected, prev, next] = snapshot.split("|");
-  return { selected: Number(selected), canScrollPrev: prev === "1", canScrollNext: next === "1" };
+  const [selected, snapCount, prev, next] = snapshot.split("|");
+  return {
+    selected: Number(selected),
+    snapCount: Number(snapCount),
+    canScrollPrev: prev === "1",
+    canScrollNext: next === "1",
+  };
 }

@@ -55,12 +55,14 @@ export function BlogCarousel() {
     staleTime: STALE_MS,
   });
 
+  // Loop so "next" on the last post wraps to the first. Embla falls back to a
+  // non-looping carousel on its own when there are too few posts to loop.
   const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: false,
+    loop: true,
     align: "start",
     dragFree: true,
   });
-  const { selected: current, canScrollPrev, canScrollNext } = useEmblaState(emblaApi);
+  const { selected: current, snapCount, canScrollPrev, canScrollNext } = useEmblaState(emblaApi);
 
   if (isLoading) {
     return <p className="font-mono text-xs text-muted-foreground py-8">{t("blog.loading")}</p>;
@@ -120,9 +122,10 @@ export function BlogCarousel() {
           </button>
         </div>
 
-        {/* Dot indicators */}
+        {/* Dot indicators: one per reachable snap, not per post (without loop,
+            the last posts share a single snap once they all fit on screen) */}
         <div className="flex gap-1.5">
-          {posts.map((_, i) => (
+          {Array.from({ length: snapCount || posts.length }, (_, i) => (
             <button
               key={i}
               onClick={() => emblaApi?.scrollTo(i)}
