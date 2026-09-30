@@ -1,9 +1,14 @@
 # Marvellous Codeworks — Home
 
-Official website for [Marvellous Codeworks](https://github.com/Marvellous-Codeworks), home of two open-source Chromium extensions (for now! 🙃):
+Official website for [Marvellous Codeworks](https://github.com/Marvellous-Codeworks), a small team building open-source software, from Chromium extensions to self-hostable utilities. The site showcases the projects, pulls live stats from GitHub and the extension stores, surfaces the latest posts from the [blog](https://kb.marvellouscode.works/blog), and hosts the TMS bug-report flow.
 
-- **The Great-er Tab Discarder** — discards inactive tabs to reclaim memory
-- **The Marvellous Suspender** — suspends tabs with configurable rules and session management
+Projects currently featured:
+
+- **[The Great-er Tab Discarder](https://www.marvellouscode.works/tgd)**: Chromium extension that discards inactive tabs to reclaim memory
+- **[The Marvellous Suspender](https://www.marvellouscode.works/tms)**: Chromium extension that suspends tabs with configurable rules, session management and backups
+- **[logdrop](https://www.marvellouscode.works/logdrop)**: self-hostable, PrivateBin-style plain-text drop-off for sharing diagnostic reports privately
+
+Documentation for every project lives in the knowledge base at [kb.marvellouscode.works](https://kb.marvellouscode.works).
 
 ## Stack
 
@@ -12,6 +17,7 @@ Official website for [Marvellous Codeworks](https://github.com/Marvellous-Codewo
 | Framework | [TanStack Start](https://tanstack.com/start) + [TanStack Router](https://tanstack.com/router) (file-based routing) |
 | UI | React 19, [shadcn/ui](https://ui.shadcn.com/) (Radix UI primitives), Tailwind CSS v4 |
 | Data fetching | TanStack Query, server functions |
+| Markdown | react-markdown + remark-gfm (GitHub release notes) |
 | Runtime | [Bun](https://bun.sh/) |
 | Build | Vite 8 |
 | Language | TypeScript |
@@ -36,9 +42,11 @@ bun run format     # Prettier
 
 ```
 src/
-  routes/          # File-based routes (index.tsx → /, tgd.tsx → /tgd, tms.tsx → /tms)
-  components/      # Shared UI components
-  lib/             # Server functions (extension stats, GitHub stats) and i18n
+  routes/          # File-based routes: / (home), /tgd, /tms, /logdrop, TMS legal pages
+                   # and the /tms/report bug-report flow (+ /api/report endpoints)
+  components/      # Shared UI components (nav, footer, galleries, release notes, ...)
+  lib/             # Server functions (extension/GitHub stats and releases, blog posts,
+                   # bug reports) and i18n (EN/IT)
   assets/          # Images and static assets
   styles.css       # Global styles
 ```
