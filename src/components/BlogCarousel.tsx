@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import useEmblaCarousel from "embla-carousel-react";
+import { useEmblaState } from "@/hooks/use-embla-state";
 import { getBlogPosts, type BlogPost } from "@/lib/blog-posts.functions";
 import { useI18n } from "@/lib/i18n";
 
@@ -60,27 +60,7 @@ export function BlogCarousel() {
     align: "start",
     dragFree: true,
   });
-  const [current, setCurrent] = useState(0);
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
-
-  const updateState = useCallback(() => {
-    if (!emblaApi) return;
-    setCurrent(emblaApi.selectedScrollSnap());
-    setCanScrollPrev(emblaApi.canScrollPrev());
-    setCanScrollNext(emblaApi.canScrollNext());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    emblaApi.on("select", updateState);
-    emblaApi.on("reInit", updateState);
-    updateState();
-    return () => {
-      emblaApi.off("select", updateState);
-      emblaApi.off("reInit", updateState);
-    };
-  }, [emblaApi, updateState]);
+  const { selected: current, canScrollPrev, canScrollNext } = useEmblaState(emblaApi);
 
   if (isLoading) {
     return <p className="font-mono text-xs text-muted-foreground py-8">{t("blog.loading")}</p>;

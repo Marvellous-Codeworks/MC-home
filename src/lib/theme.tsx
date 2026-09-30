@@ -1,4 +1,6 @@
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, type ReactNode } from "react";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { createLocalStorageStore } from "./local-storage-store";
 
 export type ThemeChoice = "light" | "dark" | "system";
 
@@ -11,8 +13,8 @@ interface ThemeCtx {
 const Ctx = createContext<ThemeCtx | null>(null);
 const STORAGE_KEY = "mc.theme";
 
-function applyTheme(choice: ThemeChoice): "light" | "dark" {
-  if (typeof document === "undefined") return "light";
+function applyTheme(choice: ThemeChoice): void {
+  if (typeof document === "undefined") return;
   const prefersDark =
     typeof window !== "undefined" && window.matchMedia?.("(prefers-color-scheme: dark)").matches;
   const resolved: "light" | "dark" =
@@ -20,44 +22,30 @@ function applyTheme(choice: ThemeChoice): "light" | "dark" {
   const root = document.documentElement;
   root.classList.toggle("dark", resolved === "dark");
   root.style.colorScheme = resolved;
-  return resolved;
 }
 
+// Saved theme choice in localStorage; "system" on the server and during hydration.
+const themeStore = createLocalStorageStore<ThemeChoice>(
+  STORAGE_KEY,
+  (raw) => (raw === "light" || raw === "dark" || raw === "system" ? raw : "system"),
+  (t) => t,
+  "system",
+);
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<ThemeChoice>("system");
-  const [resolved, setResolved] = useState<"light" | "dark">("light");
+  const theme = themeStore.useValue();
+  const prefersDark = useMediaQuery("(prefers-color-scheme: dark)");
+  const resolved: "light" | "dark" = theme === "system" ? (prefersDark ? "dark" : "light") : theme;
 
+  // Sync the <html> class with the choice. Read the store directly rather than
+  // `resolved`: on the first client effect `resolved` may still hold the
+  // hydration (server) value, which would briefly undo the class already set
+  // by the inline init script in __root.
   useEffect(() => {
-    let initial: ThemeChoice = "system";
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY) as ThemeChoice | null;
-      if (saved === "light" || saved === "dark" || saved === "system") initial = saved;
-    } catch {
-      /* noop */
-    }
-    setThemeState(initial);
-    setResolved(applyTheme(initial));
-  }, []);
+    applyTheme(themeStore.get());
+  }, [theme, prefersDark]);
 
-  useEffect(() => {
-    if (theme !== "system" || typeof window === "undefined") return;
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const handler = () => setResolved(applyTheme("system"));
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, [theme]);
-
-  const setTheme = (t: ThemeChoice) => {
-    setThemeState(t);
-    setResolved(applyTheme(t));
-    try {
-      localStorage.setItem(STORAGE_KEY, t);
-    } catch {
-      /* noop */
-    }
-  };
-
-  const value = useMemo(() => ({ theme, setTheme, resolved }), [theme, resolved]);
+  const value = useMemo(() => ({ theme, setTheme: themeStore.set, resolved }), [theme, resolved]);
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
 

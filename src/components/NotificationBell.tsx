@@ -1,31 +1,32 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { Bell } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { getBlogNotifications, type BlogNotification } from "@/lib/blog-notifications.functions";
 import { useI18n } from "@/lib/i18n";
+import { createLocalStorageStore } from "@/lib/local-storage-store";
 
 const STORAGE_KEY = "mc.notif.read";
 const STALE_MS = 1000 * 60 * 30; // 30 minutes
 
-function loadReadIds(): Set<string> {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return new Set(JSON.parse(raw) as string[]);
-  } catch {
-    /* noop */
-  }
-  return new Set();
-}
+const EMPTY_IDS: ReadonlySet<string> = new Set();
 
-function saveReadIds(ids: Set<string>) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify([...ids]));
-  } catch {
-    /* noop */
-  }
-}
+// Read/unread state lives in localStorage; the store keeps it in sync across
+// components and tabs, and renders "nothing read" on the server.
+const readIdsStore = createLocalStorageStore<ReadonlySet<string>>(
+  STORAGE_KEY,
+  (raw) => {
+    try {
+      if (raw) return new Set(JSON.parse(raw) as string[]);
+    } catch {
+      /* noop */
+    }
+    return EMPTY_IDS;
+  },
+  (ids) => JSON.stringify([...ids]),
+  EMPTY_IDS,
+);
 
 function formatDate(dateStr: string): string {
   try {
@@ -39,7 +40,7 @@ function formatDate(dateStr: string): string {
 export function NotificationBell() {
   const { t } = useI18n();
   const fetchNotifs = useServerFn(getBlogNotifications);
-  const [readIds, setReadIds] = useState<Set<string>>(new Set());
+  const readIds = readIdsStore.useValue();
   const [open, setOpen] = useState(false);
 
   const { data: posts = [], isLoading } = useQuery<BlogNotification[]>({
@@ -48,26 +49,16 @@ export function NotificationBell() {
     staleTime: STALE_MS,
   });
 
-  // Load read state from localStorage after hydration
-  useEffect(() => {
-    setReadIds(loadReadIds());
-  }, []);
-
   const unreadCount = posts.filter((p) => !readIds.has(p.id)).length;
 
   const markRead = useCallback((id: string) => {
-    setReadIds((prev) => {
-      const next = new Set(prev);
-      next.add(id);
-      saveReadIds(next);
-      return next;
-    });
+    const next = new Set(readIdsStore.get());
+    next.add(id);
+    readIdsStore.set(next);
   }, []);
 
   const markAllRead = useCallback(() => {
-    const next = new Set(posts.map((p) => p.id));
-    setReadIds(next);
-    saveReadIds(next);
+    readIdsStore.set(new Set(posts.map((p) => p.id)));
   }, [posts]);
 
   return (

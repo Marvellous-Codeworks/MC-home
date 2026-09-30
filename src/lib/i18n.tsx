@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useContext, useMemo, type ReactNode } from "react";
+import { createLocalStorageStore } from "./local-storage-store";
 
 export type Locale = "en" | "it";
 
@@ -428,32 +429,22 @@ const Ctx = createContext<I18nCtx | null>(null);
 
 const STORAGE_KEY = "mc.locale";
 
+// Saved language in localStorage; English on the server and during hydration.
+const localeStore = createLocalStorageStore<Locale>(
+  STORAGE_KEY,
+  (raw) => (raw === "en" || raw === "it" ? raw : "en"),
+  (l) => l,
+  "en",
+);
+
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
-
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY) as Locale | null;
-      if (saved === "en" || saved === "it") setLocaleState(saved);
-    } catch {
-      /* noop */
-    }
-  }, []);
-
-  const setLocale = (l: Locale) => {
-    setLocaleState(l);
-    try {
-      localStorage.setItem(STORAGE_KEY, l);
-    } catch {
-      /* noop */
-    }
-  };
+  const locale = localeStore.useValue();
 
   const value = useMemo<I18nCtx>(() => {
     const dict = dicts[locale];
     return {
       locale,
-      setLocale,
+      setLocale: localeStore.set,
       t: (key, vars) => {
         let s = dict[key] ?? en[key] ?? key;
         if (vars) for (const [k, v] of Object.entries(vars)) s = s.replaceAll(`{${k}}`, String(v));
