@@ -5,8 +5,7 @@ const DOCS_URL = "https://kb.marvellouscode.works/";
 const BLOG_URL = "https://kb.marvellouscode.works/blog";
 const BLOG_RSS_URL = "https://kb.marvellouscode.works/blog/rss.xml";
 const GITHUB_URL = "https://github.com/Marvellous-Codeworks";
-const TGD_ISSUES_URL = "https://github.com/rkodey/the-great-er-discarder-er/issues";
-const TMS_ISSUES_URL = "https://github.com/gioxx/MarvellousSuspender/issues";
+const TGD_DISCUSSIONS_URL = "https://github.com/rkodey/the-great-er-discarder-er/discussions";
 const TMS_DISCUSSIONS_URL = "https://github.com/gioxx/MarvellousSuspender/discussions";
 
 function FooterCol({
@@ -69,14 +68,17 @@ export function SiteFooter() {
               { label: t("footer.link.docs"), href: DOCS_URL, external: true },
               { label: t("footer.link.blog"), href: BLOG_URL, external: true },
               { label: t("footer.link.rss"), href: BLOG_RSS_URL, external: true },
+              { label: t("footer.link.github"), href: GITHUB_URL, external: true },
             ]}
           />
           <FooterCol
             title={t("footer.col.community")}
             links={[
-              { label: t("footer.link.github"), href: GITHUB_URL, external: true },
-              { label: t("footer.link.issues.tgd"), href: TGD_ISSUES_URL, external: true },
-              { label: t("footer.link.issues.tms"), href: TMS_ISSUES_URL, external: true },
+              {
+                label: t("footer.link.discussions.tgd"),
+                href: TGD_DISCUSSIONS_URL,
+                external: true,
+              },
               {
                 label: t("footer.link.discussions.tms"),
                 href: TMS_DISCUSSIONS_URL,
