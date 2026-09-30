@@ -1,0 +1,13 @@
+# Always check out text files with LF line endings, on every OS and regardless
+# of the local core.autocrlf setting, so Prettier/ESLint never flag CRLF.
+* text=auto eol=lf
+
+# Binary assets: never touch line endings or try to diff them.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
