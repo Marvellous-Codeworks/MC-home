@@ -4,6 +4,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ScreenshotGallery } from "@/components/ScreenshotGallery";
+import { ReleaseNotes } from "@/components/ReleaseNotes";
 import { getGithubStats } from "@/lib/github-stats.functions";
 import { useI18n } from "@/lib/i18n";
 import { UploadCloud, KeyRound, Timer, type LucideIcon } from "lucide-react";
@@ -23,6 +24,7 @@ const SLIDES = [
 ];
 
 const LOGDROP_URL = "https://logdrop.marvellouscode.works";
+const LOGDROP_DOCS_URL = "https://kb.marvellouscode.works/docs/logdrop/overview";
 const LOGDROP_REPO = { owner: "Marvellous-Codeworks", repo: "logdrop" } as const;
 
 export const Route = createFileRoute("/logdrop")({
@@ -130,6 +132,14 @@ function LogdropPage() {
               >
                 {t("card.cta.source")}
               </a>
+              <a
+                href={LOGDROP_DOCS_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="h-11 px-6 border border-border font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
+              >
+                {t("logdrop.cta.docs")}
+              </a>
             </div>
           </div>
         </div>
@@ -199,6 +209,16 @@ function LogdropPage() {
             })}
           </ul>
         </div>
+
+        {/* Latest release notes, from the same GitHub release shown in the metrics box */}
+        {github.data?.latestRelease && github.data.latestReleaseBody && (
+          <ReleaseNotes
+            version={github.data.latestRelease}
+            body={github.data.latestReleaseBody}
+            publishedAt={github.data.latestReleaseAt}
+            url={github.data.latestReleaseUrl}
+          />
+        )}
       </main>
 
       <SiteFooter />

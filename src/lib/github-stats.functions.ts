@@ -6,6 +6,8 @@ export interface GithubStats {
   openIssues: number | null;
   latestRelease: string | null;
   latestReleaseAt: string | null;
+  latestReleaseBody: string | null; // release notes, GitHub-flavored Markdown
+  latestReleaseUrl: string | null;
   pushedAt: string | null;
   repoUrl: string;
   error?: string;
@@ -47,6 +49,8 @@ export const getGithubStats = createServerFn({ method: "GET" })
       openIssues: null,
       latestRelease: null,
       latestReleaseAt: null,
+      latestReleaseBody: null,
+      latestReleaseUrl: null,
       pushedAt: null,
       repoUrl,
     };
@@ -73,14 +77,20 @@ export const getGithubStats = createServerFn({ method: "GET" })
 
       let latestRelease: string | null = null;
       let latestReleaseAt: string | null = null;
+      let latestReleaseBody: string | null = null;
+      let latestReleaseUrl: string | null = null;
       if (relRes.ok) {
         const rel = (await relRes.json()) as {
           tag_name?: string;
           name?: string;
           published_at?: string;
+          body?: string;
+          html_url?: string;
         };
         latestRelease = rel.tag_name ?? rel.name ?? null;
         latestReleaseAt = rel.published_at ?? null;
+        latestReleaseBody = rel.body?.trim() || null;
+        latestReleaseUrl = rel.html_url ?? null;
       }
 
       const result: GithubStats = {
@@ -89,6 +99,8 @@ export const getGithubStats = createServerFn({ method: "GET" })
         openIssues: repo.open_issues_count ?? null,
         latestRelease,
         latestReleaseAt,
+        latestReleaseBody,
+        latestReleaseUrl,
         pushedAt: repo.pushed_at ?? null,
         repoUrl,
       };

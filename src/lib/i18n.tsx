@@ -47,6 +47,7 @@ const en: Dict = {
   "logdrop.f3.t": "Automatic expiry.",
   "logdrop.f3.b": "Uploads are deleted after a configurable retention window — nothing lingers.",
   "logdrop.cta.open": "Open logdrop",
+  "logdrop.cta.docs": "Documentation",
 
   "card.cws": "// Chrome Web Store",
   "card.users": "Users",
@@ -130,6 +131,9 @@ const en: Dict = {
   "product.back": "← All Products",
   "product.features": "// Key Features",
   "product.learnMore": "Learn More",
+  "product.changelog": "// What's new in {version}",
+  "product.changelog.released": "Released {date}",
+  "product.changelog.github": "View on GitHub",
   "home.moreTools": "More tools",
   "blog.section.about": "// Latest from the blog about {name}",
 
@@ -246,6 +250,7 @@ const it: Dict = {
   "logdrop.f3.t": "Scadenza automatica.",
   "logdrop.f3.b": "I caricamenti vengono eliminati dopo una finestra di conservazione configurabile — niente resta appeso.",
   "logdrop.cta.open": "Apri logdrop",
+  "logdrop.cta.docs": "Documentazione",
 
   "card.cws": "// Chrome Web Store",
   "card.users": "Utenti",
@@ -329,6 +334,9 @@ const it: Dict = {
   "product.back": "← Tutti i prodotti",
   "product.features": "// Caratteristiche principali",
   "product.learnMore": "Scopri di più",
+  "product.changelog": "// Novità della {version}",
+  "product.changelog.released": "Pubblicata il {date}",
+  "product.changelog.github": "Vedi su GitHub",
   "home.moreTools": "Altri strumenti",
   "blog.section.about": "// Dal blog su {name}",
 
