@@ -48,6 +48,9 @@ const en: Dict = {
     "Only allow-listed maintainer emails can read an upload back, via a passwordless login.",
   "logdrop.f3.t": "Automatic expiry.",
   "logdrop.f3.b": "Uploads are deleted after a configurable retention window — nothing lingers.",
+  "logdrop.f4.t": "Per-admin AI agent access.",
+  "logdrop.f4.b":
+    "Each maintainer generates a personal token from the dashboard so their own AI agent can read shared logs. Stored only as a hash, revocable anytime, and every read is attributed.",
   "logdrop.cta.open": "Open logdrop",
   "logdrop.cta.docs": "Documentation",
 
@@ -254,6 +257,9 @@ const it: Dict = {
   "logdrop.f3.t": "Scadenza automatica.",
   "logdrop.f3.b":
     "I caricamenti vengono eliminati dopo una finestra di conservazione configurabile — niente resta appeso.",
+  "logdrop.f4.t": "Accesso AI agent per ogni admin.",
+  "logdrop.f4.b":
+    "Ogni manutentore genera dalla dashboard un token personale con cui il proprio AI agent può leggere i log condivisi. Salvato solo come hash, revocabile in qualsiasi momento, e ogni lettura è attribuita.",
   "logdrop.cta.open": "Apri logdrop",
   "logdrop.cta.docs": "Documentazione",
 
