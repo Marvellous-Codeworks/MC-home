@@ -9,25 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TmsRouteImport } from './routes/tms'
-import { Route as TgdRouteImport } from './routes/tgd'
-import { Route as LogdropRouteImport } from './routes/logdrop'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as TmsTermsRouteImport } from './routes/tms_.terms'
-import { Route as TmsReportRouteImport } from './routes/tms_.report'
+import { Route as LogdropRouteImport } from './routes/logdrop'
+import { Route as TgdRouteImport } from './routes/tgd'
+import { Route as TmsRouteImport } from './routes/tms'
 import { Route as TmsPrivacyRouteImport } from './routes/tms_.privacy'
+import { Route as TmsReportRouteImport } from './routes/tms_.report'
+import { Route as TmsTermsRouteImport } from './routes/tms_.terms'
 import { Route as ApiReportConfirmRouteImport } from './routes/api/report/confirm'
-import { Route as TmsReportStatusIssueNumberRouteImport } from './routes/tms_.report_.status.$issueNumber'
 import { Route as ApiReportStatusIssueNumberRouteImport } from './routes/api/report/status.$issueNumber'
+import { Route as TmsReportStatusIssueNumberRouteImport } from './routes/tms_.report_.status.$issueNumber'
 
-const TmsRoute = TmsRouteImport.update({
-  id: '/tms',
-  path: '/tms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TgdRoute = TgdRouteImport.update({
-  id: '/tgd',
-  path: '/tgd',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LogdropRoute = LogdropRouteImport.update({
@@ -35,19 +30,14 @@ const LogdropRoute = LogdropRouteImport.update({
   path: '/logdrop',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const TgdRoute = TgdRouteImport.update({
+  id: '/tgd',
+  path: '/tgd',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TmsTermsRoute = TmsTermsRouteImport.update({
-  id: '/tms_/terms',
-  path: '/tms/terms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TmsReportRoute = TmsReportRouteImport.update({
-  id: '/tms_/report',
-  path: '/tms/report',
+const TmsRoute = TmsRouteImport.update({
+  id: '/tms',
+  path: '/tms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TmsPrivacyRoute = TmsPrivacyRouteImport.update({
@@ -55,21 +45,31 @@ const TmsPrivacyRoute = TmsPrivacyRouteImport.update({
   path: '/tms/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TmsReportRoute = TmsReportRouteImport.update({
+  id: '/tms_/report',
+  path: '/tms/report',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TmsTermsRoute = TmsTermsRouteImport.update({
+  id: '/tms_/terms',
+  path: '/tms/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiReportConfirmRoute = ApiReportConfirmRouteImport.update({
   id: '/api/report/confirm',
   path: '/api/report/confirm',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TmsReportStatusIssueNumberRoute =
-  TmsReportStatusIssueNumberRouteImport.update({
-    id: '/tms_/report_/status/$issueNumber',
-    path: '/tms/report/status/$issueNumber',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const ApiReportStatusIssueNumberRoute =
   ApiReportStatusIssueNumberRouteImport.update({
     id: '/api/report/status/$issueNumber',
     path: '/api/report/status/$issueNumber',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const TmsReportStatusIssueNumberRoute =
+  TmsReportStatusIssueNumberRouteImport.update({
+    id: '/tms_/report_/status/$issueNumber',
+    path: '/tms/report/status/$issueNumber',
     getParentRoute: () => rootRouteImport,
   } as any)
 
@@ -164,18 +164,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/tms': {
-      id: '/tms'
-      path: '/tms'
-      fullPath: '/tms'
-      preLoaderRoute: typeof TmsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tgd': {
-      id: '/tgd'
-      path: '/tgd'
-      fullPath: '/tgd'
-      preLoaderRoute: typeof TgdRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/logdrop': {
@@ -185,25 +178,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LogdropRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/tgd': {
+      id: '/tgd'
+      path: '/tgd'
+      fullPath: '/tgd'
+      preLoaderRoute: typeof TgdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tms_/terms': {
-      id: '/tms_/terms'
-      path: '/tms/terms'
-      fullPath: '/tms/terms'
-      preLoaderRoute: typeof TmsTermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tms_/report': {
-      id: '/tms_/report'
-      path: '/tms/report'
-      fullPath: '/tms/report'
-      preLoaderRoute: typeof TmsReportRouteImport
+    '/tms': {
+      id: '/tms'
+      path: '/tms'
+      fullPath: '/tms'
+      preLoaderRoute: typeof TmsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tms_/privacy': {
@@ -213,6 +199,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TmsPrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tms_/report': {
+      id: '/tms_/report'
+      path: '/tms/report'
+      fullPath: '/tms/report'
+      preLoaderRoute: typeof TmsReportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tms_/terms': {
+      id: '/tms_/terms'
+      path: '/tms/terms'
+      fullPath: '/tms/terms'
+      preLoaderRoute: typeof TmsTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/report/confirm': {
       id: '/api/report/confirm'
       path: '/api/report/confirm'
@@ -220,18 +220,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiReportConfirmRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tms_/report_/status/$issueNumber': {
-      id: '/tms_/report_/status/$issueNumber'
-      path: '/tms/report/status/$issueNumber'
-      fullPath: '/tms/report/status/$issueNumber'
-      preLoaderRoute: typeof TmsReportStatusIssueNumberRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/api/report/status/$issueNumber': {
       id: '/api/report/status/$issueNumber'
       path: '/api/report/status/$issueNumber'
       fullPath: '/api/report/status/$issueNumber'
       preLoaderRoute: typeof ApiReportStatusIssueNumberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tms_/report_/status/$issueNumber': {
+      id: '/tms_/report_/status/$issueNumber'
+      path: '/tms/report/status/$issueNumber'
+      fullPath: '/tms/report/status/$issueNumber'
+      preLoaderRoute: typeof TmsReportStatusIssueNumberRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

@@ -7,7 +7,7 @@ import { ScreenshotGallery } from "@/components/ScreenshotGallery";
 import { ReleaseNotes } from "@/components/ReleaseNotes";
 import { getGithubStats } from "@/lib/github-stats.functions";
 import { useI18n } from "@/lib/i18n";
-import { UploadCloud, KeyRound, Timer, type LucideIcon } from "lucide-react";
+import { UploadCloud, KeyRound, Timer, Bot, type LucideIcon } from "lucide-react";
 import logdropIcon from "@/assets/logdrop-icon.svg";
 import logdropUploadFilled from "@/assets/logdrop-upload-filled.webp";
 import logdropUploadResult from "@/assets/logdrop-upload-result.webp";
@@ -87,6 +87,7 @@ function LogdropPage() {
     { title: t("logdrop.f1.t"), body: t("logdrop.f1.b"), icon: UploadCloud },
     { title: t("logdrop.f2.t"), body: t("logdrop.f2.b"), icon: KeyRound },
     { title: t("logdrop.f3.t"), body: t("logdrop.f3.b"), icon: Timer },
+    { title: t("logdrop.f4.t"), body: t("logdrop.f4.b"), icon: Bot },
   ];
 
   return (
@@ -189,7 +190,7 @@ function LogdropPage() {
           <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest mb-8">
             {t("product.features")}
           </h2>
-          <ul className="grid md:grid-cols-3 gap-6">
+          <ul className="grid md:grid-cols-2 gap-6">
             {features.map((f, i) => {
               const Icon = f.icon;
               return (
