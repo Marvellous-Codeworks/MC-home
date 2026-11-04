@@ -72,3 +72,9 @@ The site runs on [Vercel](https://vercel.com/): every push to `main` goes to pro
 ## Feedback
 
 Found a mistake or have a suggestion? [Open an issue](https://github.com/Marvellous-Codeworks/MC-home/issues/new). For problems with the projects themselves, use their own repositories or the [report form](https://marvellouscode.works/tms/report).
+
+## License
+
+- **Code** (site source): [MIT](LICENSE).
+- **Names and logos** (Marvellous Codeworks, TMS, TGD, logdrop, `src/assets/marvellous-logo*`, the `suspendy-guy` artwork): not covered by the license, all rights reserved. Third-party icons and images keep their own licenses.
+- **The projects themselves** are not covered by this repository's license, see their own repositories.
