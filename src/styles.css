@@ -101,6 +101,24 @@
   }
 }
 
+/* Hero carousel: the bar's animation is the rotation timer, see HeroCarousel.tsx */
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-progress {
+    animation: hero-progress 7s linear;
+  }
+
+  /* Anchor links on the home page */
+  html:has(#hero) {
+    scroll-behavior: smooth;
+  }
+}
+
 @layer base {
   * {
     border-color: var(--color-border);

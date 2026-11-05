@@ -83,7 +83,7 @@ function OAuthProxyPage() {
         {/* Breadcrumb + hero */}
         <div>
           <a
-            href="/"
+            href="/#extensions"
             className="inline-block font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors mb-8"
           >
             {t("product.back")}
