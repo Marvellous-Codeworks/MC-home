@@ -54,7 +54,7 @@ const en: Dict = {
   "logdrop.cta.open": "Open logdrop",
   "logdrop.cta.docs": "Documentation",
 
-  "oauthproxy.name": "tms-oauth-proxy",
+  "oauthproxy.name": "OAuth Proxy",
   "oauthproxy.description":
     "A tiny Cloudflare Worker that brokers Google OAuth token exchanges, so a browser extension can use an authorization-code + PKCE flow without shipping its client secret. Built for The Marvellous Suspender's Google Drive backup on Brave and Vivaldi, and generic enough to fork for your own extension.",
   "oauthproxy.f1.t": "Secret off the client.",
@@ -128,7 +128,7 @@ const en: Dict = {
   "footer.link.tgd": "The Great-er Tab Discarder (TGD)",
   "footer.link.tms": "The Marvellous Suspender (TMS)",
   "footer.link.logdrop": "logdrop",
-  "footer.link.oauthproxy": "tms-oauth-proxy",
+  "footer.link.oauthproxy": "OAuth Proxy",
   "footer.link.docs": "Documentation",
   "footer.link.blog": "Blog",
   "footer.link.rss": "RSS Feed",
@@ -288,7 +288,7 @@ const it: Dict = {
   "logdrop.cta.open": "Apri logdrop",
   "logdrop.cta.docs": "Documentazione",
 
-  "oauthproxy.name": "tms-oauth-proxy",
+  "oauthproxy.name": "OAuth Proxy",
   "oauthproxy.description":
     "Un piccolo Cloudflare Worker che gestisce lo scambio di token OAuth con Google, così un'estensione del browser può usare un flusso authorization-code + PKCE senza distribuire il proprio client secret. Nato per il backup su Google Drive di The Marvellous Suspender su Brave e Vivaldi, è abbastanza generico da poter essere forkato per la tua estensione.",
   "oauthproxy.f1.t": "Secret fuori dal client.",
@@ -362,7 +362,7 @@ const it: Dict = {
   "footer.link.tgd": "The Great-er Tab Discarder (TGD)",
   "footer.link.tms": "The Marvellous Suspender (TMS)",
   "footer.link.logdrop": "logdrop",
-  "footer.link.oauthproxy": "tms-oauth-proxy",
+  "footer.link.oauthproxy": "OAuth Proxy",
   "footer.link.docs": "Documentazione",
   "footer.link.blog": "Blog",
   "footer.link.rss": "Feed RSS",

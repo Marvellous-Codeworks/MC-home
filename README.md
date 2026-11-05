@@ -6,7 +6,7 @@ Official website of [Marvellous Codeworks](https://github.com/Marvellous-Codewor
 
 The site is built with [TanStack Start](https://tanstack.com/start), in English and Italian, and covers:
 
-- **Projects**: [The Great-er Tab Discarder](https://marvellouscode.works/tgd), [The Marvellous Suspender](https://marvellouscode.works/tms), [logdrop](https://marvellouscode.works/logdrop) and [tms-oauth-proxy](https://marvellouscode.works/tms-oauth-proxy), with live stats from GitHub and the extension stores.
+- **Projects**: [The Great-er Tab Discarder](https://marvellouscode.works/tgd), [The Marvellous Suspender](https://marvellouscode.works/tms), [logdrop](https://marvellouscode.works/logdrop) and [OAuth Proxy](https://marvellouscode.works/tms-oauth-proxy), with live stats from GitHub and the extension stores.
 - **Blog**: the latest posts from the [knowledge base](https://kb.marvellouscode.works/blog).
 - **TMS reports**: a [bug and feature report form](https://marvellouscode.works/tms/report) for people without a GitHub account.
 
@@ -76,5 +76,5 @@ Found a mistake or have a suggestion? [Open an issue](https://github.com/Marvell
 ## License
 
 - **Code** (site source): [MIT](LICENSE).
-- **Names and logos** (Marvellous Codeworks, TMS, TGD, logdrop, tms-oauth-proxy, `src/assets/marvellous-logo*`, the `suspendy-guy` artwork): not covered by the license, all rights reserved. Third-party icons and images keep their own licenses.
+- **Names and logos** (Marvellous Codeworks, TMS, TGD, logdrop, OAuth Proxy, `src/assets/marvellous-logo*`, the `suspendy-guy` artwork): not covered by the license, all rights reserved. Third-party icons and images keep their own licenses.
 - **The projects themselves** are not covered by this repository's license, see their own repositories.
