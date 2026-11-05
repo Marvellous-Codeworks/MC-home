@@ -17,7 +17,7 @@ export type LegalContent = {
 export const TMS_PRIVACY_CONTENT: LegalContent = {
   it: {
     title: "Informativa sulla Privacy",
-    effectiveDate: "2026-06-26",
+    effectiveDate: "2026-11-05",
     sections: [
       {
         heading: "Titolare del trattamento",
@@ -26,10 +26,11 @@ export const TMS_PRIVACY_CONTENT: LegalContent = {
       {
         heading: "Dati trattati",
         body: [
-          'The Marvellous Suspender (di seguito "TMS" o "l\'Estensione") non raccoglie, trasmette né condivide alcun dato con server di Marvellous Codeworks. I dati restano esclusivamente sul dispositivo dell\'utente o nel suo account Google Drive personale.',
+          'The Marvellous Suspender (di seguito "TMS" o "l\'Estensione") non invia a server di Marvellous Codeworks schede, sessioni, impostazioni o backup: questi dati restano esclusivamente sul dispositivo dell\'utente o nel suo account Google Drive personale. L\'unica eccezione riguarda le credenziali OAuth sui browser in cui l\'accesso integrato di Chrome non è disponibile, come descritto in "Terze parti — Cloudflare".',
           "• URL delle schede e struttura delle sessioni — quando la funzione di backup su Google Drive è abilitata, TMS salva un file JSON contenente gli URL delle schede aperte e la struttura delle finestre e dei gruppi. Il file viene scritto direttamente nell'account Google Drive dell'utente.",
           "• Impostazioni dell'estensione — memorizzate localmente tramite chrome.storage.local.",
           "• Cronologia delle sessioni — memorizzata localmente nel database IndexedDB del browser.",
+          "• Credenziali OAuth — sui browser in cui l'accesso integrato di Chrome non è disponibile (ad esempio Brave e Vivaldi), collegando Google Drive TMS salva un refresh token di Google nello storage locale del browser e conserva l'access token nello storage di sessione, che viene svuotato alla chiusura del browser.",
         ],
       },
       {
@@ -47,14 +48,22 @@ export const TMS_PRIVACY_CONTENT: LegalContent = {
       {
         heading: "Terze parti — Google Drive",
         body: [
-          "TMS utilizza le API di Google Drive per salvare i file di backup nell'account Google dell'utente. I dati vengono trasmessi direttamente tra il browser dell'utente e i server di Google LLC; Marvellous Codeworks non riceve né accede a tali dati. Si applicano la Privacy Policy e i Termini di servizio di Google (policies.google.com/privacy).",
-          "• Lo scope OAuth richiesto è drive.file: TMS può accedere esclusivamente ai file che esso stesso ha creato nella cartella \"TMS Backups\" dell'account Drive dell'utente.",
+          "TMS utilizza le API di Google Drive per salvare i file di backup nell'account Google dell'utente. I file di backup vengono trasmessi direttamente tra il browser dell'utente e i server di Google LLC; Marvellous Codeworks non li riceve né vi accede. Si applicano la Privacy Policy e i Termini di servizio di Google (policies.google.com/privacy).",
+          "• Lo scope OAuth richiesto è drive.appdata: TMS può accedere esclusivamente a una cartella nascosta riservata all'applicazione nell'account Drive dell'utente, e non agli altri file presenti su Drive.",
+        ],
+      },
+      {
+        heading: "Terze parti — Cloudflare",
+        body: [
+          "Sui browser in cui l'accesso integrato di Chrome non è disponibile (ad esempio Brave e Vivaldi), TMS ottiene e rinnova i token OAuth di Google tramite tms-oauth-proxy, un Cloudflare Worker gestito da Marvellous Codeworks che aggiunge il client secret OAuth e inoltra la richiesta a Google. Su Chrome questo componente non viene utilizzato.",
+          "Il codice di autorizzazione, il refresh token e l'access token restituito da Google transitano nel Worker, ospitato da Cloudflare, Inc., per la sola durata di ciascuna richiesta. Il Worker non memorizza questi valori, non registra il contenuto di richieste e risposte e non riceve mai i file di backup né altri contenuti di Drive.",
+          "Cloudflare può trattare metadati tecnici delle richieste, come indirizzo IP, data e ora e codice di stato. Si applica la Privacy Policy di Cloudflare (cloudflare.com/privacypolicy). Il codice sorgente del Worker è pubblico: github.com/Marvellous-Codeworks/tms-oauth-proxy.",
         ],
       },
       {
         heading: "Conservazione dei dati",
         body: [
-          "I file di backup su Google Drive restano nell'account dell'utente fino alla loro eliminazione manuale o automatica (TMS conserva al massimo gli ultimi 10 backup automatici). I dati locali (impostazioni, sessioni) restano sul dispositivo fino alla disinstallazione dell'estensione o alla loro cancellazione tramite le impostazioni.",
+          "I file di backup su Google Drive restano nell'account dell'utente fino alla loro eliminazione manuale o automatica (per impostazione predefinita TMS conserva gli ultimi 10 backup automatici). I dati locali (impostazioni, sessioni) restano sul dispositivo fino alla disinstallazione dell'estensione o alla loro cancellazione tramite le impostazioni. Le credenziali OAuth salvate localmente vengono rimosse quando l'utente scollega l'account Google da TMS o disinstalla l'estensione.",
         ],
       },
       {
@@ -67,7 +76,7 @@ export const TMS_PRIVACY_CONTENT: LegalContent = {
       {
         heading: "Sicurezza",
         body: [
-          "Il token OAuth è gestito dal browser Chrome; TMS non memorizza credenziali. Il trasferimento dei dati verso Google Drive avviene tramite connessioni HTTPS cifrate.",
+          'Su Chrome il token OAuth è gestito dal browser. Sui browser descritti in "Terze parti — Cloudflare" i token sono conservati nello storage dell'estensione all'interno del browser. TMS non riceve mai la password dell\'account Google. Il trasferimento dei dati verso Google Drive e verso il Worker avviene tramite connessioni HTTPS cifrate.',
         ],
       },
       {
@@ -88,7 +97,7 @@ export const TMS_PRIVACY_CONTENT: LegalContent = {
 
   en: {
     title: "Privacy Policy",
-    effectiveDate: "2026-06-26",
+    effectiveDate: "2026-11-05",
     sections: [
       {
         heading: "Data Controller",
@@ -97,10 +106,11 @@ export const TMS_PRIVACY_CONTENT: LegalContent = {
       {
         heading: "Data We Process",
         body: [
-          'The Marvellous Suspender ("TMS" or "the Extension") does not collect, transmit or share any data with Marvellous Codeworks servers. All data remains exclusively on the user\'s device or in their personal Google Drive account.',
+          'The Marvellous Suspender ("TMS" or "the Extension") does not send tabs, sessions, settings or backups to Marvellous Codeworks servers: this data remains exclusively on the user\'s device or in their personal Google Drive account. The only exception concerns OAuth credentials on browsers where Chrome\'s built-in sign-in is unavailable, as described under "Third Parties — Cloudflare".',
           "• Tab URLs and session structure — when the Google Drive backup feature is enabled, TMS saves a JSON file containing the URLs of open tabs and the window/group structure. The file is written directly to the user's Google Drive account.",
           "• Extension settings — stored locally via chrome.storage.local.",
           "• Session history — stored locally in the browser's IndexedDB database.",
+          "• OAuth credentials — on browsers where Chrome's built-in sign-in is unavailable (such as Brave and Vivaldi), connecting Google Drive makes TMS save a Google refresh token in the browser's local storage and keep the access token in session storage, which is cleared when the browser closes.",
         ],
       },
       {
@@ -118,14 +128,22 @@ export const TMS_PRIVACY_CONTENT: LegalContent = {
       {
         heading: "Third Parties — Google Drive",
         body: [
-          "TMS uses the Google Drive API to save backup files in the user's Google account. Data is transmitted directly between the user's browser and Google LLC's servers; Marvellous Codeworks neither receives nor accesses this data. Google's Privacy Policy and Terms of Service apply (policies.google.com/privacy).",
-          '• The OAuth scope requested is drive.file: TMS can access only the files it has created in the "TMS Backups" folder of the user\'s Drive account.',
+          "TMS uses the Google Drive API to save backup files in the user's Google account. Backup files are transmitted directly between the user's browser and Google LLC's servers; Marvellous Codeworks neither receives nor accesses them. Google's Privacy Policy and Terms of Service apply (policies.google.com/privacy).",
+          "• The OAuth scope requested is drive.appdata: TMS can access only a hidden, app-specific folder in the user's Drive account, not the other files stored on Drive.",
+        ],
+      },
+      {
+        heading: "Third Parties — Cloudflare",
+        body: [
+          "On browsers where Chrome's built-in sign-in is unavailable (such as Brave and Vivaldi), TMS obtains and renews its Google OAuth tokens through tms-oauth-proxy, a Cloudflare Worker operated by Marvellous Codeworks that adds the OAuth client secret and forwards the request to Google. This component is not used on Chrome.",
+          "The authorization code, the refresh token and the access token returned by Google pass through the Worker, hosted by Cloudflare, Inc., only for the duration of each request. The Worker does not store these values, does not log the content of requests and responses, and never receives backup files or other Drive content.",
+          "Cloudflare may process technical request metadata, such as IP address, date and time, and status code. Cloudflare's Privacy Policy applies (cloudflare.com/privacypolicy). The Worker's source code is public: github.com/Marvellous-Codeworks/tms-oauth-proxy.",
         ],
       },
       {
         heading: "Data Retention",
         body: [
-          "Backup files on Google Drive remain in the user's account until manually or automatically deleted (TMS retains at most the last 10 automatic backups). Local data (settings, sessions) remains on the device until the extension is uninstalled or deleted via the settings.",
+          "Backup files on Google Drive remain in the user's account until manually or automatically deleted (by default TMS retains the last 10 automatic backups). Local data (settings, sessions) remains on the device until the extension is uninstalled or deleted via the settings. OAuth credentials saved locally are removed when the user disconnects their Google account from TMS or uninstalls the extension.",
         ],
       },
       {
@@ -138,7 +156,7 @@ export const TMS_PRIVACY_CONTENT: LegalContent = {
       {
         heading: "Security",
         body: [
-          "The OAuth token is managed by the Chrome browser; TMS does not store credentials. Data transfer to Google Drive uses HTTPS encrypted connections.",
+          "On Chrome, the OAuth token is managed by the browser. On the browsers described under \"Third Parties — Cloudflare\", tokens are kept in the extension's storage inside the browser. TMS never receives the user's Google password. Data transfer to Google Drive and to the Worker uses HTTPS encrypted connections.",
         ],
       },
       {
@@ -161,7 +179,7 @@ export const TMS_PRIVACY_CONTENT: LegalContent = {
 export const TMS_TERMS_CONTENT: LegalContent = {
   it: {
     title: "Termini di utilizzo",
-    effectiveDate: "2026-06-26",
+    effectiveDate: "2026-11-05",
     sections: [
       {
         heading: "Accettazione dei termini",
@@ -184,7 +202,7 @@ export const TMS_TERMS_CONTENT: LegalContent = {
       {
         heading: "Uso di Google Drive",
         body: [
-          "La funzione di backup su Google Drive è opzionale. Per utilizzarla, l'utente deve autenticarsi con il proprio account Google e autorizzare TMS ad accedere ai file da essa creati (scope drive.file). L'utente è l'unico responsabile del proprio account Google e dei relativi dati. Si applicano i Termini di servizio di Google (policies.google.com/terms).",
+          "La funzione di backup su Google Drive è opzionale. Per utilizzarla, l'utente deve autenticarsi con il proprio account Google e autorizzare TMS ad accedere alla propria cartella nascosta su Drive (scope drive.appdata). L'utente è l'unico responsabile del proprio account Google e dei relativi dati. Si applicano i Termini di servizio di Google (policies.google.com/terms).",
         ],
       },
       {
@@ -227,7 +245,7 @@ export const TMS_TERMS_CONTENT: LegalContent = {
 
   en: {
     title: "Terms of Use",
-    effectiveDate: "2026-06-26",
+    effectiveDate: "2026-11-05",
     sections: [
       {
         heading: "Acceptance of Terms",
@@ -250,7 +268,7 @@ export const TMS_TERMS_CONTENT: LegalContent = {
       {
         heading: "Google Drive Usage",
         body: [
-          "The Google Drive backup feature is optional. To use it, you must authenticate with your Google account and authorise TMS to access the files it creates (scope drive.file). You are solely responsible for your Google account and its data. Google's Terms of Service apply (policies.google.com/terms).",
+          "The Google Drive backup feature is optional. To use it, you must authenticate with your Google account and authorise TMS to access its own hidden folder on Drive (scope drive.appdata). You are solely responsible for your Google account and its data. Google's Terms of Service apply (policies.google.com/terms).",
         ],
       },
       {
