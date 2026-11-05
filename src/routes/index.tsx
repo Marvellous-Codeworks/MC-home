@@ -9,6 +9,7 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { getExtensionStats } from "@/lib/extension-stats.functions";
 import { getGithubStats } from "@/lib/github-stats.functions";
+import { useSmoothAnchorScroll } from "@/hooks/use-smooth-anchor-scroll";
 import { useI18n } from "@/lib/i18n";
 import logdropIcon from "@/assets/logdrop-icon.svg";
 import oauthProxyIcon from "@/assets/tms-oauth-proxy-icon.svg";
@@ -72,6 +73,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const { t } = useI18n();
+  useSmoothAnchorScroll();
   const fetchStats = useServerFn(getExtensionStats);
   const fetchGithub = useServerFn(getGithubStats);
   const tgdStats = useQuery({

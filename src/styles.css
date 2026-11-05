@@ -112,11 +112,6 @@
   .hero-progress {
     animation: hero-progress 7s linear;
   }
-
-  /* Anchor links on the home page */
-  html:has(#hero) {
-    scroll-behavior: smooth;
-  }
 }
 
 @layer base {
