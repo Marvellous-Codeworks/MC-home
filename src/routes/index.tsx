@@ -11,6 +11,7 @@ import { getGithubStats } from "@/lib/github-stats.functions";
 import { useI18n } from "@/lib/i18n";
 import heroChrome from "@/assets/hero-chrome-opt.webp";
 import logdropIcon from "@/assets/logdrop-icon.svg";
+import oauthProxyIcon from "@/assets/tms-oauth-proxy-icon.svg";
 
 import tgdChromeLight from "@/assets/tgd-chrome-light.png";
 import tgdChromeDark from "@/assets/tgd-chrome-dark.png";
@@ -56,13 +57,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Marvellous Codeworks ships The Great-er Tab Discarder and The Marvellous Suspender — open-source Chromium extensions that reclaim browser memory — plus logdrop, a self-hostable plain-text drop-off.",
+          "Marvellous Codeworks ships The Great-er Tab Discarder and The Marvellous Suspender — open-source Chromium extensions that reclaim browser memory — plus self-hostable tools like logdrop and tms-oauth-proxy.",
       },
       { property: "og:title", content: "Marvellous Codeworks — Precision Tools for the Web" },
       {
         property: "og:description",
         content:
-          "Open-source software for the professional web: memory-efficient Chromium extensions, plus self-hostable utilities like logdrop.",
+          "Open-source software for the professional web: memory-efficient Chromium extensions, plus self-hostable utilities like logdrop and tms-oauth-proxy.",
       },
       { property: "og:type", content: "website" },
     ],
@@ -104,6 +105,20 @@ function Index() {
     { title: t("tms.f1.t"), body: t("tms.f1.b") },
     { title: t("tms.f2.t"), body: t("tms.f2.b") },
     { title: t("tms.f3.t"), body: t("tms.f3.b") },
+  ];
+  const moreTools = [
+    {
+      href: "/logdrop",
+      icon: logdropIcon,
+      name: t("logdrop.name"),
+      description: t("logdrop.description"),
+    },
+    {
+      href: "/tms-oauth-proxy",
+      icon: oauthProxyIcon,
+      name: t("oauthproxy.name"),
+      description: t("oauthproxy.description"),
+    },
   ];
 
   return (
@@ -278,26 +293,33 @@ function Index() {
               {t("home.moreTools")}
             </h2>
           </div>
-          <div className="border border-border p-8 lg:p-12 flex flex-col md:flex-row md:items-center gap-8">
-            <div className="flex-1 space-y-3">
-              <img src={logdropIcon} alt="" className="h-10 w-10 rounded-[6px]" />
-              <h3 className="text-2xl font-mono font-bold tracking-tight">
-                <a href="/logdrop" className="hover:text-primary transition-colors">
-                  {t("logdrop.name")}
-                </a>
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed max-w-prose">
-                {t("logdrop.description")}
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 shrink-0 md:min-w-[200px]">
-              <a
-                href="/logdrop"
-                className="h-11 px-6 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-foreground transition-colors rounded-sm"
+          <div className="space-y-6">
+            {moreTools.map((tool) => (
+              <div
+                key={tool.href}
+                className="border border-border p-8 lg:p-12 flex flex-col md:flex-row md:items-center gap-8"
               >
-                {t("product.learnMore")}
-              </a>
-            </div>
+                <div className="flex-1 space-y-3">
+                  <img src={tool.icon} alt="" className="h-10 w-10 rounded-[6px]" />
+                  <h3 className="text-2xl font-mono font-bold tracking-tight">
+                    <a href={tool.href} className="hover:text-primary transition-colors">
+                      {tool.name}
+                    </a>
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed max-w-prose">
+                    {tool.description}
+                  </p>
+                </div>
+                <div className="flex flex-col gap-3 shrink-0 md:min-w-[200px]">
+                  <a
+                    href={tool.href}
+                    className="h-11 px-6 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center hover:bg-foreground transition-colors rounded-sm"
+                  >
+                    {t("product.learnMore")}
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
       </main>

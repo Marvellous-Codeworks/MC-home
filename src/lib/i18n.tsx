@@ -54,6 +54,30 @@ const en: Dict = {
   "logdrop.cta.open": "Open logdrop",
   "logdrop.cta.docs": "Documentation",
 
+  "oauthproxy.name": "tms-oauth-proxy",
+  "oauthproxy.description":
+    "A tiny Cloudflare Worker that brokers Google OAuth token exchanges, so a browser extension can use an authorization-code + PKCE flow without shipping its client secret. Built for The Marvellous Suspender's Google Drive backup on Brave and Vivaldi, and generic enough to fork for your own extension.",
+  "oauthproxy.f1.t": "Secret off the client.",
+  "oauthproxy.f1.b":
+    "The OAuth client secret lives in a Cloudflare secret, never inside the extension package.",
+  "oauthproxy.f2.t": "Refresh tokens, no browser tricks.",
+  "oauthproxy.f2.b":
+    "Handles the authorization-code + PKCE grant and every refresh-token renewal, for browsers where getAuthToken() doesn't work.",
+  "oauthproxy.f3.t": "Pass-through by design.",
+  "oauthproxy.f3.b":
+    "Adds the client credentials, forwards the request to Google and returns the response unchanged. No storage, and no logging of request or response bodies.",
+  "oauthproxy.f4.t": "Fork and deploy.",
+  "oauthproxy.f4.b":
+    "Nothing is TMS-specific beyond its config: set your client ID, extension origin and secret, then deploy on the Cloudflare Workers free tier.",
+  "oauthproxy.security.heading": "// Security model",
+  "oauthproxy.security.p1":
+    "The Worker keeps the client secret off users' machines, nothing more. Google remains the real security boundary: without a valid code or refresh token issued for this OAuth client, every request is rejected. The Origin check is a soft filter, not access control.",
+  "oauthproxy.security.p2":
+    "Authorization codes and tokens do pass through the Worker while an exchange is in flight, so it has to be trusted not to keep them. The source is public so you can check that it doesn't, or run your own. It never sees your Google Drive data.",
+  "oauthproxy.security.p3":
+    "The Marvellous Codeworks instance only serves The Marvellous Suspender. For your own extension, deploy your own.",
+  "oauthproxy.cta.docs": "Documentation",
+
   "card.cws": "// Chrome Web Store",
   "card.users": "Users",
   "card.users.sub": "Active installs",
@@ -104,6 +128,7 @@ const en: Dict = {
   "footer.link.tgd": "The Great-er Tab Discarder (TGD)",
   "footer.link.tms": "The Marvellous Suspender (TMS)",
   "footer.link.logdrop": "logdrop",
+  "footer.link.oauthproxy": "tms-oauth-proxy",
   "footer.link.docs": "Documentation",
   "footer.link.blog": "Blog",
   "footer.link.rss": "RSS Feed",
@@ -263,6 +288,30 @@ const it: Dict = {
   "logdrop.cta.open": "Apri logdrop",
   "logdrop.cta.docs": "Documentazione",
 
+  "oauthproxy.name": "tms-oauth-proxy",
+  "oauthproxy.description":
+    "Un piccolo Cloudflare Worker che gestisce lo scambio di token OAuth con Google, così un'estensione del browser può usare un flusso authorization-code + PKCE senza distribuire il proprio client secret. Nato per il backup su Google Drive di The Marvellous Suspender su Brave e Vivaldi, è abbastanza generico da poter essere forkato per la tua estensione.",
+  "oauthproxy.f1.t": "Secret fuori dal client.",
+  "oauthproxy.f1.b":
+    "Il client secret OAuth resta in un secret di Cloudflare, mai dentro il pacchetto dell'estensione.",
+  "oauthproxy.f2.t": "Refresh token, senza trucchi del browser.",
+  "oauthproxy.f2.b":
+    "Gestisce il grant authorization-code + PKCE e ogni rinnovo del refresh token, per i browser dove getAuthToken() non funziona.",
+  "oauthproxy.f3.t": "Solo transito, per scelta.",
+  "oauthproxy.f3.b":
+    "Aggiunge le credenziali del client, inoltra la richiesta a Google e restituisce la risposta senza modificarla. Nessuna memorizzazione e nessun log del contenuto di richieste e risposte.",
+  "oauthproxy.f4.t": "Forka e pubblica.",
+  "oauthproxy.f4.b":
+    "Di specifico per TMS c'è solo la configurazione: imposta client ID, origin dell'estensione e secret, poi pubblica sul piano gratuito di Cloudflare Workers.",
+  "oauthproxy.security.heading": "// Modello di sicurezza",
+  "oauthproxy.security.p1":
+    "Il Worker tiene il client secret lontano dai computer degli utenti, niente di più. Il vero confine di sicurezza resta Google: senza un code o un refresh token validi, emessi per questo client OAuth, ogni richiesta viene rifiutata. Il controllo sull'Origin è un filtro leggero, non un controllo degli accessi.",
+  "oauthproxy.security.p2":
+    "Code e token attraversano il Worker durante lo scambio, quindi bisogna fidarsi del fatto che non li conservi. Il sorgente è pubblico proprio per poterlo verificare, oppure per pubblicare un'istanza tua. Il Worker non vede mai i tuoi dati su Google Drive.",
+  "oauthproxy.security.p3":
+    "L'istanza di Marvellous Codeworks serve solo The Marvellous Suspender. Per la tua estensione, pubblicane una tua.",
+  "oauthproxy.cta.docs": "Documentazione",
+
   "card.cws": "// Chrome Web Store",
   "card.users": "Utenti",
   "card.users.sub": "Installazioni attive",
@@ -313,6 +362,7 @@ const it: Dict = {
   "footer.link.tgd": "The Great-er Tab Discarder (TGD)",
   "footer.link.tms": "The Marvellous Suspender (TMS)",
   "footer.link.logdrop": "logdrop",
+  "footer.link.oauthproxy": "tms-oauth-proxy",
   "footer.link.docs": "Documentazione",
   "footer.link.blog": "Blog",
   "footer.link.rss": "Feed RSS",
