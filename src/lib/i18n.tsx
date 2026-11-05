@@ -6,7 +6,8 @@ export type Locale = "en" | "it";
 type Dict = Record<string, string>;
 
 const en: Dict = {
-  "nav.extensions": "Products",
+  "nav.extensions": "Extensions",
+  "nav.tools": "Tools",
   "nav.docs": "Docs",
   "nav.blog": "Blog",
   "nav.github": "GitHub",
@@ -28,9 +29,9 @@ const en: Dict = {
   "hero.logdrop.subtitle":
     "Anyone can upload text with no account. Only allow-listed maintainers can read it back, and every upload expires on its own.",
   "hero.proxy.eyebrow": "Open source // Self-hostable",
-  "hero.proxy.title.a": "KEEP THE ",
-  "hero.proxy.title.b": "CLIENT SECRET",
-  "hero.proxy.title.c": " OUT OF YOUR EXTENSION.",
+  "hero.proxy.title.a": "KEEP ",
+  "hero.proxy.title.b": "SECRETS",
+  "hero.proxy.title.c": " OUT OF EXTENSIONS.",
   "hero.proxy.subtitle":
     "A tiny Cloudflare Worker that brokers Google OAuth token exchanges, so your browser extension never has to ship its secret.",
   "hero.proxy.flow.a.t": "Extension",
@@ -140,7 +141,7 @@ const en: Dict = {
     "Zero tracking. Zero analytics. Your browsing data never leaves your machine. Both extensions are fully open source for community auditing.",
   "trust.03.t": "Open Source",
   "trust.03.b":
-    "Maintained by Marvellous Codeworks and a global community of developers. Fork it, improve it, or contribute under a permissive open-source license.",
+    "Maintained by Marvellous Codeworks and a global community of developers. Fork it, improve it, or contribute under the GPL-2.0 license.",
 
   "footer.tagline":
     "A small team and a global open-source community, building precision tools for the professional web.",
@@ -180,7 +181,8 @@ const en: Dict = {
   "blog.loading": "Loading posts…",
   "blog.empty": "No posts yet.",
 
-  "product.back": "← All Products",
+  "product.back.extensions": "← All extensions",
+  "product.back.tools": "← All tools",
   "product.features": "// Key Features",
   "product.learnMore": "Learn More",
   "product.changelog": "// What's new in {version}",
@@ -259,7 +261,8 @@ const en: Dict = {
 };
 
 const it: Dict = {
-  "nav.extensions": "Prodotti",
+  "nav.extensions": "Estensioni",
+  "nav.tools": "Strumenti",
   "nav.docs": "Documentazione",
   "nav.blog": "Blog",
   "nav.github": "GitHub",
@@ -281,9 +284,9 @@ const it: Dict = {
   "hero.logdrop.subtitle":
     "Chiunque può caricare testo senza account. Solo i manutentori autorizzati possono rileggerlo, e ogni caricamento scade da solo.",
   "hero.proxy.eyebrow": "Open source // Autospitabile",
-  "hero.proxy.title.a": "TIENI IL ",
-  "hero.proxy.title.b": "CLIENT SECRET",
-  "hero.proxy.title.c": " FUORI DALLA TUA ESTENSIONE.",
+  "hero.proxy.title.a": "I ",
+  "hero.proxy.title.b": "SECRET",
+  "hero.proxy.title.c": " FUORI DALL'ESTENSIONE.",
   "hero.proxy.subtitle":
     "Un piccolo Cloudflare Worker che gestisce lo scambio di token OAuth con Google, così la tua estensione non deve mai distribuire il secret.",
   "hero.proxy.flow.a.t": "Estensione",
@@ -395,7 +398,7 @@ const it: Dict = {
     "Zero tracciamento. Zero analytics. I tuoi dati di navigazione non lasciano mai la tua macchina. Entrambe le estensioni sono open source e verificabili.",
   "trust.03.t": "Open Source",
   "trust.03.b":
-    "Mantenuto da Marvellous Codeworks e da una community globale di sviluppatori. Forka, migliora o contribuisci sotto una licenza open source permissiva.",
+    "Mantenuto da Marvellous Codeworks e da una community globale di sviluppatori. Forka, migliora o contribuisci sotto licenza GPL-2.0.",
 
   "footer.tagline":
     "Un piccolo team e una community open source globale, che sviluppa strumenti di precisione per il web professionale.",
@@ -435,7 +438,8 @@ const it: Dict = {
   "blog.loading": "Caricamento articoli…",
   "blog.empty": "Nessun articolo per ora.",
 
-  "product.back": "← Tutti i prodotti",
+  "product.back.extensions": "← Tutte le estensioni",
+  "product.back.tools": "← Tutti gli strumenti",
   "product.features": "// Caratteristiche principali",
   "product.learnMore": "Scopri di più",
   "product.changelog": "// Novità della {version}",

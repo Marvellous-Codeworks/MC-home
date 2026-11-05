@@ -22,14 +22,24 @@ interface Slide {
   primary: { label: string; href: string };
   secondary: { label: string; href: string };
   visual: ReactNode;
+  /** Keeps the text clear of a visual that can't sit behind it. */
+  narrow?: boolean;
 }
+
+/** Masks instead of overlays: the edges are transparent whatever the image's colors. */
+const FADE_ALL_EDGES = {
+  maskImage:
+    "linear-gradient(to right, transparent, #000 45%, #000 75%, transparent), linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent)",
+  maskComposite: "intersect",
+  WebkitMaskComposite: "source-in",
+} as const;
 
 /** Screenshot on the right of a slide, faded into the page. */
 function HeroImage({ src }: { src: string }) {
   return (
     <div
       aria-hidden
-      className="hidden lg:block absolute -top-24 -bottom-16 right-0 w-[62%] pointer-events-none z-0"
+      className="hidden lg:block absolute -top-20 -bottom-10 right-0 w-[62%] pointer-events-none z-0"
     >
       <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-background via-background/60 to-transparent z-10" />
       <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background to-transparent z-10" />
@@ -43,17 +53,18 @@ function HeroImage({ src }: { src: string }) {
   );
 }
 
-/** Framed instead of faded: this screenshot has a light background in both themes. */
-function HeroWindow({ src }: { src: string }) {
+/** logdrop only has light screenshots: dark mode inverts it so it can fade into the page. */
+function HeroScreenshot({ src }: { src: string }) {
   return (
     <div
       aria-hidden
-      className="hidden lg:flex absolute inset-y-0 right-0 w-[38%] items-center z-0 pointer-events-none"
+      className="hidden lg:block absolute -top-20 -bottom-10 right-0 w-[62%] pointer-events-none z-0"
+      style={FADE_ALL_EDGES}
     >
       <img
         src={src}
         alt=""
-        className="w-full aspect-[4/3] object-cover object-left-top border border-border rounded-sm"
+        className="absolute inset-0 w-full h-full object-cover object-left-top opacity-70 dark:invert dark:hue-rotate-180"
       />
     </div>
   );
@@ -70,19 +81,22 @@ function ProxyFlow() {
   return (
     <div
       aria-hidden
-      className="hidden lg:flex absolute inset-y-0 right-0 w-[34%] flex-col justify-center z-0 pointer-events-none"
+      className="hidden lg:flex absolute -top-20 -bottom-10 right-0 w-[62%] items-center justify-end pointer-events-none z-0 opacity-70"
+      style={{
+        maskImage: "linear-gradient(to right, transparent, #000 50%)",
+      }}
     >
-      {steps.map((step, i) => (
-        <div key={step.name}>
-          {i > 0 && <div className="ml-6 h-6 w-px bg-border" />}
-          <div
-            className={`border bg-background p-4 ${step.highlight ? "border-primary" : "border-border"}`}
-          >
-            <p className="font-mono text-xs font-bold uppercase tracking-widest">{step.name}</p>
-            <p className="mt-1 font-mono text-xs text-muted-foreground">{step.body}</p>
+      <div className="w-[62%]">
+        {steps.map((step, i) => (
+          <div key={step.name}>
+            {i > 0 && <div className="ml-8 h-8 w-px bg-border" />}
+            <div className={`border p-6 ${step.highlight ? "border-primary" : "border-border"}`}>
+              <p className="font-mono text-sm font-bold uppercase tracking-widest">{step.name}</p>
+              <p className="mt-2 font-mono text-sm text-muted-foreground">{step.body}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
@@ -113,7 +127,7 @@ export function HeroCarousel() {
       subtitle: t("hero.logdrop.subtitle"),
       primary: { label: t("product.learnMore"), href: "/logdrop" },
       secondary: { label: t("oauthproxy.cta.docs"), href: LOGDROP_DOCS_URL },
-      visual: <HeroWindow src={logdropDashboard} />,
+      visual: <HeroScreenshot src={logdropDashboard} />,
     },
     {
       id: "oauth-proxy",
@@ -124,6 +138,7 @@ export function HeroCarousel() {
       primary: { label: t("product.learnMore"), href: "/tms-oauth-proxy" },
       secondary: { label: t("oauthproxy.cta.docs"), href: OAUTH_PROXY_DOCS_URL },
       visual: <ProxyFlow />,
+      narrow: true,
     },
   ];
 
@@ -154,23 +169,23 @@ export function HeroCarousel() {
                 aria-roledescription="slide"
                 aria-label={slide.tab.title}
                 inert={i !== selected}
-                className="min-w-0 shrink-0 grow-0 basis-full px-6 pt-24 pb-16"
+                className="min-w-0 shrink-0 grow-0 basis-full px-6 pt-20 pb-10"
               >
-                <div className="max-w-6xl mx-auto relative">
+                <div className="max-w-6xl mx-auto relative h-full flex flex-col justify-center">
                   {slide.visual}
                   <div className="relative z-10">
                     <p className="font-mono text-xs font-bold text-primary uppercase tracking-widest mb-6">
                       {slide.eyebrow}
                     </p>
                     <Heading
-                      className={`text-5xl md:text-7xl font-mono font-extrabold tracking-tight text-balance leading-[0.9] max-w-4xl ${i === 0 ? "" : "lg:max-w-[58%]"}`}
+                      className={`text-5xl md:text-7xl font-mono font-extrabold tracking-tight text-balance leading-[0.9] max-w-4xl ${slide.narrow ? "lg:max-w-[58%]" : ""}`}
                     >
                       {slide.title[0]}
                       <span className="text-primary">{slide.title[1]}</span>
                       {slide.title[2]}
                     </Heading>
                     <p
-                      className={`mt-8 text-xl text-muted-foreground max-w-[50ch] text-pretty ${i === 0 ? "" : "lg:max-w-[58%]"}`}
+                      className={`mt-8 text-xl text-muted-foreground max-w-[50ch] text-pretty ${slide.narrow ? "lg:max-w-[58%]" : ""}`}
                     >
                       {slide.subtitle}
                     </p>

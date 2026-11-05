@@ -10,9 +10,11 @@ const GITHUB_URL = "https://github.com/Marvellous-Codeworks";
 interface SiteNavProps {
   /** href for the Extensions link. Use "#extensions" on homepage, "/#extensions" elsewhere. */
   extensionsHref?: string;
+  /** href for the Tools link. Use "#tools" on homepage, "/#tools" elsewhere. */
+  toolsHref?: string;
 }
 
-export function SiteNav({ extensionsHref = "/#extensions" }: SiteNavProps) {
+export function SiteNav({ extensionsHref = "/#extensions", toolsHref = "/#tools" }: SiteNavProps) {
   const { t } = useI18n();
 
   return (
@@ -27,19 +29,25 @@ export function SiteNav({ extensionsHref = "/#extensions" }: SiteNavProps) {
         <div className="flex items-center gap-5 sm:gap-8">
           <a
             href={extensionsHref}
-            className="hidden sm:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
+            className="hidden lg:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
           >
             {t("nav.extensions")}
           </a>
           <a
+            href={toolsHref}
+            className="hidden lg:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
+          >
+            {t("nav.tools")}
+          </a>
+          <a
             href={DOCS_URL}
-            className="hidden sm:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
+            className="hidden lg:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
           >
             {t("nav.docs")}
           </a>
           <a
             href={BLOG_URL}
-            className="hidden sm:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
+            className="hidden lg:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
           >
             {t("nav.blog")}
           </a>
@@ -47,7 +55,7 @@ export function SiteNav({ extensionsHref = "/#extensions" }: SiteNavProps) {
             href={GITHUB_URL}
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
+            className="hidden lg:inline text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
           >
             {t("nav.github")}
           </a>

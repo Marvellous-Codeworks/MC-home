@@ -98,10 +98,10 @@ function LogdropPage() {
         {/* Breadcrumb + hero */}
         <div>
           <a
-            href="/#extensions"
+            href="/#tools"
             className="inline-block font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors mb-8"
           >
-            {t("product.back")}
+            {t("product.back.tools")}
           </a>
 
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
