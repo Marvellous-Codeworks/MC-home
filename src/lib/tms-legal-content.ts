@@ -76,7 +76,7 @@ export const TMS_PRIVACY_CONTENT: LegalContent = {
       {
         heading: "Sicurezza",
         body: [
-          'Su Chrome il token OAuth è gestito dal browser. Sui browser descritti in "Terze parti — Cloudflare" i token sono conservati nello storage dell'estensione all'interno del browser. TMS non riceve mai la password dell\'account Google. Il trasferimento dei dati verso Google Drive e verso il Worker avviene tramite connessioni HTTPS cifrate.',
+          "Su Chrome il token OAuth è gestito dal browser. Sui browser descritti in \"Terze parti — Cloudflare\" i token sono conservati nello storage dell'estensione all'interno del browser. TMS non riceve mai la password dell'account Google. Il trasferimento dei dati verso Google Drive e verso il Worker avviene tramite connessioni HTTPS cifrate.",
         ],
       },
       {
