@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as LogdropRouteImport } from './routes/logdrop'
 import { Route as TgdRouteImport } from './routes/tgd'
 import { Route as TmsRouteImport } from './routes/tms'
+import { Route as TmsOauthProxyRouteImport } from './routes/tms-oauth-proxy'
 import { Route as TmsPrivacyRouteImport } from './routes/tms_.privacy'
 import { Route as TmsReportRouteImport } from './routes/tms_.report'
 import { Route as TmsTermsRouteImport } from './routes/tms_.terms'
@@ -38,6 +39,11 @@ const TgdRoute = TgdRouteImport.update({
 const TmsRoute = TmsRouteImport.update({
   id: '/tms',
   path: '/tms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TmsOauthProxyRoute = TmsOauthProxyRouteImport.update({
+  id: '/tms-oauth-proxy',
+  path: '/tms-oauth-proxy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TmsPrivacyRoute = TmsPrivacyRouteImport.update({
@@ -78,6 +84,7 @@ export interface FileRoutesByFullPath {
   '/logdrop': typeof LogdropRoute
   '/tgd': typeof TgdRoute
   '/tms': typeof TmsRoute
+  '/tms-oauth-proxy': typeof TmsOauthProxyRoute
   '/tms/privacy': typeof TmsPrivacyRoute
   '/tms/report': typeof TmsReportRoute
   '/tms/terms': typeof TmsTermsRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByTo {
   '/logdrop': typeof LogdropRoute
   '/tgd': typeof TgdRoute
   '/tms': typeof TmsRoute
+  '/tms-oauth-proxy': typeof TmsOauthProxyRoute
   '/tms/privacy': typeof TmsPrivacyRoute
   '/tms/report': typeof TmsReportRoute
   '/tms/terms': typeof TmsTermsRoute
@@ -103,6 +111,7 @@ export interface FileRoutesById {
   '/logdrop': typeof LogdropRoute
   '/tgd': typeof TgdRoute
   '/tms': typeof TmsRoute
+  '/tms-oauth-proxy': typeof TmsOauthProxyRoute
   '/tms_/privacy': typeof TmsPrivacyRoute
   '/tms_/report': typeof TmsReportRoute
   '/tms_/terms': typeof TmsTermsRoute
@@ -117,6 +126,7 @@ export interface FileRouteTypes {
     | '/logdrop'
     | '/tgd'
     | '/tms'
+    | '/tms-oauth-proxy'
     | '/tms/privacy'
     | '/tms/report'
     | '/tms/terms'
@@ -129,6 +139,7 @@ export interface FileRouteTypes {
     | '/logdrop'
     | '/tgd'
     | '/tms'
+    | '/tms-oauth-proxy'
     | '/tms/privacy'
     | '/tms/report'
     | '/tms/terms'
@@ -141,6 +152,7 @@ export interface FileRouteTypes {
     | '/logdrop'
     | '/tgd'
     | '/tms'
+    | '/tms-oauth-proxy'
     | '/tms_/privacy'
     | '/tms_/report'
     | '/tms_/terms'
@@ -154,6 +166,7 @@ export interface RootRouteChildren {
   LogdropRoute: typeof LogdropRoute
   TgdRoute: typeof TgdRoute
   TmsRoute: typeof TmsRoute
+  TmsOauthProxyRoute: typeof TmsOauthProxyRoute
   TmsPrivacyRoute: typeof TmsPrivacyRoute
   TmsReportRoute: typeof TmsReportRoute
   TmsTermsRoute: typeof TmsTermsRoute
@@ -190,6 +203,13 @@ declare module '@tanstack/react-router' {
       path: '/tms'
       fullPath: '/tms'
       preLoaderRoute: typeof TmsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tms-oauth-proxy': {
+      id: '/tms-oauth-proxy'
+      path: '/tms-oauth-proxy'
+      fullPath: '/tms-oauth-proxy'
+      preLoaderRoute: typeof TmsOauthProxyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tms_/privacy': {
@@ -242,6 +262,7 @@ const rootRouteChildren: RootRouteChildren = {
   LogdropRoute: LogdropRoute,
   TgdRoute: TgdRoute,
   TmsRoute: TmsRoute,
+  TmsOauthProxyRoute: TmsOauthProxyRoute,
   TmsPrivacyRoute: TmsPrivacyRoute,
   TmsReportRoute: TmsReportRoute,
   TmsTermsRoute: TmsTermsRoute,

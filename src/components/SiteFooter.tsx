@@ -60,6 +60,7 @@ export function SiteFooter() {
               { label: t("footer.link.tgd"), href: "/tgd" },
               { label: t("footer.link.tms"), href: "/tms" },
               { label: t("footer.link.logdrop"), href: "/logdrop" },
+              { label: t("footer.link.oauthproxy"), href: "/tms-oauth-proxy" },
             ]}
           />
           <FooterCol
