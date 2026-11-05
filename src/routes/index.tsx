@@ -4,12 +4,13 @@ import { useServerFn } from "@tanstack/react-start";
 import { ProductCard } from "@/components/ProductCard";
 import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
 import { BlogCarousel } from "@/components/BlogCarousel";
+import { HeroCarousel } from "@/components/HeroCarousel";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { getExtensionStats } from "@/lib/extension-stats.functions";
 import { getGithubStats } from "@/lib/github-stats.functions";
+import { useSmoothAnchorScroll } from "@/hooks/use-smooth-anchor-scroll";
 import { useI18n } from "@/lib/i18n";
-import heroChrome from "@/assets/hero-chrome-opt.webp";
 import logdropIcon from "@/assets/logdrop-icon.svg";
 import oauthProxyIcon from "@/assets/tms-oauth-proxy-icon.svg";
 
@@ -40,7 +41,6 @@ const TGD_REPO = { owner: "rkodey", repo: "the-great-er-discarder-er" } as const
 
 const BLOG_URL = "https://kb.marvellouscode.works/blog";
 const BLOG_RSS_URL = "https://kb.marvellouscode.works/blog/rss.xml";
-const GITHUB_URL = "https://github.com/Marvellous-Codeworks";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -73,6 +73,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const { t } = useI18n();
+  useSmoothAnchorScroll();
   const fetchStats = useServerFn(getExtensionStats);
   const fetchGithub = useServerFn(getGithubStats);
   const tgdStats = useQuery({
@@ -123,61 +124,9 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary">
-      <SiteNav extensionsHref="#extensions" />
+      <SiteNav extensionsHref="#extensions" toolsHref="#tools" />
 
-      {/* Hero */}
-      <header className="relative pt-24 pb-16 px-6 overflow-hidden">
-        <div className="max-w-6xl mx-auto relative">
-          {/* Hero visual — browser screenshot, faded into the page */}
-          <div
-            aria-hidden
-            className="hidden lg:block absolute -top-24 -bottom-16 right-0 w-[62%] pointer-events-none z-0"
-          >
-            <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-background via-background/60 to-transparent z-10" />
-            <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background to-transparent z-10" />
-            <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-background to-transparent z-10" />
-            <img
-              src={heroChrome}
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover object-left-top opacity-60"
-            />
-          </div>
-
-          {/* Text — z-10 to sit above the mascot layer */}
-          <div className="relative z-10 animate-reveal [animation-delay:100ms]">
-            <h1 className="text-5xl md:text-7xl font-mono font-extrabold tracking-tight text-balance leading-[0.9] max-w-4xl">
-              {t("hero.title.a")}
-              <span className="text-primary">{t("hero.title.b")}</span>
-              {t("hero.title.c")}
-            </h1>
-            <p className="mt-8 text-xl text-muted-foreground max-w-[50ch] text-pretty">
-              {t("hero.subtitle")}
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <a
-                href="#extensions"
-                className="h-11 px-6 bg-primary text-primary-foreground font-mono font-bold text-xs uppercase tracking-widest inline-flex items-center justify-center hover:bg-foreground transition-colors rounded-sm"
-              >
-                {t("hero.cta.view")}
-              </a>
-              <a
-                href={GITHUB_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="h-11 px-6 border border-border font-mono font-bold text-xs uppercase tracking-widest inline-flex items-center justify-center hover:bg-accent transition-colors rounded-sm"
-              >
-                {t("hero.cta.github")}
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Background grid */}
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#fff_70%,transparent_100%)]"
-        />
-      </header>
+      <HeroCarousel />
 
       <main>
         {/* Blog carousel */}
@@ -196,7 +145,7 @@ function Index() {
           <BlogCarousel />
         </section>
 
-        {/* Dual showcase */}
+        {/* Extensions */}
         <section
           id="extensions"
           className="scroll-mt-24 max-w-6xl mx-auto px-6 pb-24 border-t border-border"
@@ -285,12 +234,15 @@ function Index() {
           </div>
         </section>
 
-        {/* Other products */}
-        <section className="max-w-6xl mx-auto px-6 pb-24 border-t border-border">
+        {/* Self-hostable tools */}
+        <section
+          id="tools"
+          className="scroll-mt-24 max-w-6xl mx-auto px-6 pb-24 border-t border-border"
+        >
           <div className="mb-10 pt-24">
             <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest">
               {"// "}
-              {t("home.moreTools")}
+              {t("nav.tools")}
             </h2>
           </div>
           <div className="space-y-6">

@@ -6,17 +6,40 @@ export type Locale = "en" | "it";
 type Dict = Record<string, string>;
 
 const en: Dict = {
-  "nav.extensions": "Products",
+  "nav.extensions": "Extensions",
+  "nav.tools": "Tools",
   "nav.docs": "Docs",
   "nav.blog": "Blog",
   "nav.github": "GitHub",
   "hero.title.a": "RECLAIM YOUR ",
   "hero.title.b": "BROWSER",
   "hero.title.c": " MEMORY.",
-  "hero.subtitle":
-    "Precision tools for the professional web. Marvellous Codeworks builds open-source software — from Chromium extensions that turn memory-hungry browsers into lean execution environments, to self-hostable utilities like logdrop.",
-  "hero.cta.view": "View Extensions",
-  "hero.cta.github": "GitHub Org",
+  "hero.carousel.label": "Marvellous Codeworks products",
+  "hero.tab.ext.t": "Extensions",
+  "hero.tab.ext.b": "Tab memory",
+  "hero.tab.logdrop.b": "Private log drop-off",
+  "hero.tab.proxy.b": "Secrets off the client",
+  "hero.ext.eyebrow": "Open source // Chromium extensions",
+  "hero.ext.subtitle":
+    "Suspend or discard the tabs you aren't using, and give your browser its memory back without losing your place.",
+  "hero.logdrop.eyebrow": "Open source // Self-hostable",
+  "hero.logdrop.title.a": "SHARE LOGS WITHOUT ",
+  "hero.logdrop.title.b": "GOING PUBLIC",
+  "hero.logdrop.title.c": ".",
+  "hero.logdrop.subtitle":
+    "Anyone can upload text with no account. Only allow-listed maintainers can read it back, and every upload expires on its own.",
+  "hero.proxy.eyebrow": "Open source // Self-hostable",
+  "hero.proxy.title.a": "KEEP ",
+  "hero.proxy.title.b": "SECRETS",
+  "hero.proxy.title.c": " OUT OF EXTENSIONS.",
+  "hero.proxy.subtitle":
+    "A tiny Cloudflare Worker that brokers Google OAuth token exchanges, so your browser extension never has to ship its secret.",
+  "hero.proxy.flow.a.t": "Extension",
+  "hero.proxy.flow.a.b": "POST /token, no secret",
+  "hero.proxy.flow.b.t": "Worker",
+  "hero.proxy.flow.b.b": "adds client_secret",
+  "hero.proxy.flow.c.t": "Google",
+  "hero.proxy.flow.c.b": "returns the tokens",
 
   "tgd.name": "The Great-er Tab Discarder",
   "tgd.description":
@@ -118,7 +141,7 @@ const en: Dict = {
     "Zero tracking. Zero analytics. Your browsing data never leaves your machine. Both extensions are fully open source for community auditing.",
   "trust.03.t": "Open Source",
   "trust.03.b":
-    "Maintained by Marvellous Codeworks and a global community of developers. Fork it, improve it, or contribute under a permissive open-source license.",
+    "Maintained by Marvellous Codeworks and a global community of developers. Fork it, improve it, or contribute under the GPL-2.0 license.",
 
   "footer.tagline":
     "A small team and a global open-source community, building precision tools for the professional web.",
@@ -158,13 +181,13 @@ const en: Dict = {
   "blog.loading": "Loading posts…",
   "blog.empty": "No posts yet.",
 
-  "product.back": "← All Products",
+  "product.back.extensions": "← All extensions",
+  "product.back.tools": "← All tools",
   "product.features": "// Key Features",
   "product.learnMore": "Learn More",
   "product.changelog": "// What's new in {version}",
   "product.changelog.released": "Released {date}",
   "product.changelog.github": "View on GitHub",
-  "home.moreTools": "More tools",
   "blog.section.about": "// Latest from the blog about {name}",
 
   "report.form.heading": "Report a bug or request a feature",
@@ -238,17 +261,40 @@ const en: Dict = {
 };
 
 const it: Dict = {
-  "nav.extensions": "Prodotti",
+  "nav.extensions": "Estensioni",
+  "nav.tools": "Strumenti",
   "nav.docs": "Documentazione",
   "nav.blog": "Blog",
   "nav.github": "GitHub",
   "hero.title.a": "LIBERA LA ",
   "hero.title.b": "MEMORIA",
   "hero.title.c": " DEL TUO BROWSER.",
-  "hero.subtitle":
-    "Strumenti di precisione per il web professionale. Marvellous Codeworks sviluppa software open source — dalle estensioni Chromium che trasformano browser affamati di memoria in ambienti d'esecuzione snelli, a utility autospitabili come logdrop.",
-  "hero.cta.view": "Vedi le estensioni",
-  "hero.cta.github": "Org GitHub",
+  "hero.carousel.label": "Prodotti Marvellous Codeworks",
+  "hero.tab.ext.t": "Estensioni",
+  "hero.tab.ext.b": "Memoria delle schede",
+  "hero.tab.logdrop.b": "Log privati, con scadenza",
+  "hero.tab.proxy.b": "Secret fuori dal client",
+  "hero.ext.eyebrow": "Open source // Estensioni Chromium",
+  "hero.ext.subtitle":
+    "Sospendi o scarta le schede che non usi e restituisci memoria al browser, senza perdere il punto in cui eri.",
+  "hero.logdrop.eyebrow": "Open source // Autospitabile",
+  "hero.logdrop.title.a": "CONDIVIDI I LOG SENZA ",
+  "hero.logdrop.title.b": "RENDERLI PUBBLICI",
+  "hero.logdrop.title.c": ".",
+  "hero.logdrop.subtitle":
+    "Chiunque può caricare testo senza account. Solo i manutentori autorizzati possono rileggerlo, e ogni caricamento scade da solo.",
+  "hero.proxy.eyebrow": "Open source // Autospitabile",
+  "hero.proxy.title.a": "I ",
+  "hero.proxy.title.b": "SECRET",
+  "hero.proxy.title.c": " FUORI DALL'ESTENSIONE.",
+  "hero.proxy.subtitle":
+    "Un piccolo Cloudflare Worker che gestisce lo scambio di token OAuth con Google, così la tua estensione non deve mai distribuire il secret.",
+  "hero.proxy.flow.a.t": "Estensione",
+  "hero.proxy.flow.a.b": "POST /token, senza secret",
+  "hero.proxy.flow.b.t": "Worker",
+  "hero.proxy.flow.b.b": "aggiunge client_secret",
+  "hero.proxy.flow.c.t": "Google",
+  "hero.proxy.flow.c.b": "restituisce i token",
 
   "tgd.name": "The Great-er Tab Discarder",
   "tgd.description":
@@ -352,7 +398,7 @@ const it: Dict = {
     "Zero tracciamento. Zero analytics. I tuoi dati di navigazione non lasciano mai la tua macchina. Entrambe le estensioni sono open source e verificabili.",
   "trust.03.t": "Open Source",
   "trust.03.b":
-    "Mantenuto da Marvellous Codeworks e da una community globale di sviluppatori. Forka, migliora o contribuisci sotto una licenza open source permissiva.",
+    "Mantenuto da Marvellous Codeworks e da una community globale di sviluppatori. Forka, migliora o contribuisci sotto licenza GPL-2.0.",
 
   "footer.tagline":
     "Un piccolo team e una community open source globale, che sviluppa strumenti di precisione per il web professionale.",
@@ -392,13 +438,13 @@ const it: Dict = {
   "blog.loading": "Caricamento articoli…",
   "blog.empty": "Nessun articolo per ora.",
 
-  "product.back": "← Tutti i prodotti",
+  "product.back.extensions": "← Tutte le estensioni",
+  "product.back.tools": "← Tutti gli strumenti",
   "product.features": "// Caratteristiche principali",
   "product.learnMore": "Scopri di più",
   "product.changelog": "// Novità della {version}",
   "product.changelog.released": "Pubblicata il {date}",
   "product.changelog.github": "Vedi su GitHub",
-  "home.moreTools": "Altri strumenti",
   "blog.section.about": "// Dal blog su {name}",
 
   "report.form.heading": "Segnala un bug o richiedi una funzionalità",

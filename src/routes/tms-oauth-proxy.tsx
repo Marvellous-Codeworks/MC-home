@@ -83,10 +83,10 @@ function OAuthProxyPage() {
         {/* Breadcrumb + hero */}
         <div>
           <a
-            href="/"
+            href="/#tools"
             className="inline-block font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors mb-8"
           >
-            {t("product.back")}
+            {t("product.back.tools")}
           </a>
 
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
@@ -185,7 +185,7 @@ function OAuthProxyPage() {
           <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest mb-6">
             {t("oauthproxy.security.heading")}
           </h2>
-          <div className="space-y-4 max-w-prose text-sm text-muted-foreground leading-relaxed">
+          <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
             <p>{t("oauthproxy.security.p1")}</p>
             <p>{t("oauthproxy.security.p2")}</p>
             <p>{t("oauthproxy.security.p3")}</p>
