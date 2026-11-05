@@ -57,13 +57,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Marvellous Codeworks ships The Great-er Tab Discarder and The Marvellous Suspender — open-source Chromium extensions that reclaim browser memory — plus self-hostable tools like logdrop and OAuth Proxy.",
+          "Marvellous Codeworks ships The Great-er Tab Discarder and The Marvellous Suspender — open-source Chromium extensions that reclaim browser memory — plus self-hostable tools like logdrop and OAuth Proxy for Google.",
       },
       { property: "og:title", content: "Marvellous Codeworks — Precision Tools for the Web" },
       {
         property: "og:description",
         content:
-          "Open-source software for the professional web: memory-efficient Chromium extensions, plus self-hostable utilities like logdrop and OAuth Proxy.",
+          "Open-source software for the professional web: memory-efficient Chromium extensions, plus self-hostable utilities like logdrop and OAuth Proxy for Google.",
       },
       { property: "og:type", content: "website" },
     ],

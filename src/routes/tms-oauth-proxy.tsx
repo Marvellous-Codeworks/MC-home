@@ -15,13 +15,13 @@ const PROXY_REPO = { owner: "Marvellous-Codeworks", repo: "tms-oauth-proxy" } as
 export const Route = createFileRoute("/tms-oauth-proxy")({
   head: () => ({
     meta: [
-      { title: "OAuth Proxy — Marvellous Codeworks" },
+      { title: "OAuth Proxy for Google — Marvellous Codeworks" },
       {
         name: "description",
         content:
-          "OAuth Proxy is a Cloudflare Worker that brokers Google OAuth token exchanges, so a browser extension can use PKCE without shipping its client secret.",
+          "OAuth Proxy for Google is a Cloudflare Worker that brokers Google OAuth token exchanges, so a browser extension can use PKCE without shipping its client secret.",
       },
-      { property: "og:title", content: "OAuth Proxy — Marvellous Codeworks" },
+      { property: "og:title", content: "OAuth Proxy for Google — Marvellous Codeworks" },
       {
         property: "og:description",
         content:
