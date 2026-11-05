@@ -185,7 +185,7 @@ function OAuthProxyPage() {
           <h2 className="font-mono text-sm font-bold text-primary uppercase tracking-widest mb-6">
             {t("oauthproxy.security.heading")}
           </h2>
-          <div className="space-y-4 max-w-prose text-sm text-muted-foreground leading-relaxed">
+          <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
             <p>{t("oauthproxy.security.p1")}</p>
             <p>{t("oauthproxy.security.p2")}</p>
             <p>{t("oauthproxy.security.p3")}</p>
